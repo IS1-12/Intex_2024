@@ -58,8 +58,9 @@ namespace WebApplication1
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
-            app.UseAuthorization();
+
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.Run();
         }
