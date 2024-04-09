@@ -33,6 +33,7 @@ body {
 .zesty-button {
     display: inline-block;
     padding: 10px 20px;
+    margin-bottom: 10px
     background-color: #FECD2C;
     color: black;
     border: none;
@@ -49,4 +50,9 @@ body {
 .fa-icon {
     vertical-align: bottom;
     line-height: 0.5; 
+}
+
+
+.button-width{
+    width: 300px
 }

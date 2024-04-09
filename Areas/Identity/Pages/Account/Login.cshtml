@@ -30,7 +30,19 @@
                     </label>
                 </div>
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg zesty-button">Log in</button>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lrg" style="display: inline-block;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    background-color: #FECD2C;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease" > Log in</button>
                 </div>
                 <div>
                     <p>
@@ -71,7 +83,21 @@
                             <p>
                                 @foreach (var provider in Model.ExternalLogins!)
                                 {
-                                    <button type="submit" class="btn zesty-button" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    <button type="submit" class="btn" style="display: inline-block;
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        background-color: #FECD2C;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                        @provider.DisplayName
+                                    </button>
                                 }
                             </p>
                         </div>
