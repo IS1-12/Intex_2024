@@ -59,6 +59,21 @@ namespace WebApplication1
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
+            app.Use(async (ctx, next) =>
+            {
+                string csp = "default-src 'self'; " +
+                             "script-src 'self' https://kit.fontawesome.com https://apis.google.com 'unsafe-inline'; " + // Include FontAwesome and Google APIs
+                             "connect-src 'self' ws://localhost:57798 http://localhost:57798; " + // Allow BrowserLink in development
+                             "style-src 'self' 'unsafe-inline'; " + // Assuming you have inline styles
+                             "font-src 'self' https://fonts.gstatic.com;"; // If using Google Fonts
+
+                if (ctx.Request.IsHttps || app.Environment.IsDevelopment())
+                {
+                    ctx.Response.Headers.Add("Content-Security-Policy", csp);
+                }
+                await next();
+            });
+
             app.UseAuthentication();
             app.UseAuthorization();
 
