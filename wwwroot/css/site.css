@@ -1,5 +1,6 @@
 html {
   font-size: 14px;
+  height:100%;
 }
 
 @media (min-width: 768px) {
@@ -27,4 +28,9 @@ body {
 
 .img-round {
     border-radius: 0.25rem;
+}
+
+.fa-icon {
+    vertical-align: bottom;
+    line-height: 0.5; 
 }
