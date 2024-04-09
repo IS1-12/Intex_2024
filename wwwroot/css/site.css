@@ -20,3 +20,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.bg-blue {
+    background-color: #201d49;
+}
+
+.img-round {
+    border-radius: 0.25rem;
+}
