@@ -62,15 +62,21 @@ namespace WebApplication1
             app.Use(async (ctx, next) =>
             {
                 string csp = "default-src 'self'; " +
-                             "script-src 'self' https://kit.fontawesome.com https://apis.google.com 'unsafe-inline'; " + // Include FontAwesome and Google APIs
-                             "connect-src 'self' ws://localhost:57798 http://localhost:57798; " + // Allow BrowserLink in development
-                             "style-src 'self' 'unsafe-inline'; " + // Assuming you have inline styles
-                             "font-src 'self' https://fonts.gstatic.com;"; // If using Google Fonts
+                             "script-src 'self' https://kit.fontawesome.com 'unsafe-inline' https://apis.google.com; " +
+                             "connect-src 'self' ws://localhost:57798 http://localhost:57798 https://ka-f.fontawesome.com ws://localhost:62719 http://localhost:62719 wss://localhost:44300; " +
+                             "style-src 'self' 'unsafe-inline'; " +
+                             "font-src 'self' https://fonts.gstatic.com https://ka-f.fontawesome.com; " +
+                             "img-src 'self' data:; ";
+
 
                 if (ctx.Request.IsHttps || app.Environment.IsDevelopment())
                 {
                     ctx.Response.Headers.Add("Content-Security-Policy", csp);
                 }
+
+                // Adding X-Content-Type-Options header
+                ctx.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+
                 await next();
             });
 
