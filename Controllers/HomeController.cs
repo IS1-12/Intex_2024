@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.Extensions.Logging; // Ensure you have this using directive for ILogger
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -15,11 +16,20 @@ namespace WebApplication1.Controllers
 
         public IActionResult Index()
         {
+            // Read the user's cookie consent status from the cookies
+            var userConsent = Request.Cookies["userConsent"];
+            // Pass the consent status to the view via ViewBag
+            ViewBag.UserConsent = userConsent;
+
             return View();
         }
 
         public IActionResult Privacy()
         {
+            // You might also want to check and pass the consent status in the Privacy view
+            var userConsent = Request.Cookies["userConsent"];
+            ViewBag.UserConsent = userConsent;
+
             return View();
         }
 

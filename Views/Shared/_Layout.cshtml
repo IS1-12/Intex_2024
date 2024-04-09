@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
     <link rel="icon" type="image/png" href="~/images/legoHead.jpg" alt="A Lego Head" />
-
+    <script src="https://kit.fontawesome.com/a4d2e24df2.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3" style="padding:0px">
             <div class="container-fluid bg-blue">
-                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" width="7%" class="img-round" alt="The Aurora Bricks official logo tm"/> Aurora Bricks</a>
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" width="7%" class="img-round" alt="The Aurora Bricks official logo tm" /> Aurora Bricks</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,13 +23,14 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">All Lego Sets</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy" >Privacy</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">About</a>
                         </li>
+                        <partial name="_LoginPartial" />
+                        <li class="text-white">&emsp;<i class='fas fa-shopping-cart fa-icon' style='font-size:24px; line-height: 0.3em;"'></i></li>
                     </ul>
-                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
@@ -39,12 +40,62 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - Aurora Bricks - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="border-top footer text-muted bg-blue p-3">
+        <div class="container text-white">
+            &copy; 2024 - Aurora Bricks - @@aurorabricks - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-white">Privacy</a>
         </div>
     </footer>
+
+    <!-- JavaScript for GDPR Cookie Consent -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var consent = getCookie('userConsent');
+            if (!consent) {
+                document.getElementById('cookieConsentBanner').style.display = 'block';
+            }
+
+            document.getElementById('acceptCookies').addEventListener('click', function () {
+                setCookie('userConsent', 'all', 365); // Consent for 1 year
+                document.getElementById('cookieConsentBanner').style.display = 'none';
+            });
+
+            document.getElementById('rejectCookies').addEventListener('click', function () {
+                setCookie('userConsent', 'none', 365); // Reject non-essential cookies
+                document.getElementById('cookieConsentBanner').style.display = 'none';
+            });
+
+            // Function to set a cookie
+            function setCookie(name, value, days) {
+                var expires = "";
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toUTCString();
+                }
+                document.cookie = name + "=" + (value || "") + expires + "; path=/";
+            }
+
+            // Function to get a cookie value
+            function getCookie(name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
+        });
+    </script>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsentBanner" class="cookie-consent-banner" style="display:none; position: fixed; bottom: 0; width: 100%; background-color: #201D49; color: white; text-align: center; padding: 10px; z-index: 1000;">
+        <p>This website uses cookies to ensure you get the best experience on our website.</p>
+        <button id="acceptCookies" class="btn btn-success">Accept All</button>
+        <button id="rejectCookies" class="btn btn-danger">Reject Non-Essential</button>
+    </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

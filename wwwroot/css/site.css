@@ -1,5 +1,6 @@
 html {
   font-size: 14px;
+  height:100%;
 }
 
 @media (min-width: 768px) {
@@ -42,4 +43,10 @@ body {
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+
+.fa-icon {
+    vertical-align: bottom;
+    line-height: 0.5; 
 }
