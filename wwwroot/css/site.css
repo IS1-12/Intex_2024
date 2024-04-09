@@ -30,6 +30,22 @@ body {
     border-radius: 0.25rem;
 }
 
+.zesty-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #FECD2C;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
 .fa-icon {
     vertical-align: bottom;
     line-height: 0.5; 
