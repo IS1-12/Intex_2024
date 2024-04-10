@@ -6,20 +6,11 @@
         IQueryable<Product> Products { get; }
         IQueryable<LineItem> LineItems { get; }
         IQueryable<Customer> Customers { get; }
-
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
         public void AddProduct(Product p);
->>>>>>> Stashed changes
         public Product RemoveProduct(int id);
         public void RemoveProduct(Product p);
         public Product EditProduct(int id);
         public void EditProduct(Product p);
-=======
-        public Product Remove(int id);
-        public void Remove(Product p);
         public AspNetUser UpdateUser(int id);
->>>>>>> Stashed changes
     }
 }
