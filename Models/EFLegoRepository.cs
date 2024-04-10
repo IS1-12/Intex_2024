@@ -29,9 +29,9 @@ namespace LegosWithAurora.Models
             _context.Products.Update(p);
             _context.SaveChanges();
         }
-        public AspNetUser UpdateUser(int id) =>
-            _context.AspNetUsers
-            .Single(x => x.CustomerId == id);
+        //public AspNetUser UpdateUser(int id) =>
+        //    _context.AspNetUsers
+        //    .Single(x => x.CustomerId == id);
 
         public void AddProduct(Product p)
         {

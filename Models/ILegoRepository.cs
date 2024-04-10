@@ -11,6 +11,6 @@
         public void RemoveProduct(Product p);
         public Product EditProduct(int id);
         public void EditProduct(Product p);
-        public AspNetUser UpdateUser(int id);
+        //public AspNetUser UpdateUser(int id);
     }
 }
