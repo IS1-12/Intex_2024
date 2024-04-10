@@ -76,7 +76,7 @@ namespace WebApplication1
                              "connect-src 'self' ws://localhost:57798 http://localhost:57798 https://ka-f.fontawesome.com ws://localhost:62719 http://localhost:62719 wss://localhost:44300; " +
                              "style-src 'self' 'unsafe-inline'; " +
                              "font-src 'self' https://fonts.gstatic.com https://ka-f.fontawesome.com; " +
-                             "img-src 'self' https://m.media-amazon.com data:; ";
+                             "img-src 'self' https://m.media-amazon.com https://www.lego.com/ https://images.brickset.com/ https://www.brickeconomy.com/ data:; ";
 
                 if (ctx.Request.IsHttps || app.Environment.IsDevelopment())
                 {
