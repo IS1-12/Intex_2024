@@ -1,8 +1,10 @@
-﻿@*
+﻿@using LegosWithAurora.Models
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
+@model Cart
 <h2 style="text-align: center">CHECKOUT</h2>
 <div class="bg-blue text-white content-text">
     <form method="post">
@@ -33,8 +35,15 @@
                 <input class="zesty-button" type="submit" value="Place Order" />
             </div>
             <div class="bg-white text-black rounded" style="flex-grow: 1">
-                <p>Order Total</p>
-                <p>$.....</p>
+                <h6>Order Summary:</h6>
+                <ul>
+                    @foreach (var l in Model.Lines ?? Enumerable.Empty<Cart.CartLine>())
+                    {
+                        <li>@l.product.Name - @l.Quantity - @((l.Quantity * (int)l.product.Price * 1).ToString("c"))</li>
+                    }
+                </ul>
+                <h6>Total:</h6>
+                <p>$@Model.CalculateTotal()</p>
             </div>
         </div>
         

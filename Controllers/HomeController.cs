@@ -5,6 +5,10 @@ using Microsoft.Extensions.Logging; // Ensure you have this using directive for 
 using WebApplication1.Models;
 using LegosWithAurora.Models;
 using Microsoft.CodeAnalysis;
+using Microsoft.ML.OnnxRuntime;
+using Microsoft.ML.OnnxRuntime.Tensors;
+using Microsoft.AspNetCore.Http;
+using LegosWithAurora.Infrastructure;
 
 namespace WebApplication1.Controllers
 {
@@ -13,10 +17,23 @@ namespace WebApplication1.Controllers
         private ILegoRepository _repo;
 
         private Cart Cart = new Cart();
+        private readonly InferenceSession _session;
 
         public HomeController(ILegoRepository temp)
         {
             _repo = temp;
+
+            try
+            {
+                _session = new InferenceSession("./decision_tree_model.onnx");
+                //_logger.LogInformation("ONNX model loaded successfully.");
+                Console.WriteLine("Success");
+            }
+            catch (Exception ex)
+            {
+                //_logger.LogError($"Error loading the ONNX model: {ex.Message}");
+                Console.WriteLine("Aaaaahhhhhh noooooooo" + ex.Message);
+            }
         }
 
         public IActionResult Index()
@@ -67,7 +84,9 @@ namespace WebApplication1.Controllers
 
             if (prod != null)
             {
+                Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
                 Cart.AddItem(prod, 1);
+                HttpContext.Session.SetJson("cart", Cart);
             }
 
             return RedirectToAction("CartConfirmation", new { id = productId, returnUrl = returnUrl });
@@ -81,11 +100,22 @@ namespace WebApplication1.Controllers
             return View(prod);
         }
 
+        public IActionResult ViewCart()
+        {
+            ViewBag.Cart = Cart;
+            return View();
+        }
+
         public IActionResult About()
         {
             return View();
         }
-        public IActionResult Checkout() { return View(); }
+        public IActionResult Checkout() 
+        {
+            Cart = HttpContext.Session.GetJson<Cart>("cart")
+                ?? new Cart();
+            return View(Cart); 
+        }
         public IActionResult AddProduct() { return View(); }
         public IActionResult AddUser() { return View(); }
 
@@ -127,20 +157,20 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult AdminProductDelete(int id)
-        {
-            Product delete = _repo.Remove(id);
+        //[HttpGet]
+        //public IActionResult AdminProductDelete(int id)
+        //{
+        //    Product delete = _repo.Remove(id);
             
-            return View(delete);
-        }
+        //    return View(delete);
+        //}
 
-        [HttpPost]
-        public IActionResult AdminProductDelete(Product id)
-        {
-            _repo.Remove(id);
+        //[HttpPost]
+        //public IActionResult AdminProductDelete(Product id)
+        //{
+        //    _repo.Remove(id);
 
-            return RedirectToAction("AdminAllProducts");
-        }
+        //    return RedirectToAction("AdminAllProducts");
+        //}
     }
 }
