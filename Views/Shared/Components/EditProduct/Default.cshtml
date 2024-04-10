@@ -1,24 +1,34 @@
 @{ }
 
+@model LegosWithAurora.Models.Product
+
 <div class="container bg-blue" style="border-radius: 20px;">
     <table>
-        <thead>
-        <tr style="text-decoration: underline;">
-            <td>Product Photo</td>
-            <td>Description</td>
-            <td>Quantity</td>
-            <td>Price</td>
-            <td><a class="btn zesty-button">Edit Product</a></td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>pic</td>
-            <td>Cutie desc</td>
-            <td>Quantity</td>
-            <td>Price</td>
-            <td><a class="btn btn-danger">Delete Product</a></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+            <thead>
+            <tr style="text-decoration: underline; color: white;">
+                <td class="col-2 text-center">Product Photo</td>
+                <td class="col-6">Description</td>
+                <td class="col">Primary Color</td>
+                <td class="col">Secondary Color</td>
+                <td class="col-1 text center"># of Parts</td>
+                <td class="col-1 text-center">Year</td>
+                <td class="col-1 text-center">Price</td>
+                <td class="col-2">Category</td>
+                <td class="col-2"><a class="btn zesty-button">Edit</a></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="text-white">
+                <td class="text-center"><img src="@Model.ImgLink" alt="@Model.Name" height="100" style="border-radius: 10px"/></td>
+                <td>@Model.Description</td>
+                <td class="text-center" style="vertical-align: top;">@Model.PrimaryColor</td>
+                <td class="text-center" style="vertical-align: top;">@Model.SecondaryColor</td>
+                <td class="text-center" style="vertical-align: top;">@Model.NumParts</td>
+                <td class="text-center" style="vertical-align: top;">@Model.Year</td>
+                <td class="text-center" style="vertical-align: top;">@Model.Price</td>
+                <td style="vertical-align: top;">@Model.Category</td>
+                <td style="vertical-align: bottom;"><a class="btn btn-danger" asp-controller="Home" asp-action="AdminProductDelete" asp-route-id="@Model.ProductId">Delete</a></td>
+            </tr>
+            </tbody>
+    </table >
+</div >

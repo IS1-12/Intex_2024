@@ -9,21 +9,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb216afa-fd9d-4579-8549-20a602b4fdb5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Components/EditProductViewComponent.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Home/AdminDashboard.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Home/OrderApproved.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Home/OrderCancelled.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Home/OrderReview.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Shared/Components/EditProduct/Default.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Shared/_Admin.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Shared/_AdminLayout.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Views/Home/AdminAllProducts.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Views/Home/AdminAllUsers.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Views/Home/AdminProductDelete.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/HomeController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LegosWithAurora.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LegosWithAurora.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/OrderApproved.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminOrderApproved.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/OrderCancelled.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminOrderCancelled.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/OrderReview.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminOrderReview.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Shared/Components/EditProduct/Default.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/Components/EditProduct/Default.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Shared/_AdminLayout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/_AdminLayout.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -40,6 +43,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "BZV83"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/IS1-12/Intex_2024.git",
+    "accountId": "4254f650-86e5-4672-a5a9-577227d8d62d"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock:///Users/brendanvick/Documents/GitHub/Intex_2024/Areas/Identity/Pages/Account/Login.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/brendanvick/Documents/GitHub/Intex_2024/Controllers/HomeController.cs" root0="SKIP_HIGHLIGHTING" />
@@ -71,9 +86,9 @@
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "/Users/brendanvick/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache",
-      "/Users/brendanvick/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache",
-      "/Users/brendanvick/.local/share/Symbols/src"
+      "/Users/brendanvick/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
+      "/Users/brendanvick/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache",
+      "/Users/brendanvick/Library/Application Support/Symbols/src"
     ]
   }
 }]]></component>
@@ -126,7 +141,8 @@
       <workItem from="1712696795039" duration="104000" />
       <workItem from="1712696918053" duration="513000" />
       <workItem from="1712697508130" duration="1504000" />
-      <workItem from="1712700957503" duration="9417000" />
+      <workItem from="1712700957503" duration="9469000" />
+      <workItem from="1712759300104" duration="7212000" />
     </task>
     <servers />
   </component>
@@ -134,6 +150,7 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>

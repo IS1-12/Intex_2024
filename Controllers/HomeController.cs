@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using Microsoft.Extensions.Logging; // Ensure you have this using directive for ILogger
 using WebApplication1.Models;
@@ -70,11 +71,11 @@ namespace WebApplication1.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult OrderCancelled()
+        public IActionResult AdminOrderCancelled()
         {
             return View();
         }
-        public IActionResult OrderApproved()
+        public IActionResult AdminOrderApproved()
         {
             return View();
         }
@@ -83,9 +84,39 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        public IActionResult OrderReview()
+        public IActionResult AdminOrderReview()
         {
             return View();
+        }
+
+        public IActionResult AdminAllProducts()
+        {
+            var products = _repo.Products;
+
+            products.ToList();
+
+            return View(products);
+        }
+
+        public IActionResult AdminAllUsers()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult AdminProductDelete(int id)
+        {
+            Product delete = _repo.Remove(id);
+            
+            return View(delete);
+        }
+
+        [HttpPost]
+        public IActionResult AdminProductDelete(Product id)
+        {
+            _repo.Remove(id);
+
+            return RedirectToAction("AdminAllProducts");
         }
     }
 }
