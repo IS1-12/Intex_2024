@@ -2,26 +2,31 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Microsoft.Extensions.Logging; // Ensure you have this using directive for ILogger
 using WebApplication1.Models;
+using LegosWithAurora.Models;
 
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private ILegoRepository _repo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILegoRepository temp)
         {
-            _logger = logger;
+            _repo = temp;
         }
 
         public IActionResult Index()
         {
+            var products = _repo.Products;
+
+            products.ToList();
+
             // Read the user's cookie consent status from the cookies
             var userConsent = Request.Cookies["userConsent"];
             // Pass the consent status to the view via ViewBag
             ViewBag.UserConsent = userConsent;
 
-            return View();
+            return View(products);
         }
 
         public IActionResult Privacy()

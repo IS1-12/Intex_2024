@@ -56,3 +56,30 @@ body {
 .button-width{
     width: 300px
 }
+
+.ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 6; /* Set to 6 for 6 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+btn-prod-details     {
+    color: yellow;
+}
+
+details-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    background-color: #FECD2C;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
