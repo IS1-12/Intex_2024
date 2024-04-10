@@ -1,0 +1,34 @@
+﻿@using LegosWithAurora.Models
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IQueryable<Product>
+
+
+<div class="row">
+    <div class="col-2">
+        <div class="container" style="position: sticky; top:0">
+            <a class="btn btn-secondary btn-lg m-1" style="background-color: #FECD2C; color:black">Filter 1</a><br />
+            <a class="btn btn-secondary btn-lg m-1" style="background-color: #FECD2C; color:black">Filter 2</a>
+            <a class="btn btn-secondary btn-lg m-1" style="background-color: #FECD2C; color:black">Filter 3</a>
+            <a class="btn btn-secondary btn-lg m-1" style="background-color: #FECD2C; color:black">Filter 4</a>
+        </div>
+    </div>
+    <div class="col-10">
+        <div class="row">
+            <h1>Browse Lego sets</h1>
+            <br />
+            <br />            
+            <br />
+
+            @foreach (var p in Model.Take(37))
+            {
+                <div class="col-4">
+                    <partial name="LegoSetCard" model="p" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

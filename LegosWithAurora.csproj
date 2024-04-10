@@ -23,4 +23,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Views\Shared\_Admin.css">
+      <DependentUpon>_AdminLayout.cshtml</DependentUpon>
+    </None>
+  </ItemGroup>
+
 </Project>

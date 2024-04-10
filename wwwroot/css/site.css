@@ -52,6 +52,40 @@ body {
     line-height: 0.5; 
 }
 
+.container {
+    border-radius: 25px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+.img-head {
+    padding-bottom: 10px;
+    border-radius: 25px;
+}
+.navbar-toggler-icon {
+    color: white;
+}
+
+.img-container {
+    margin-right: 30px;
+}
+.content-text {
+    padding: 40px 60px;
+    border-radius: 25px;
+}
+a.sidebar {
+    color: white;
+    text-decoration: none;
+}
+a.sidebar:hover {
+    color: #FECD2C;
+}
+a.sidebar:visited{
+    color: white;
+}
+.input-box {
+    width: 80%;
+}
+
 
 .button-width{
     width: 300px
@@ -82,4 +116,43 @@ details-btn {
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    border-radius: 25px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.img-head {
+    padding-bottom: 10px;
+    border-radius: 25px;
+}
+
+.navbar-toggler-icon {
+    color: white;
+}
+
+.img-container {
+    margin-right: 30px;
+}
+
+.content-text {
+    padding: 40px 60px;
+    border-radius: 25px;
+}
+
+a.sidebar {
+    color: white;
+    text-decoration: none;
+}
+
+a.sidebar:hover {
+    color: #FECD2C;
+}
+
+a.sidebar:visited {
+    color: white;
+}
+
+.checkout {
+    width: 80%;
+    margin-bottom: 30px;
 }

@@ -1,0 +1,15 @@
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="align-items-center text-center">
+    <h1>Welcome, {Admin Name}</h1>
+    <br/>
+    <img src="~/images/logo.png" alt="Aurora Bricks Logo" style="border-radius: 20px;width: 400px;"/>
+    <br/><br/>
+    <span>
+    <a class="btn zesty-button" asp-controller="Home" asp-action="EditProduct">Edit Products</a>
+    <a class="btn zesty-button" asp-controller="Home" asp-action="EditUser">Edit Users</a>
+    <a class="btn zesty-button" asp-controller="Home" asp-action="OrderReview">Review Orders</a>
+    </span>
+</div>
