@@ -7,6 +7,10 @@ using LegosWithAurora.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.AspNetCore.Authorization;
 using System.Formats.Tar;
+using Microsoft.ML.OnnxRuntime;
+using Microsoft.ML.OnnxRuntime.Tensors;
+using Microsoft.AspNetCore.Http;
+using LegosWithAurora.Infrastructure;
 
 namespace WebApplication1.Controllers
 {
@@ -15,10 +19,23 @@ namespace WebApplication1.Controllers
         private ILegoRepository _repo;
 
         private Cart Cart = new Cart();
+        private readonly InferenceSession _session;
 
         public HomeController(ILegoRepository temp)
         {
             _repo = temp;
+
+            try
+            {
+                _session = new InferenceSession("./decision_tree_model.onnx");
+                //_logger.LogInformation("ONNX model loaded successfully.");
+                Console.WriteLine("Success");
+            }
+            catch (Exception ex)
+            {
+                //_logger.LogError($"Error loading the ONNX model: {ex.Message}");
+                Console.WriteLine("Aaaaahhhhhh noooooooo" + ex.Message);
+            }
         }
 
         public IActionResult Index()
@@ -72,7 +89,9 @@ namespace WebApplication1.Controllers
 
             if (prod != null)
             {
+                Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
                 Cart.AddItem(prod, 1);
+                HttpContext.Session.SetJson("cart", Cart);
             }
 
             return RedirectToAction("CartConfirmation", new { id = productId, returnUrl = returnUrl });
@@ -87,9 +106,21 @@ namespace WebApplication1.Controllers
             return View(prod);
         }
 
+        public IActionResult ViewCart()
+        {
+            ViewBag.Cart = Cart;
+            return View();
+        }
+
         public IActionResult About()
         {
             return View();
+        }
+        public IActionResult Checkout() 
+        {
+            Cart = HttpContext.Session.GetJson<Cart>("cart")
+                ?? new Cart();
+            return View(Cart); 
         }
 
         [Authorize(Roles = "Member")]
@@ -145,9 +176,13 @@ namespace WebApplication1.Controllers
         public IActionResult AdminProductDelete(int id)
         {
             Product delete = _repo.RemoveProduct(id);
+        //[HttpGet]
+        //public IActionResult AdminProductDelete(int id)
+        //{
+        //    Product delete = _repo.Remove(id);
             
-            return View(delete);
-        }
+        //    return View(delete);
+        //}
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
@@ -189,7 +224,7 @@ namespace WebApplication1.Controllers
         {
             _repo.EditProduct(p);
 
-            return RedirectToAction("AdminAllProducts");
-        }
+        //    return RedirectToAction("AdminAllProducts");
+        //}
     }
 }

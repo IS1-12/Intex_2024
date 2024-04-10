@@ -39,6 +39,15 @@ namespace WebApplication1
 
             builder.Services.AddScoped<ILegoRepository, EFLegoRepository>();
 
+            builder.Services.AddRazorPages();
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession();
+            builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+            builder.Services.AddSingleton<IHttpContextAccessor,
+                HttpContextAccessor>();
+
+            //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
             // Configure HSTS - adding HSTS service configuration
@@ -68,6 +77,7 @@ namespace WebApplication1
 
 
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 
