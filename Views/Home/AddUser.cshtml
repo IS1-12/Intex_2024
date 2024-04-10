@@ -1,0 +1,64 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form>
+    <div style="display: flex">
+        <div style="flex-grow: 1">
+            <h2>Add a New User</h2>
+        </div>
+        <div style="flex-grow: 1; text-align: right; margin-right: 40px">
+            <input class="zesty-button" type="Submit" value="Save User" />
+        </div>
+    </div>
+    <div class="bg-blue text-white content-text" style="display: flex">
+        <div style="flex-grow: 1">
+            <label class="fs-5">First Name</label>
+            <br />
+            <input class="form-control input-box" type="text" required placeholder="John" />
+            <br />
+            <label class="fs-5">Last Name</label>
+            <br />
+            <input class="form-control input-box" type="text" required placeholder="Doe" />
+            <br />
+            <label class="fs-5">Birth Date</label>
+            <br />
+            <input class="form-control input-box" type="date" required placeholder="01/04/1994" />
+            <br />
+            <label class="fs-5">Age</label>
+            <br />
+            <input class="form-control input-box" type="number" required placeholder="36" />
+            <br />
+        </div>
+        <div style="flex-grow: 1">
+            <label class="fs-5">Country</label>
+            <br />
+            <div><vc:countries></vc:countries></div>
+            <br />
+            <label class="fs-5">Email</label>
+            <br />
+            <input class="form-control input-box" type="text" required placeholder="johndoe@gmail.com" />
+            <br />
+            <label class="fs-5">Gender</label>
+            <br />
+            <select class="form-control input-box" id="gender" name="gender">
+                <option value="">N/A</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <br />
+            <label class="fd-5">Role</label>
+            <div class="display: flex">
+                <label>
+                    <input type="radio" /> User
+                </label>
+                <label>
+                    <input type="radio" /> Admin
+                </label>
+            </div>
+            
+            
+        </div>
+    </div>
+</form>

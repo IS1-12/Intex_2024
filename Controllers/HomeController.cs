@@ -61,11 +61,31 @@ namespace WebApplication1.Controllers
             return View();
         }
         public IActionResult Checkout() { return View(); }
+        public IActionResult AddProduct() { return View(); }
+        public IActionResult AddUser() { return View(); }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult OrderCancelled()
+        {
+            return View();
+        }
+        public IActionResult OrderApproved()
+        {
+            return View();
+        }
+        public IActionResult AdminDashboard()
+        {
+            return View();
+        }
+
+        public IActionResult OrderReview()
+        {
+            return View();
         }
     }
 }
