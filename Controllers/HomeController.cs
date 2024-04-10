@@ -46,13 +46,16 @@ namespace WebApplication1.Controllers
             return View(products);
         }
 
-        public IActionResult ProductDetails(int id) 
-        { 
+        public IActionResult ProductDetails(int id, string returnUrl)
+        {
+            ViewBag.returnUrl = returnUrl ?? "/";
+
             var products = _repo.Products
                             .Where(x => x.ProductId == id).Single();
 
             return View(products);
         }
+
         public IActionResult About()
         {
             return View();
