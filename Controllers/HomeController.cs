@@ -3,12 +3,15 @@ using System.Diagnostics;
 using Microsoft.Extensions.Logging; // Ensure you have this using directive for ILogger
 using WebApplication1.Models;
 using LegosWithAurora.Models;
+using Microsoft.CodeAnalysis;
 
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
         private ILegoRepository _repo;
+
+        private Cart Cart = new Cart();
 
         public HomeController(ILegoRepository temp)
         {
@@ -54,6 +57,27 @@ namespace WebApplication1.Controllers
                             .Where(x => x.ProductId == id).Single();
 
             return View(products);
+        }
+        [HttpPost]
+        public IActionResult AddToCart(int productId, string returnUrl)
+        {
+            Product? prod = _repo.Products
+                            .FirstOrDefault(x => x.ProductId == productId);
+
+            if (prod != null)
+            {
+                Cart.AddItem(prod, 1);
+            }
+
+            return RedirectToAction("CartConfirmation", new { id = productId, returnUrl = returnUrl });
+        }
+        public IActionResult CartConfirmation(int id, string returnUrl)
+        {
+            Product? prod = _repo.Products
+                            .FirstOrDefault(x => x.ProductId == id);
+
+            ViewBag.returnUrl = returnUrl ?? "/";
+            return View(prod);
         }
 
         public IActionResult About()

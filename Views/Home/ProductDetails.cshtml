@@ -14,7 +14,7 @@
     </div>
     <div class="col">
         <div style="text-align:right">
-            <a class="btn btn-secondary btn-lg m-1 button-width" style="background-color: #FECD2C; color:black; text-align:right" href="@ViewBag.ReturnUrl">< Continue shopping</a>
+            <a class="btn btn-secondary btn-lg m-1 button-width" style="background-color: #FECD2C; color:black; text-align:center" href="@ViewBag.ReturnUrl">< Continue shopping</a>
         </div>
         <br />
         <div class="container bg-blue">
@@ -40,7 +40,12 @@
                     <br />
                     <br />
                     <br />
-                    <a class="btn btn-secondary btn-lg m-1 button-width" style="background-color: #FECD2C; color:black; margin:auto">Add to Cart <i class='fas fa-shopping-cart fa-icon' style='font-size:24px;'></i> </a>
+                    <form id="@Model.ProductId" method="post" asp-action="AddToCart">
+                        <input type="hidden" asp-for="@Model.ProductId" />
+                        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+                        <button type="submit" class="btn btn-secondary btn-lg m-1 button-width" style="background-color: #FECD2C; color:black; margin:auto">Add to Cart <i class='fas fa-shopping-cart fa-icon' style='font-size:24px;'></i></button>
+                    </form>
+                    
                 </div>
             </div>
             
