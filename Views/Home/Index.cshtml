@@ -1,6 +1,9 @@
-﻿@{
+﻿@using LegosWithAurora.Models
+@{
     ViewData["Title"] = "Home Page";
 }
+
+@model IQueryable<Product> 
 
 <div class="text-center">
     <h1 class="display-4 fw-bold">Become a Master Builder!</h1>
@@ -10,11 +13,14 @@
         Pick from a plethora of different sets to expand your mind and “master” your skills. We promise that you will be a master builder like Lego Batman sooner than you ever thought! We have sets from Star Wars to Air Canada. Whichever set you choose, be prepared for a world of fun!
     </p>
     <div class="row">
-        <div class="col-4"><vc:lego-sets /></div>
-        <div class="col-4"><vc:lego-sets /></div>
-        <div class="col-4"><vc:lego-sets /></div>
+        @foreach (var p in Model.Take(15))
+        {
+            <div class="col-4">
+            <partial name="LegoSetCard" model="p" />
+            </div>
+        }
+        
+        
     </div>
     
-    @* <div><vc:single-item /></div> *@
-    @* <partial name="SingleItem" /> *@
 </div>

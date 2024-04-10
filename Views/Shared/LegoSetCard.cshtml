@@ -1,0 +1,17 @@
+﻿@using LegosWithAurora.Models
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Product
+
+    <div class="container bg-blue" style="overflow-y: auto; display: inline-block; height: 25rem">
+        <div><img src="@Model.ImgLink" width="100%" style="padding: 1%; margin-top: 5%; max-height: 15rem;" /></div>
+        
+        <h5 class="text-white">@Model.Name</h5>
+        <h5 class="text-white">$@Model.Price</h5>
+        <a class="btn btn-secondary" style="background-color: #FECD2C; color:black">Product Details</a>
+        
+        <br />
+    </div>
