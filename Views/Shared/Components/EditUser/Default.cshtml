@@ -1,0 +1,61 @@
+@{ }
+
+@model LegosWithAurora.Models.Customer
+
+@* <div class="container bg-blue" style="border-radius: 20px;">
+    <table>
+            <thead>
+            <tr style="text-decoration: underline; color: white;">
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Birthday</td>
+                <td>Country</td>
+                <td>Gender</td>
+                <td>Age</td>
+                <td>Role</td>
+                <td><a class="btn zesty-button">Edit</a></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="text-white">
+                <td style="vertical-align: top;">@Model.FirstName</td>
+                <td class="text-center" style="vertical-align: top;">@Model.LastName</td>
+                <td class="text-center" style="vertical-align: top;">@Model.BirthDate</td>
+                <td class="text-center" style="vertical-align: top;">@Model.CountryOfResidence</td>
+                <td class="text-center" style="vertical-align: top;">@Model.Gender</td>
+                <td class="text-center" style="vertical-align: top;">@Model.Age</td>
+                <td class="text-center" style="vertical-align: top;"></td>
+                <td style="vertical-align: bottom;"><a class="btn btn-danger" asp-controller="Home" asp-action="AdminProductDelete" asp-route-id="@Model.CustomerId">Delete</a></td>
+            </tr>
+            </tbody>
+    </table >
+</div > *@
+<div class="bg-blue content-text text-white">
+    <div style="display: flex">
+        <div style="flex-basis: 95%">
+            <div style="display:flex">
+                <div class="fs-5 fw-bold" style="flex-basis: 100%">First Name</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%">Last Name</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%">Birthday</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%">Country</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%">Gender</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%">Age</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%">Role</div>
+            </div>
+            <div style="display:flex">
+                <div class="fs-6" style="flex-basis: 100%">@Model.FirstName</div>
+                <div class="fs-6" style="flex-basis: 100%">@Model.LastName</div>
+                <div class="fs-6" style="flex-basis: 100%">@Model.BirthDate</div>
+                <div class="fs-6" style="flex-basis: 100%">@Model.CountryOfResidence</div>
+                <div class="fs-6" style="flex-basis: 100%">@Model.Gender</div>
+                <div class="fs-6" style="flex-basis: 100%">@Model.Age</div>
+                <div class="fs-6" style="flex-basis: 100%">Role</div>
+            </div>
+        </div>
+        <div style="flex-basis: 5%">
+            <a class="zesty-button" asp-controller="Home" asp-action="AdminUserUpdate" asp-route-id="@Model.CustomerId">Update</a>
+            <a class="btn btn-danger" asp-controller="Home" asp-action="AdminUserDelete" asp-route-id="@Model.CustomerId">Delete</a>
+        </div>
+    </div>
+    
+</div>

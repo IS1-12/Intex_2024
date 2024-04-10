@@ -5,6 +5,8 @@ using Microsoft.Extensions.Logging; // Ensure you have this using directive for 
 using WebApplication1.Models;
 using LegosWithAurora.Models;
 using Microsoft.CodeAnalysis;
+using Microsoft.AspNetCore.Authorization;
+using System.Formats.Tar;
 using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
 using Microsoft.AspNetCore.Http;
@@ -50,6 +52,8 @@ namespace WebApplication1.Controllers
             return View(products);
         }
 
+
+        
         public IActionResult Privacy()
         {
             // You might also want to check and pass the consent status in the Privacy view
@@ -77,6 +81,7 @@ namespace WebApplication1.Controllers
             return View(products);
         }
         [HttpPost]
+        [Authorize(Roles = "Member")]
         public IActionResult AddToCart(int productId, string returnUrl)
         {
             Product? prod = _repo.Products
@@ -91,6 +96,7 @@ namespace WebApplication1.Controllers
 
             return RedirectToAction("CartConfirmation", new { id = productId, returnUrl = returnUrl });
         }
+        [Authorize(Roles = "Member")]
         public IActionResult CartConfirmation(int id, string returnUrl)
         {
             Product? prod = _repo.Products
@@ -116,8 +122,12 @@ namespace WebApplication1.Controllers
                 ?? new Cart();
             return View(Cart); 
         }
-        public IActionResult AddProduct() { return View(); }
-        public IActionResult AddUser() { return View(); }
+
+        [Authorize(Roles = "Member")]
+        public IActionResult Checkout() { return View(); }
+        public IActionResult AdminAddUser() { return View(); }
+        public IActionResult AddProduct() { return View("AddProductForm"); }
+        public IActionResult AddUser() { return View("AddUserForm"); }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -125,24 +135,28 @@ namespace WebApplication1.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderCancelled()
         {
             return View();
         }
+
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderApproved()
         {
             return View();
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminDashboard()
         {
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderReview()
         {
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminAllProducts()
         {
             var products = _repo.Products;
@@ -151,12 +165,19 @@ namespace WebApplication1.Controllers
 
             return View(products);
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminAllUsers()
         {
-            return View();
+            var users = _repo.Customers;
+            users.ToList();
+            return View(users);
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminProductDelete(int id)
+        {
+            Product delete = _repo.RemoveProduct(id);
         //[HttpGet]
         //public IActionResult AdminProductDelete(int id)
         //{
@@ -165,10 +186,45 @@ namespace WebApplication1.Controllers
         //    return View(delete);
         //}
 
-        //[HttpPost]
-        //public IActionResult AdminProductDelete(Product id)
-        //{
-        //    _repo.Remove(id);
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminProductDelete(Product id)
+        {
+            _repo.RemoveProduct(id);
+
+            return RedirectToAction("AdminAllProducts");
+        }
+        [HttpGet]
+        public IActionResult AdminAddProduct()
+        {
+            return View();
+=======
+        public IActionResult AdminUserEdit(int id)
+        {
+            AspNetUser update = _repo.UpdateUser(id);
+
+            return View("AddUserForm", update);
+        }
+
+        [HttpPost]
+        public IActionResult AdminAddProduct(Product p)
+        {
+            _repo.AddProduct(p);
+
+            return RedirectToAction("AdminAllProducts");
+        }
+        
+        public IActionResult AdminEditProduct(int id)
+        {
+            Product editProduct = _repo.EditProduct(id);
+
+            return View("AdminAddProduct", editProduct);
+        }
+
+        [HttpPost]
+        public IActionResult AdminEditProduct(Product p)
+        {
+            _repo.EditProduct(p);
 
         //    return RedirectToAction("AdminAllProducts");
         //}

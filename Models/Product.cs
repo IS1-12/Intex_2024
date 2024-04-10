@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LegosWithAurora.Models;
 
 public partial class Product
 {
-    public int? ProductId { get; set; }
+    [Key]
+    [Required]
+    public int ProductId { get; set; }
 
     public string? Name { get; set; }
 
