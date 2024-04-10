@@ -64,5 +64,23 @@ namespace WebApplication1.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult OrderCancelled()
+        {
+            return View();
+        }
+        public IActionResult OrderApproved()
+        {
+            return View();
+        }
+        public IActionResult AdminDashboard()
+        {
+            return View();
+        }
+
+        public IActionResult OrderReview()
+        {
+            return View();
+        }
     }
 }
