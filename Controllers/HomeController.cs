@@ -39,7 +39,19 @@ namespace WebApplication1.Controllers
         }
         public IActionResult Products()
         {
-            return View();
+            var products = _repo.Products;
+
+            products.ToList();
+
+            return View(products);
+        }
+
+        public IActionResult ProductDetails(int id) 
+        { 
+            var products = _repo.Products
+                            .Where(x => x.ProductId == id).Single();
+
+            return View(products);
         }
         public IActionResult About()
         {
@@ -53,6 +65,24 @@ namespace WebApplication1.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult OrderCancelled()
+        {
+            return View();
+        }
+        public IActionResult OrderApproved()
+        {
+            return View();
+        }
+        public IActionResult AdminDashboard()
+        {
+            return View();
+        }
+
+        public IActionResult OrderReview()
+        {
+            return View();
         }
     }
 }
