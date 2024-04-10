@@ -1,0 +1,55 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form>
+    <div style="display: flex">
+        <div style="flex-grow: 1">
+            <h2>Add a New Product</h2>
+        </div>
+        <div style="flex-grow: 1; text-align: right; margin-right: 40px">
+            <input class="zesty-button" type="Submit" value="Save Product" />
+        </div>
+    </div>
+    <div class="bg-blue text-white content-text" style="display: flex">
+        <div style="flex-grow: 1">
+            <label class="fs-5">Product Picture Link</label>
+            <br />
+            <input class="form-control input-box" type="text" required placeholder="https://yourlink.com/yourpath/yourimage.png" />
+            <br />
+            <label class="fs-5">Product Name</label>
+            <br />
+            <input class="form-control input-box" type="text" required placeholder="New Toy" />
+            <br />
+            <label class="fs-5">Inventory Level</label>
+            <br />
+            <input class="form-control input-box" type="number" required placeholder="How many items of this product are available" />
+            <br />
+            <label class="fs-5">Year</label>
+            <br />
+            <input class="form-control input-box" type="number" required placeholder="What year did this set come out?" />
+            <br />
+            <label class="fs-5">Price</label>
+            <br />
+            <input class="form-control input-box" type="number" required placeholder="In US Dollars" />
+        </div>
+        <div style="flex-grow: 1">
+            <label class="fs-5">Primary Color</label>
+            <br />
+            <input class="form-control input-box" type="text" required placeholder="Blue" />
+            <br />
+            <label class="fs-5">Secondary Color</label>
+            <br />
+            <input class="form-control input-box" type="text" required placeholder="Red" />
+            <br />
+            <label class="fs-5">Category</label>
+            <br />
+            <input class="form-control input-box" type="text" required placeholder="Fantasy/Adventure" />
+            <br />
+            <label class="fs-5">Description</label>
+            <br />
+            <textarea class="form-control input-box" rows="7" placeholder="A brief description of the Lego set"></textarea>
+        </div>
+    </div>
+</form>

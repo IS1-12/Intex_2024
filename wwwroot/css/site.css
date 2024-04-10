@@ -82,10 +82,8 @@ a.sidebar:hover {
 a.sidebar:visited{
     color: white;
 }
-.checkout {
+.input-box {
     width: 80%;
-    margin-bottom: 30px;
-}
 }
 
 
@@ -118,7 +116,7 @@ details-btn {
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}    border-radius: 25px;
+    border-radius: 25px;
     padding-top: 20px;
     padding-bottom: 10px;
 }
@@ -146,13 +144,13 @@ a.sidebar {
     text-decoration: none;
 }
 
-    a.sidebar:hover {
-        color: #FECD2C;
-    }
+a.sidebar:hover {
+    color: #FECD2C;
+}
 
-    a.sidebar:visited {
-        color: white;
-    }
+a.sidebar:visited {
+    color: white;
+}
 
 .checkout {
     width: 80%;
