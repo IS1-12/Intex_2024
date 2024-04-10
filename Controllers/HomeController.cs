@@ -35,7 +35,7 @@ namespace WebApplication1.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+        
         public IActionResult Privacy()
         {
             // You might also want to check and pass the consent status in the Privacy view
@@ -63,6 +63,7 @@ namespace WebApplication1.Controllers
             return View(products);
         }
         [HttpPost]
+        [Authorize(Roles = "Member")]
         public IActionResult AddToCart(int productId, string returnUrl)
         {
             Product? prod = _repo.Products
@@ -75,6 +76,7 @@ namespace WebApplication1.Controllers
 
             return RedirectToAction("CartConfirmation", new { id = productId, returnUrl = returnUrl });
         }
+        [Authorize(Roles = "Member")]
         public IActionResult CartConfirmation(int id, string returnUrl)
         {
             Product? prod = _repo.Products
@@ -88,6 +90,8 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+
+        [Authorize(Roles = "Member")]
         public IActionResult Checkout() { return View(); }
         public IActionResult AdminAddUser() { return View(); }
 
@@ -97,24 +101,28 @@ namespace WebApplication1.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderCancelled()
         {
             return View();
         }
+
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderApproved()
         {
             return View();
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminDashboard()
         {
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderReview()
         {
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminAllProducts()
         {
             var products = _repo.Products;
@@ -123,13 +131,14 @@ namespace WebApplication1.Controllers
 
             return View(products);
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminAllUsers()
         {
             return View();
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminProductDelete(int id)
         {
             Product delete = _repo.RemoveProduct(id);
@@ -138,6 +147,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminProductDelete(Product id)
         {
             _repo.RemoveProduct(id);
