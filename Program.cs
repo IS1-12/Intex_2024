@@ -34,7 +34,7 @@ namespace WebApplication1
                 options.UseSqlite(builder.Configuration["ConnectionStrings:IntexConnection"]));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDbContext<IntexContext>(options =>
+            builder.Services.AddDbContext<MfalabContext>(options =>
                 options.UseSqlite(builder.Configuration["ConnectionStrings:IntexConnection"]));
 
             builder.Services.AddScoped<ILegoRepository, EFLegoRepository>();

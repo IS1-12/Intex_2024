@@ -31,7 +31,7 @@ namespace LegosWithAurora.Models
         }
         public AspNetUser UpdateUser(int id) =>
             _context.AspNetUsers
-            .Single(x => x.CustomerId == id);
+            .Single(x => x.Id == id.ToString());
 
         public void AddProduct(Product p)
         {

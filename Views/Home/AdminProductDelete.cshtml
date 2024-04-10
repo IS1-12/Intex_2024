@@ -7,7 +7,7 @@
 <div class="align-items-center text-center" style="margin-top: 300px; margin-bottom: 300px;">
     <h1>ARE YOU SURE YOU WANT TO DELETE "@Model.Name"?</h1>
     <br/>
-    <form>
+    <form method="post">
         <input type="hidden" asp-for="ProductId"/>
         <span>
             <button type="submit" class="btn zesty-button-red">Delete</button>

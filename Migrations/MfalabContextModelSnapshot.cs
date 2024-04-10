@@ -200,8 +200,13 @@ namespace LegosWithAurora.Migrations
 
             modelBuilder.Entity("LegosWithAurora.Models.Customer", b =>
                 {
-                    b.Property<double?>("Age")
-                        .HasColumnType("REAL")
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("customer_ID");
+
+                    b.Property<int?>("Age")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("age");
 
                     b.Property<string>("BirthDate")
@@ -211,10 +216,6 @@ namespace LegosWithAurora.Migrations
                     b.Property<string>("CountryOfResidence")
                         .HasColumnType("TEXT")
                         .HasColumnName("country_of_residence");
-
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("customer_ID");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("TEXT")
@@ -228,11 +229,18 @@ namespace LegosWithAurora.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("last_name");
 
+                    b.HasKey("CustomerId");
+
                     b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("LegosWithAurora.Models.LineItem", b =>
                 {
+                    b.Property<int>("TransactionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("transaction_ID");
+
                     b.Property<int?>("ProductId")
                         .HasColumnType("INTEGER")
                         .HasColumnName("product_ID");
@@ -245,15 +253,18 @@ namespace LegosWithAurora.Migrations
                         .HasColumnType("INTEGER")
                         .HasColumnName("rating");
 
-                    b.Property<int?>("TransactionId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("transaction_ID");
+                    b.HasKey("TransactionId");
 
                     b.ToTable("LineItems");
                 });
 
             modelBuilder.Entity("LegosWithAurora.Models.Order", b =>
                 {
+                    b.Property<int>("TransactionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("transaction_ID");
+
                     b.Property<int?>("Amount")
                         .HasColumnType("INTEGER")
                         .HasColumnName("amount");
@@ -294,10 +305,6 @@ namespace LegosWithAurora.Migrations
                         .HasColumnType("INTEGER")
                         .HasColumnName("time");
 
-                    b.Property<int?>("TransactionId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("transaction_ID");
-
                     b.Property<string>("TypeOfCard")
                         .HasColumnType("TEXT")
                         .HasColumnName("type_of_card");
@@ -306,11 +313,18 @@ namespace LegosWithAurora.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("type_of_transaction");
 
+                    b.HasKey("TransactionId");
+
                     b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("LegosWithAurora.Models.Product", b =>
                 {
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("product_ID");
+
                     b.Property<string>("Category")
                         .HasColumnType("TEXT")
                         .HasColumnName("category");
@@ -339,10 +353,6 @@ namespace LegosWithAurora.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("primary_color");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("product_ID");
-
                     b.Property<string>("SecondaryColor")
                         .HasColumnType("TEXT")
                         .HasColumnName("secondary_color");
@@ -350,6 +360,8 @@ namespace LegosWithAurora.Migrations
                     b.Property<int?>("Year")
                         .HasColumnType("INTEGER")
                         .HasColumnName("year");
+
+                    b.HasKey("ProductId");
 
                     b.ToTable("Products");
                 });

@@ -95,8 +95,6 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Member")]
         public IActionResult Checkout() { return View(); }
         public IActionResult AdminAddUser() { return View(); }
-        public IActionResult AddProduct() { return View("AddProductForm"); }
-        public IActionResult AddUser() { return View("AddUserForm"); }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -163,7 +161,7 @@ namespace WebApplication1.Controllers
         public IActionResult AdminAddProduct()
         {
             return View();
-=======
+        }
         public IActionResult AdminUserEdit(int id)
         {
             AspNetUser update = _repo.UpdateUser(id);
