@@ -4,8 +4,12 @@ using System.Diagnostics;
 using Microsoft.Extensions.Logging; // Ensure you have this using directive for ILogger
 using WebApplication1.Models;
 using LegosWithAurora.Models;
+<<<<<<< Updated upstream
 using Microsoft.CodeAnalysis;
 using Microsoft.AspNetCore.Authorization;
+=======
+using System.Formats.Tar;
+>>>>>>> Stashed changes
 
 namespace WebApplication1.Controllers
 {
@@ -93,7 +97,12 @@ namespace WebApplication1.Controllers
 
         [Authorize(Roles = "Member")]
         public IActionResult Checkout() { return View(); }
+<<<<<<< Updated upstream
         public IActionResult AdminAddUser() { return View(); }
+=======
+        public IActionResult AddProduct() { return View("AddProductForm"); }
+        public IActionResult AddUser() { return View("AddUserForm"); }
+>>>>>>> Stashed changes
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -134,7 +143,9 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminAllUsers()
         {
-            return View();
+            var users = _repo.Customers;
+            users.ToList();
+            return View(users);
         }
 
         [HttpGet]
@@ -154,11 +165,19 @@ namespace WebApplication1.Controllers
 
             return RedirectToAction("AdminAllProducts");
         }
+<<<<<<< Updated upstream
 
         [HttpGet]
         public IActionResult AdminAddProduct()
         {
             return View();
+=======
+        public IActionResult AdminUserEdit(int id)
+        {
+            AspNetUser update = _repo.UpdateUser(id);
+
+            return View("AddUserForm", update);
+>>>>>>> Stashed changes
         }
     }
 }
