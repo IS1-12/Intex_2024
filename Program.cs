@@ -1,6 +1,8 @@
+using LegosWithAurora.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
+using WebApplication1.Models;
 
 namespace WebApplication1
 {
@@ -31,6 +33,13 @@ namespace WebApplication1
                 options.UseSqlite(builder.Configuration["ConnectionStrings:IntexConnection"]));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+            builder.Services.AddDbContext<IntexContext>(options =>
+                options.UseSqlite(builder.Configuration["ConnectionStrings:IntexConnection"]));
+
+            builder.Services.AddScoped<ILegoRepository, EFLegoRepository>();
+
+            //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
             // Configure HSTS
