@@ -66,6 +66,27 @@ namespace WebApplication1
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
+            app.Use(async (ctx, next) =>
+            {
+                string csp = "default-src 'self'; " +
+                             "script-src 'self' https://kit.fontawesome.com 'unsafe-inline' https://apis.google.com; " +
+                             "connect-src 'self' ws://localhost:57798 http://localhost:57798 https://ka-f.fontawesome.com ws://localhost:62719 http://localhost:62719 wss://localhost:44300; " +
+                             "style-src 'self' 'unsafe-inline'; " +
+                             "font-src 'self' https://fonts.gstatic.com https://ka-f.fontawesome.com; " +
+                             "img-src 'self' data:; ";
+
+
+                if (ctx.Request.IsHttps || app.Environment.IsDevelopment())
+                {
+                    ctx.Response.Headers.Add("Content-Security-Policy", csp);
+                }
+
+                // Adding X-Content-Type-Options header
+                ctx.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+
+                await next();
+            });
+
             app.UseAuthentication();
             app.UseAuthorization();
 

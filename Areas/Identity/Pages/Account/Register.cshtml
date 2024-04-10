@@ -27,19 +27,7 @@
                 <label asp-for="Input.ConfirmPassword">Confirm Password</label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg" style="display: inline-block;
-  padding: 10px 20px;
-  margin-bottom: 10px;
-  background-color: #FECD2C;
-  color: black;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease">Register</button>
+            <button id="registerSubmit" type="submit" class="w-100 btn zesty-button">Register</button>
         </form>
     </div>
     <div class="col-md-6 col-md-offset-2">
@@ -63,19 +51,7 @@
                             <p>
                                 @foreach (var provider in Model.ExternalLogins!)
                                 {
-                                    <button type="submit" class="btn" style="display: inline-block;
-      padding: 10px 20px;
-      margin-bottom: 10px;
-      background-color: #FECD2C;
-      color: black;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                    <button type="submit" class="btn zesty-button" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                                         @provider.DisplayName
                                     </button>
                                 }
