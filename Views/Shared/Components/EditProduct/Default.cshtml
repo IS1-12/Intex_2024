@@ -15,7 +15,7 @@
                 <td class="col-1 text-center">Year</td>
                 <td class="col-1 text-center">Price</td>
                 <td class="col-1">Category</td>
-                <td class="col-2"><a class="btn zesty-button">Edit</a></td>
+                <td class="col-2"><a class="btn zesty-button" asp-controller="Home" asp-action="AdminEditProduct" asp-route-id="@Model.ProductId">Edit</a></td>
             </tr>
             </thead>
             <tbody>

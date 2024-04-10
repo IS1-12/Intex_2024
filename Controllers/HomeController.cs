@@ -166,7 +166,11 @@ namespace WebApplication1.Controllers
             return RedirectToAction("AdminAllProducts");
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+        
+>>>>>>> Stashed changes
         [HttpGet]
         public IActionResult AdminAddProduct()
         {
@@ -178,6 +182,29 @@ namespace WebApplication1.Controllers
 
             return View("AddUserForm", update);
 >>>>>>> Stashed changes
+        }
+
+        [HttpPost]
+        public IActionResult AdminAddProduct(Product p)
+        {
+            _repo.AddProduct(p);
+
+            return RedirectToAction("AdminAllProducts");
+        }
+        
+        public IActionResult AdminEditProduct(int id)
+        {
+            Product editProduct = _repo.EditProduct(id);
+
+            return View("AdminAddProduct", editProduct);
+        }
+
+        [HttpPost]
+        public IActionResult AdminEditProduct(Product p)
+        {
+            _repo.EditProduct(p);
+
+            return RedirectToAction("AdminAllProducts");
         }
     }
 }

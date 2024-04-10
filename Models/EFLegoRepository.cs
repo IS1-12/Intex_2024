@@ -16,7 +16,7 @@ namespace LegosWithAurora.Models
         public Product RemoveProduct(int id) => _context.Products
             .Single(x => x.ProductId == id);
 
-        public void RemoveProdudct(Product p)
+        public void RemoveProduct(Product p)
         {
             _context.Products.Remove(p);
             _context.SaveChanges();
@@ -31,10 +31,19 @@ namespace LegosWithAurora.Models
             _context.Products.Update(p);
             _context.SaveChanges();
         }
+<<<<<<< Updated upstream
 =======
         public AspNetUser UpdateUser(int id) =>
             _context.AspNetUsers
             .Single(x => x.CustomerId == id);
+>>>>>>> Stashed changes
+=======
+
+        public void AddProduct(Product p)
+        {
+            _context.Add(p);
+            _context.SaveChanges();
+        }
 >>>>>>> Stashed changes
     }
 }

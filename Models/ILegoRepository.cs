@@ -8,6 +8,10 @@
         IQueryable<Customer> Customers { get; }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        public void AddProduct(Product p);
+>>>>>>> Stashed changes
         public Product RemoveProduct(int id);
         public void RemoveProduct(Product p);
         public Product EditProduct(int id);

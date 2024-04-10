@@ -1,13 +1,17 @@
 @{
     Layout = "_AdminLayout";
 }
-@model IQueryable<LegosWithAurora.Models.Product>
+@model IQueryable<Product>
 
 <h1>All Products</h1>
 <div class="align-content-center">
+    <div style="text-align: right;">
+        <a class="btn zesty-button" asp-controller="Home" asp-action="AdminAddProduct">Add Product</a>
+    </div>
+    <br/>
     @foreach (var p in Model)
     {
         <partial name="Components/EditProduct/Default" model="p"/>
         <br/>
     }
-</div>
+</div>`

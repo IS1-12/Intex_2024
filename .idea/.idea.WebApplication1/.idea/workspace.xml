@@ -9,19 +9,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb216afa-fd9d-4579-8549-20a602b4fdb5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Views/Home/AdminAddProduct.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Home/AdminAddUser.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/HomeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MFALab.db-shm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MFALab.db-wal" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/EFLegoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/EFLegoRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/ILegoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/ILegoRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Home/AddProduct.cshtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Home/AddUser.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Product.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Product.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/AdminAddProduct.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminAddProduct.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/AdminAddUser.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminAddUser.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/Home/AdminAllProducts.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminAllProducts.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Home/AdminProductDelete.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminProductDelete.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/AdminDashboard.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminDashboard.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/Shared/Components/EditProduct/Default.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/Components/EditProduct/Default.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Shared/_AdminLayout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/_AdminLayout.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wwwroot/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/wwwroot/css/site.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
