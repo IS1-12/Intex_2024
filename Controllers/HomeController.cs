@@ -89,8 +89,7 @@ namespace WebApplication1.Controllers
             return View();
         }
         public IActionResult Checkout() { return View(); }
-        public IActionResult AddProduct() { return View(); }
-        public IActionResult AddUser() { return View(); }
+        public IActionResult AdminAddUser() { return View(); }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -133,7 +132,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IActionResult AdminProductDelete(int id)
         {
-            Product delete = _repo.Remove(id);
+            Product delete = _repo.RemoveProduct(id);
             
             return View(delete);
         }
@@ -141,9 +140,15 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult AdminProductDelete(Product id)
         {
-            _repo.Remove(id);
+            _repo.RemoveProduct(id);
 
             return RedirectToAction("AdminAllProducts");
+        }
+
+        [HttpGet]
+        public IActionResult AdminAddProduct()
+        {
+            return View();
         }
     }
 }

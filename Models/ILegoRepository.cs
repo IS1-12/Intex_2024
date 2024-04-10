@@ -7,7 +7,9 @@
         IQueryable<LineItem> LineItems { get; }
         IQueryable<Customer> Customers { get; }
 
-        public Product Remove(int id);
-        public void Remove(Product p);
+        public Product RemoveProduct(int id);
+        public void RemoveProduct(Product p);
+        public Product EditProduct(int id);
+        public void EditProduct(Product p);
     }
 }

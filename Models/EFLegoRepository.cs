@@ -13,12 +13,21 @@ namespace LegosWithAurora.Models
         public IQueryable<LineItem> LineItems => _context.LineItems;
         public IQueryable<Customer> Customers => _context.Customers;
 
-        public Product Remove(int id) => _context.Products
+        public Product RemoveProduct(int id) => _context.Products
             .Single(x => x.ProductId == id);
 
-        public void Remove(Product p)
+        public void RemoveProdudct(Product p)
         {
             _context.Products.Remove(p);
+            _context.SaveChanges();
+        }
+
+        public Product EditProduct(int id) => _context.Products
+            .Single(x => x.ProductId == id);
+
+        public void EditProduct(Product p)
+        {
+            _context.Products.Update(p);
             _context.SaveChanges();
         }
     }

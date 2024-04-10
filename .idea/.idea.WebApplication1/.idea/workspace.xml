@@ -9,16 +9,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb216afa-fd9d-4579-8549-20a602b4fdb5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Views/Home/AdminAllProducts.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Home/AdminAllUsers.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Home/AdminProductDelete.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Views/Home/AdminAddProduct.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Views/Home/AdminAddUser.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/HomeController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Home/OrderApproved.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminOrderApproved.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Home/OrderCancelled.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminOrderCancelled.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Home/OrderReview.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminOrderReview.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/EFLegoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/EFLegoRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/ILegoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/ILegoRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/AddProduct.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/AddUser.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/AdminAllProducts.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminAllProducts.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/AdminProductDelete.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminProductDelete.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/Shared/Components/EditProduct/Default.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/Components/EditProduct/Default.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/Shared/_AdminLayout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/_AdminLayout.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wwwroot/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/wwwroot/css/site.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,18 +46,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "BZV83"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;BZV83&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/IS1-12/Intex_2024.git",
-    "accountId": "4254f650-86e5-4672-a5a9-577227d8d62d"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/IS1-12/Intex_2024.git&quot;,
+    &quot;accountId&quot;: &quot;4254f650-86e5-4672-a5a9-577227d8d62d&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock:///Users/brendanvick/Documents/GitHub/Intex_2024/Areas/Identity/Pages/Account/Login.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/brendanvick/Documents/GitHub/Intex_2024/Controllers/HomeController.cs" root0="SKIP_HIGHLIGHTING" />
@@ -68,30 +71,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.LegosWithAurora: http.executor": "Run",
-    ".NET Launch Settings Profile.LegosWithAurora: https.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Preston",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.LegosWithAurora: http.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.LegosWithAurora: https.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Preston&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "/Users/brendanvick/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
-      "/Users/brendanvick/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache",
-      "/Users/brendanvick/Library/Application Support/Symbols/src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/brendanvick/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/brendanvick/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache&quot;,
+      &quot;/Users/brendanvick/Library/Application Support/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.LegosWithAurora: https">
     <configuration name="LegosWithAurora: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/LegosWithAurora.csproj" />
@@ -143,6 +146,7 @@
       <workItem from="1712697508130" duration="1504000" />
       <workItem from="1712700957503" duration="9469000" />
       <workItem from="1712759300104" duration="7212000" />
+      <workItem from="1712772102605" duration="421000" />
     </task>
     <servers />
   </component>
