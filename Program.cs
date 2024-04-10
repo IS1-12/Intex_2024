@@ -8,13 +8,14 @@ namespace WebApplication1
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
             var config = builder.Configuration;
 
             // Google authentication
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddAuthentication()
                 .AddGoogle(options =>
@@ -38,11 +39,9 @@ namespace WebApplication1
 
             builder.Services.AddScoped<ILegoRepository, EFLegoRepository>();
 
-            //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
-            // Configure HSTS
+            // Configure HSTS - adding HSTS service configuration
             builder.Services.AddHsts(options =>
             {
                 options.Preload = true;
@@ -52,19 +51,22 @@ namespace WebApplication1
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            app.UseHttpsRedirection();
+
+           // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
             }
             else
             {
+
                 app.UseExceptionHandler("/Home/Error");
-                // Apply HSTS
+                // Apply HSTS here
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -96,6 +98,32 @@ namespace WebApplication1
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
+
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                var roles = new[] { "Admin", "Member" };
+                foreach (var role in roles)
+                {
+                    if (!await roleManager.RoleExistsAsync(role))
+                        await roleManager.CreateAsync(new IdentityRole(role));
+                }
+            }
+            using (var scope = app.Services.CreateScope())
+            {
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                string email = "testing69@gmail.com";
+                string password = "Test1234!";
+                if (await userManager.FindByEmailAsync(email) == null)
+                {
+                    var user = new IdentityUser();
+                    user.UserName = email;
+                    user.Email = email;
+                    await userManager.CreateAsync(user, password);
+                    await userManager.AddToRoleAsync(user, "Admin");
+                }
+            }
 
             app.Run();
         }

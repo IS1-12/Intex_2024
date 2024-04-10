@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Microsoft.Extensions.Logging; // Ensure you have this using directive for ILogger
 using WebApplication1.Models;
 using LegosWithAurora.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication1.Controllers
 {
@@ -29,6 +30,8 @@ namespace WebApplication1.Controllers
             return View(products);
         }
 
+
+        [Authorize(Roles = "Admin")]
         public IActionResult Privacy()
         {
             // You might also want to check and pass the consent status in the Privacy view
