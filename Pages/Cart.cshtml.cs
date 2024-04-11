@@ -29,9 +29,9 @@ namespace LegosWithAurora.Pages
 
         public IActionResult OnPostRemove(long ProductId, string returnUrl)
         {
-            var test2 = Cart;
-            var test1 = Cart.Lines;
+            Cart = HttpContext.Session.GetJson<Cart>("cart");
             Cart.RemoveLine(Cart.Lines.First(x => x.product.ProductId == ProductId).product);
+            HttpContext.Session.SetJson("cart", Cart);
 
             return RedirectToPage(new { returnUrl = returnUrl });
         }

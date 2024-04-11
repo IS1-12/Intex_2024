@@ -42,7 +42,57 @@ namespace WebApplication1.Controllers
         {
             var products = _repo.Products;
 
-            ViewBag.Recommendations = _repo.recommendations.ToList();
+            try
+            {
+                int userId = 29135;
+
+                var orderId = _repo.Orders.OrderBy(x => x.TransactionId).LastOrDefault(x => x.CustomerId == userId).TransactionId;
+
+                var productId = _repo.LineItems.FirstOrDefault(x => x.TransactionId == orderId).ProductId;
+
+                List<Product> RecProd = new List<Product>();
+
+                var Recs = _repo.recommendations
+                        .Where(x => x.product_ID == productId).Single();
+
+                List<int> RecInts = new List<int>
+                {
+                    Recs.Rec1 + 1, Recs.Rec2 + 1, Recs.Rec3 + 1
+                };
+
+                foreach (var rec in RecInts)
+                {
+                    var conversionVar = _repo.Products.Where(x => x.ProductId == rec).Single();
+
+                    RecProd.Add((Product)conversionVar);
+                }
+
+                ViewBag.Recommendations = RecProd;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                List<Product> RecProd = new List<Product>();
+
+                // This is the generic recommendation. It is based off of Stitch, the most popular product
+                var Recs = _repo.recommendations
+                        .Where(x => x.product_ID == 24).Single();
+
+                List<int> RecInts = new List<int>
+                {
+                    Recs.Rec1 + 1, Recs.Rec2 + 1, Recs.Rec3 + 1
+                };
+
+                foreach (var rec in RecInts)
+                {
+                    var conversionVar = _repo.Products.Where(x => x.ProductId == rec).Single();
+
+                    RecProd.Add((Product)conversionVar);
+                }
+
+                ViewBag.Recommendations = RecProd;
+            }
 
             products.ToList();
 
@@ -87,7 +137,7 @@ namespace WebApplication1.Controllers
 
             List<int> RecInts = new List<int>
             {
-                Recs.Rec1, Recs.Rec2, Recs.Rec3
+                Recs.Rec1 + 1, Recs.Rec2 + 1, Recs.Rec3 + 1
             };
 
             foreach (var rec in RecInts)
