@@ -4,16 +4,16 @@
 *@
 @{
 }
-@model IQueryable<Product>
+@model LegosWithAurora.Models.ViewModels.ProductListViewModel
 
 
 <div class="row">
     <div class="col-2">
         <div class="container" style="position: sticky; top:0">
-            <a class="btn btn-secondary btn-lg m-1" style="background-color: #FECD2C; color:black">Filter 1</a><br />
-            <a class="btn btn-secondary btn-lg m-1" style="background-color: #FECD2C; color:black">Filter 2</a>
-            <a class="btn btn-secondary btn-lg m-1" style="background-color: #FECD2C; color:black">Filter 3</a>
-            <a class="btn btn-secondary btn-lg m-1" style="background-color: #FECD2C; color:black">Filter 4</a>
+            <a class="btn zesty-button">Filter 1</a><br />
+            <a class="btn zesty-button">Filter 2</a>
+            <a class="btn zesty-button">Filter 3</a>
+            <a class="btn zesty-button">Filter 4</a>
         </div>
     </div>
     <div class="col-10">
@@ -23,12 +23,19 @@
             <br />            
             <br />
 
-            @foreach (var p in Model.Take(37))
+            @foreach (var p in Model.Products)
             {
                 <div class="col-4">
                     <partial name="LegoSetCard" model="p" />
                 </div>
             }
         </div>
+            <div page-model="@Model.PaginationInfo"
+                 page-action="Products"
+                 page-classes-enabled="true"
+                 page-class="btn"
+                 page-class-normal="btn-outline-dark"
+                 page-class-selected="btn-dark"
+                 class="btn-group pull-right m-1"></div>
     </div>
 </div>

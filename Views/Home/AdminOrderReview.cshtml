@@ -4,14 +4,32 @@
 @model IQueryable<Order>
 
 <h1>OrderReview</h1>
-<div class="col-12 align-content-center">
-    <div class="row">
+<div class="container align-content-center">
+    <table class="container bg-blue text-white nice-table-border text-center" style="border-radius: 10px;border: 1px solid white;
+    border-collapse: collapse;">
+        <thead class="fw-bold">
+        <tr style="border: 1px solid white; border-collapse: collapse;">
+            <td>Transaction-ID</td>
+            <td>Customer-ID</td>
+            <td>Date</td>
+            <td>Weekday</td>
+            <td>Time</td>
+            <td>Entry Mode</td>
+            <td>Amount</td>
+            <td>Transaction Type</td>
+            <td>Transaction Country</td>
+            <td>Address</td>
+            <td>Bank</td>
+            <td>Card Type</td>
+            <td>Fraud</td>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody>
         @foreach (var o in Model)
         {
-            <div class="col-6">
-                <partial name="Components/OrderReview/Default" model="o"/>
-                <br/>
-            </div>
+            <partial name="Components/OrderReview/Default" model="o"/>
         }
-    </div>
+        </tbody>
+    </table>
 </div>

@@ -11,6 +11,7 @@ using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
 using Microsoft.AspNetCore.Http;
 using LegosWithAurora.Infrastructure;
+using LegosWithAurora.Models.ViewModels;
 
 namespace WebApplication1.Controllers
 {
@@ -60,13 +61,27 @@ namespace WebApplication1.Controllers
 
             return View();
         }
-        public IActionResult Products()
+        public IActionResult Products(int pageNum)
         {
-            var products = _repo.Products;
+            int pageSize = 9;
 
-            products.ToList();
+            var productsPages = new ProductListViewModel
+            {
+                Products = _repo.Products
+                    .OrderBy(x => x.ProductId)
+                    .Skip((pageNum - 1) * pageSize)
+                    .Take(pageSize),
 
-            return View(products);
+                PaginationInfo = new PaginationInfo
+                {
+                    CurrentPage = pageNum,
+                    ItemsPerPage = pageSize,
+                    TotalItems = _repo.Products.Count()
+                }
+            };
+                
+
+            return View(productsPages);
         }
 
         public IActionResult ProductDetails(int id, string returnUrl)
@@ -199,16 +214,16 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderCancelled(int id)
         {
-            //Order delete = _repo.RejectOrder(id);
-            return View();
+            Order delete = _repo.RejectOrder(id);
+            return View(delete);
         }
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult AdminOrderCancelled(Order o)
         {
-            //_repo.RejectOrder(o);
-            return RedirectToAction("");
+            _repo.RejectOrder(o);
+            return RedirectToAction("AdminOrderReview");
         }
         
         [Authorize(Roles = "Admin")]
@@ -219,6 +234,8 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderReview()
         {
+            int pageSize = 5;
+
             var orders = _repo.Orders
                 .Where(x => x.Fraud == 1);
 
@@ -232,7 +249,7 @@ namespace WebApplication1.Controllers
         public IActionResult AdminOrderReview(int id)
         {
             var acceptedID = id;
-            //_repo.CorrectOrder(id);
+            _repo.CorrectOrder(id);
 
             return RedirectToAction("AdminOrderAccept", acceptedID);
         }
@@ -272,6 +289,7 @@ namespace WebApplication1.Controllers
 
             return RedirectToAction("AdminAllProducts");
         }
+        
         [HttpGet]
         public IActionResult AdminAddProduct()
         {
@@ -304,13 +322,9 @@ namespace WebApplication1.Controllers
             return View("AdminAddProduct", editProduct);
         }
 
-            
+        public IActionResult AdminOrderAccept()
+        {
+            return View();
         }
-
-        //public IActionResult AdminOrderAccept(int id)
-        //{
-        //    ViewBag.Id = id;
-            
-        //    return View();
-        //}
     }
+}
