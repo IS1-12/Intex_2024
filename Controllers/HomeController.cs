@@ -53,7 +53,7 @@ namespace WebApplication1.Controllers
         }
 
 
-        
+
         public IActionResult Privacy()
         {
             // You might also want to check and pass the consent status in the Privacy view
@@ -116,15 +116,14 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
-        public IActionResult Checkout() 
+        [Authorize(Roles = "Member")]
+        public IActionResult Checkout()
         {
             Cart = HttpContext.Session.GetJson<Cart>("cart")
                 ?? new Cart();
-            return View(Cart); 
+            return View(Cart);
         }
 
-        [Authorize(Roles = "Member")]
-        public IActionResult Checkout() { return View(); }
         public IActionResult AdminAddUser() { return View(); }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -176,13 +175,8 @@ namespace WebApplication1.Controllers
         public IActionResult AdminProductDelete(int id)
         {
             Product delete = _repo.RemoveProduct(id);
-        //[HttpGet]
-        //public IActionResult AdminProductDelete(int id)
-        //{
-        //    Product delete = _repo.Remove(id);
-            
-        //    return View(delete);
-        //}
+            return View(delete);
+        }
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
@@ -211,7 +205,7 @@ namespace WebApplication1.Controllers
 
             return RedirectToAction("AdminAllProducts");
         }
-        
+
         public IActionResult AdminEditProduct(int id)
         {
             Product editProduct = _repo.EditProduct(id);
@@ -223,8 +217,7 @@ namespace WebApplication1.Controllers
         public IActionResult AdminEditProduct(Product p)
         {
             _repo.EditProduct(p);
-
-        //    return RedirectToAction("AdminAllProducts");
-        //}
+            return RedirectToAction("AdminAllProducts");
+        }
     }
 }

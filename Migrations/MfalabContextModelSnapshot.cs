@@ -236,7 +236,7 @@ namespace LegosWithAurora.Migrations
 
             modelBuilder.Entity("LegosWithAurora.Models.LineItem", b =>
                 {
-                    b.Property<int>("TransactionId")
+                    b.Property<int?>("TransactionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnName("transaction_ID");
