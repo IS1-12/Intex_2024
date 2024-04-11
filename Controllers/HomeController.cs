@@ -118,6 +118,7 @@ namespace WebApplication1.Controllers
         }
 
         [Authorize(Roles = "Member")]
+        [HttpGet]
         public IActionResult Checkout()
         {
             Cart = HttpContext.Session.GetJson<Cart>("cart")
@@ -126,9 +127,9 @@ namespace WebApplication1.Controllers
         }
         [Authorize(Roles = "Member")]
         [HttpPost]
-        public IActionResult Checkout()
+        public IActionResult Checkout(int potato)
         {
-
+            return View();
         }
 
         [Authorize(Roles = "Admin")]
@@ -173,7 +174,7 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminAllUsers()
         {
-            var users = _repo.Customers;
+            var users = _repo.AspNetUsers;
             users.ToList();
             return View(users);
         }
