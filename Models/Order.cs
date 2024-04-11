@@ -12,25 +12,25 @@ public partial class Order
 
     public int? CustomerId { get; set; }
 
-    public string? Date { get; set; }
+    public string? Date { get; set; } = DateTime.Today.ToString("M/d/yyyy");
 
-    public string? DayOfWeek { get; set; }
+    public string? DayOfWeek { get; set; } = DateTime.Today.DayOfWeek.ToString();
 
-    public int? Time { get; set; }
+    public int? Time { get; set; } = DateTime.Now.Hour;
 
-    public string? EntryMode { get; set; }
+    public string? EntryMode { get; set; } = "CVC";
 
     public int? Amount { get; set; }
 
-    public string? TypeOfTransaction { get; set; }
+    public string? TypeOfTransaction { get; set; } = "Online";
 
     public string? CountryOfTransaction { get; set; }
 
-    public string? ShippingAddress { get; set; }
+    public string? ShippingAddress { get; set; } = "USA";
 
-    public string? Bank { get; set; }
+    public string? Bank { get; set; } = "Bank of Juan";
 
-    public string? TypeOfCard { get; set; }
+    public string? TypeOfCard { get; set; } = "Visa";
 
     public int? Fraud { get; set; }
 }

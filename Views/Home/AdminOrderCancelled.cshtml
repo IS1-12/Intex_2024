@@ -2,8 +2,16 @@
     Layout = "_AdminLayout";
 }
 
+@model LegosWithAurora.Models.Order
+
 <div class="align-items-center text-center" style="margin-top: 300px; margin-bottom: 300px;">
-    <h1>ORDER {Order number/transactionID} HAS BEEN CANCELLED</h1>
+    <h1>ARE YOU SURE YOU WANT TO DELETE "@Model.TransactionId"?</h1>
     <br/>
-    <a class="btn zesty-button" asp-controller="Home" asp-action="AdminOrderReview">Back to Orders</a>
+    <form method="post">
+        <input type="hidden" asp-for="TransactionId"/>
+        <span>
+            <button type="submit" class="btn zesty-button-red">Delete</button>
+            <a class="btn zesty-button" asp-controller="Home" asp-action="AdminOrderReview">Cancel</a>
+        </span>
+    </form>
 </div>
