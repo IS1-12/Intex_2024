@@ -9,11 +9,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb216afa-fd9d-4579-8549-20a602b4fdb5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Infrastructure/PaginationInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/HomeController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MFALab.db" beforeDir="false" afterPath="$PROJECT_DIR$/MFALab.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFALab.db-shm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFALab.db-wal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/MfalabContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Migrations/MfalabContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MFALab.db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/MFALab.db-shm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MFALab.db-wal" beforeDir="false" afterPath="$PROJECT_DIR$/MFALab.db-wal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/AdminAllUsers.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminAllUsers.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/AdminOrderAccept.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminOrderAccept.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/AdminOrderReview.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminOrderReview.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Shared/Components/EditProduct/Default.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/Components/EditProduct/Default.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/Shared/Components/EditUser/Default.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/Components/EditUser/Default.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/Shared/Components/OrderReview/Default.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/Components/OrderReview/Default.cshtml" afterDir="false" />
     </list>
@@ -53,8 +58,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Users/brendanvick/Documents/GitHub/Intex_2024/Models/EFLegoRepository.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/brendanvick/Documents/GitHub/Intex_2024/Models/EFLegoRepository.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure/PaginationInfo.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -145,7 +149,7 @@
       <workItem from="1712759300104" duration="7212000" />
       <workItem from="1712772102605" duration="421000" />
       <workItem from="1712801331365" duration="9184000" />
-      <workItem from="1712849577456" duration="2190000" />
+      <workItem from="1712849577456" duration="12266000" />
     </task>
     <servers />
   </component>
