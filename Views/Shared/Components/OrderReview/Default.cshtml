@@ -1,0 +1,46 @@
+@{
+}
+
+@model LegosWithAurora.Models.Order
+
+<div class="bg-blue content-text text-white">
+    <div style="display: flex;">
+        <div style="flex-basis: 95%;">
+            <div style="display: flex;">
+                <div class="fs-5 fw-bold" style="flex-basis: 100%;">Transaction ID</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%;">Customer ID</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%;">Date</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%;">Weekday</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%;">Time</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%;">Entry Mode</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%;">Amount</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%;">Type of Transaction</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%;">Country of Transaction</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%;">Shipping Address</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%;">Bank</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%;">Type of Card</div>
+                <div class="fs-5 fw-bold" style="flex-basis: 100%;">Fraud</div>
+            </div>
+            <div style="display: flex;">
+                <div class="fs-6" style="flex-basis: 100%;">@Model.TransactionId</div>
+                <div class="fs-6" style="flex-basis: 100%;">@Model.CustomerId</div>
+                <div class="fs-6" style="flex-basis: 100%;">@Model.Date</div>
+                <div class="fs-6" style="flex-basis: 100%;">@Model.DayOfWeek</div>
+                <div class="fs-6" style="flex-basis: 100%;">@Model.Time</div>
+                <div class="fs-6" style="flex-basis: 100%;">@Model.EntryMode</div>
+                <div class="fs-6" style="flex-basis: 100%;">@Model.Amount</div>
+                <div class="fs-6" style="flex-basis: 100%;">@Model.TypeOfTransaction</div>
+                <div class="fs-6" style="flex-basis: 100%;">@Model.CountryOfTransaction</div>
+                <div class="fs-6" style="flex-basis: 100%;">@Model.ShippingAddress</div>
+                <div class="fs-6" style="flex-basis: 100%;">@Model.Bank</div>
+                <div class="fs-6" style="flex-basis: 100%;">@Model.TypeOfCard</div>
+                <div class="fs-6" style="flex-basis: 100%;">@Model.TypeOfCard</div>
+                <div class="fs-6" style="flex-basis: 100%;">@Model.Fraud</div>
+            </div>
+        </div>
+        <div style="flex-basis: 5%;">
+            <a class="btn zesty-button" asp-controller="Home" asp-action="" asp-route-id="@Model.TransactionId">Accept</a>
+            <a class="btn zesty-button-red" asp-controller="Home" asp-action="" asp-route-id="@Model.TransactionId">Reject</a>
+        </div>
+    </div>
+</div>

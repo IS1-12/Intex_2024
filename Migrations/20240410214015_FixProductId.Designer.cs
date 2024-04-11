@@ -3,6 +3,7 @@ using System;
 using LegosWithAurora.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,32 +11,35 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LegosWithAurora.Migrations
 {
     [DbContext(typeof(MfalabContext))]
-    partial class MfalabContextModelSnapshot : ModelSnapshot
+    [Migration("20240410214015_FixProductId")]
+    partial class FixProductId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
 
-            modelBuilder.Entity("AspNetUserRole", b =>
+            modelBuilder.Entity("AspNetRoleAspNetUser", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("RolesId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("RoleId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("UsersId")
+                        .HasColumnType("INTEGER");
 
-                    b.HasKey("UserId", "RoleId");
+                    b.HasKey("RolesId", "UsersId");
 
-                    b.HasIndex(new[] { "RoleId" }, "IX_AspNetUserRoles_RoleId");
+                    b.HasIndex("UsersId");
 
-                    b.ToTable("AspNetUserRoles", (string)null);
+                    b.ToTable("AspNetRoleAspNetUser");
                 });
 
             modelBuilder.Entity("LegosWithAurora.Models.AspNetRole", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ConcurrencyStamp")
                         .HasColumnType("TEXT");
@@ -47,9 +51,6 @@ namespace LegosWithAurora.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex(new[] { "NormalizedName" }, "RoleNameIndex")
-                        .IsUnique();
 
                     b.ToTable("AspNetRoles");
                 });
@@ -70,17 +71,21 @@ namespace LegosWithAurora.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("RoleId1")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "RoleId" }, "IX_AspNetRoleClaims_RoleId");
+                    b.HasIndex("RoleId1");
 
                     b.ToTable("AspNetRoleClaims");
                 });
 
             modelBuilder.Entity("LegosWithAurora.Models.AspNetUser", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("INTEGER");
@@ -126,11 +131,6 @@ namespace LegosWithAurora.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "NormalizedEmail" }, "EmailIndex");
-
-                    b.HasIndex(new[] { "NormalizedUserName" }, "UserNameIndex")
-                        .IsUnique();
-
                     b.ToTable("AspNetUsers");
                 });
 
@@ -150,31 +150,38 @@ namespace LegosWithAurora.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("UserId1")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "UserId" }, "IX_AspNetUserClaims_UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("AspNetUserClaims");
                 });
 
             modelBuilder.Entity("LegosWithAurora.Models.AspNetUserLogin", b =>
                 {
-                    b.Property<string>("LoginProvider")
+                    b.Property<string>("UserId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ProviderKey")
+                    b.Property<string>("LoginProvider")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("ProviderKey")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("LoginProvider", "ProviderKey");
+                    b.Property<int>("UserId1")
+                        .HasColumnType("INTEGER");
 
-                    b.HasIndex(new[] { "UserId" }, "IX_AspNetUserLogins_UserId");
+                    b.HasKey("UserId");
+
+                    b.HasIndex("UserId1");
 
                     b.ToTable("AspNetUserLogins");
                 });
@@ -185,49 +192,49 @@ namespace LegosWithAurora.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LoginProvider")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("UserId1")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Value")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("UserId", "LoginProvider", "Name");
+                    b.HasKey("UserId");
+
+                    b.HasIndex("UserId1");
 
                     b.ToTable("AspNetUserTokens");
                 });
 
             modelBuilder.Entity("LegosWithAurora.Models.Customer", b =>
                 {
-                    b.Property<int>("CustomerId")
+                    b.Property<int?>("CustomerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("customer_ID");
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int?>("Age")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("age");
+                    b.Property<double?>("Age")
+                        .HasColumnType("REAL");
 
                     b.Property<string>("BirthDate")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("birth_date");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CountryOfResidence")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("country_of_residence");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("first_name");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Gender")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("gender");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("last_name");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("CustomerId");
 
@@ -236,22 +243,18 @@ namespace LegosWithAurora.Migrations
 
             modelBuilder.Entity("LegosWithAurora.Models.LineItem", b =>
                 {
-                    b.Property<int?>("TransactionId")
+                    b.Property<int>("TransactionId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("transaction_ID");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("ProductId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("product_ID");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("Qty")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("qty");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("Rating")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("rating");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("TransactionId");
 
@@ -260,58 +263,45 @@ namespace LegosWithAurora.Migrations
 
             modelBuilder.Entity("LegosWithAurora.Models.Order", b =>
                 {
-                    b.Property<int>("TransactionId")
+                    b.Property<int?>("TransactionId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("transaction_ID");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("Amount")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("amount");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Bank")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("bank");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CountryOfTransaction")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("country_of_transaction");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("CustomerId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("customer_ID");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Date")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("date");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("DayOfWeek")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("day_of_week");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("EntryMode")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("entry_mode");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("Fraud")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("fraud");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ShippingAddress")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("shipping_address");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("Time")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("time");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("TypeOfCard")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("type_of_card");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("TypeOfTransaction")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("type_of_transaction");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("TransactionId");
 
@@ -322,61 +312,51 @@ namespace LegosWithAurora.Migrations
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("product_ID");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Category")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("category");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("description");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ImgLink")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("img_link");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("name");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("NumParts")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("num_parts");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("Price")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("price");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("PrimaryColor")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("primary_color");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("SecondaryColor")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("secondary_color");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("Year")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("year");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ProductId");
 
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("AspNetUserRole", b =>
+            modelBuilder.Entity("AspNetRoleAspNetUser", b =>
                 {
                     b.HasOne("LegosWithAurora.Models.AspNetRole", null)
                         .WithMany()
-                        .HasForeignKey("RoleId")
+                        .HasForeignKey("RolesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("LegosWithAurora.Models.AspNetUser", null)
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -385,7 +365,7 @@ namespace LegosWithAurora.Migrations
                 {
                     b.HasOne("LegosWithAurora.Models.AspNetRole", "Role")
                         .WithMany("AspNetRoleClaims")
-                        .HasForeignKey("RoleId")
+                        .HasForeignKey("RoleId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -396,7 +376,7 @@ namespace LegosWithAurora.Migrations
                 {
                     b.HasOne("LegosWithAurora.Models.AspNetUser", "User")
                         .WithMany("AspNetUserClaims")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -407,7 +387,7 @@ namespace LegosWithAurora.Migrations
                 {
                     b.HasOne("LegosWithAurora.Models.AspNetUser", "User")
                         .WithMany("AspNetUserLogins")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -418,7 +398,7 @@ namespace LegosWithAurora.Migrations
                 {
                     b.HasOne("LegosWithAurora.Models.AspNetUser", "User")
                         .WithMany("AspNetUserTokens")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

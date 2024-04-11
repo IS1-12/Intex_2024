@@ -1,6 +1,13 @@
 @{
     Layout = "_AdminLayout";
 }
-<div>
-    <h1>OrderReview</h1>
+@model IQueryable<Order>
+
+<h1>OrderReview</h1>
+<div class="align-content-center">
+    @foreach (var o in Model)
+    {
+        <partial name="Components/OrderReview/Default" model="o"/>
+        <br/>
+    }
 </div>
