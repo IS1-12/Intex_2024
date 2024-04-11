@@ -60,7 +60,7 @@ namespace WebApplication1
             {
                 app.UseExceptionHandler("/Home/Error");
                 // Enable HSTS in production environment as needed
-                // app.UseHsts();
+                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
