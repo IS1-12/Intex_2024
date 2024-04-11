@@ -81,7 +81,7 @@ namespace WebApplication1.Controllers
             return View(products);
         }
         [HttpPost]
-        [Authorize(Roles = "Member")]
+        [Authorize]
         public IActionResult AddToCart(int productId, string returnUrl)
         {
             Product? prod = _repo.Products
@@ -96,7 +96,7 @@ namespace WebApplication1.Controllers
 
             return RedirectToAction("CartConfirmation", new { id = productId, returnUrl = returnUrl });
         }
-        [Authorize(Roles = "Member")]
+        [Authorize]
         public IActionResult CartConfirmation(int id, string returnUrl)
         {
             Product? prod = _repo.Products
@@ -106,6 +106,7 @@ namespace WebApplication1.Controllers
             return View(prod);
         }
 
+        [Authorize]
         public IActionResult ViewCart()
         {
             ViewBag.Cart = Cart;
@@ -117,20 +118,14 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Member")]
+        [Authorize]
         public IActionResult Checkout()
         {
             Cart = HttpContext.Session.GetJson<Cart>("cart")
                 ?? new Cart();
             return View(Cart);
         }
-        [Authorize(Roles = "Member")]
-        [HttpPost]
-        public IActionResult Checkout()
-        {
-
-        }
-
+      
         [Authorize(Roles = "Admin")]
         public IActionResult AdminAddUser() { return View(); }
 
