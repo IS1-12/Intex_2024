@@ -153,18 +153,15 @@ namespace WebApplication1.Controllers
                         ViewBag.Prediction = "Error: Unable to make a prediction.";
                     }
                 }
-
-                Console.WriteLine("We did it");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("You dummy!");
                 ViewBag.Prediction = "Error during prediction.";
             }
             var submit = new Order
             {
                 CustomerId = 29135,
-                Amount = 123/*Cart.CalculateTotal()*/,
+                Amount = Cart.CalculateTotal(),
                 CountryOfTransaction = "USA",
                 Fraud = ViewBag.Prediction
             };
@@ -183,6 +180,9 @@ namespace WebApplication1.Controllers
                 _repo.AddLineItem(lineItem);
             }
 
+            Cart.Clear();
+            HttpContext.Session.SetJson("cart", Cart);
+
             return View("OrderConfirmation");
         }
 
@@ -196,16 +196,20 @@ namespace WebApplication1.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult AdminOrderCancelled()
+        public IActionResult AdminOrderCancelled(int id)
         {
+            //Order delete = _repo.RejectOrder(id);
             return View();
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult AdminOrderApproved()
+        [HttpPost]
+        public IActionResult AdminOrderCancelled(Order o)
         {
-            return View();
+            //_repo.RejectOrder(o);
+            return RedirectToAction("");
         }
+        
         [Authorize(Roles = "Admin")]
         public IActionResult AdminDashboard()
         {
@@ -214,8 +218,24 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderReview()
         {
-            return View();
+            var orders = _repo.Orders
+                .Where(x => x.Fraud == 1);
+
+            orders.ToList();
+            
+            return View(orders);
         }
+        
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminOrderReview(int id)
+        {
+            var acceptedID = id;
+            //_repo.CorrectOrder(id);
+
+            return RedirectToAction("AdminOrderAccept", acceptedID);
+        }
+        
         [Authorize(Roles = "Admin")]
         public IActionResult AdminAllProducts()
         {
@@ -285,4 +305,11 @@ namespace WebApplication1.Controllers
 
             
         }
+
+        //public IActionResult AdminOrderAccept(int id)
+        //{
+        //    ViewBag.Id = id;
+            
+        //    return View();
+        //}
     }

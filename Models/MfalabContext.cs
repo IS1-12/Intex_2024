@@ -110,7 +110,7 @@ public partial class MfalabContext : DbContext
 
         modelBuilder.Entity<LineItem>(entity =>
         {
-            entity.HasKey(e => e.TransactionId);
+            entity.HasKey(e => new { e.TransactionId, e.ProductId });
 
             entity.Property(e => e.ProductId).HasColumnName("product_ID");
             entity.Property(e => e.Qty).HasColumnName("qty");

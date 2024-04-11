@@ -16,8 +16,14 @@
         public void RemoveProduct(Product p);
         public Product EditProduct(int id);
         public void EditProduct(Product p);
-        //public AspNetUser UpdateUser(int id);
 
+        public Order RejectOrder(int id);
+
+        public void RejectOrder(Order o);
+
+        public void CorrectOrder(int id);
+        //public AspNetUser UpdateUser(int id);
+        
         public void AddOrder(Order o);
         public void AddLineItem(LineItem l);
     }
