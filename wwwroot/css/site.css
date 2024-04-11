@@ -1,5 +1,6 @@
 html {
   font-size: 14px;
+  height:100%;
 }
 
 @media (min-width: 768px) {
@@ -19,4 +20,154 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+
+.bg-blue {
+    background-color: #201d49;
+}
+
+.img-round {
+    border-radius: 0.25rem;
+}
+
+.zesty-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    background-color: #FECD2C;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.zesty-button-red {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    background-color: #CB444A;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.fa-icon {
+    vertical-align: bottom;
+    line-height: 0.5; 
+}
+
+.container {
+    border-radius: 25px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+.img-head {
+    padding-bottom: 10px;
+    border-radius: 25px;
+}
+.navbar-toggler-icon {
+    color: white;
+}
+
+.img-container {
+    margin-right: 30px;
+}
+.content-text {
+    padding: 40px 60px;
+    border-radius: 25px;
+}
+a.sidebar {
+    color: white;
+    text-decoration: none;
+}
+a.sidebar:hover {
+    color: #FECD2C;
+}
+a.sidebar:visited{
+    color: white;
+}
+.input-box {
+    width: 80%;
+}
+
+
+.button-width{
+    width: 300px
+}
+
+.ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 6; /* Set to 6 for 6 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+btn-prod-details     {
+    color: yellow;
+}
+
+details-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    background-color: #FECD2C;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 25px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.img-head {
+    padding-bottom: 10px;
+    border-radius: 25px;
+}
+
+.navbar-toggler-icon {
+    color: white;
+}
+
+.img-container {
+    margin-right: 30px;
+}
+
+.content-text {
+    padding: 40px 60px;
+    border-radius: 25px;
+}
+
+a.sidebar {
+    color: white;
+    text-decoration: none;
+}
+
+a.sidebar:hover {
+    color: #FECD2C;
+}
+
+a.sidebar:visited {
+    color: white;
+}
+
+.checkout {
+    width: 80%;
+    margin-bottom: 30px;
 }

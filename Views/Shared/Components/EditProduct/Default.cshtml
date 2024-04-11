@@ -1,0 +1,43 @@
+@{ }
+
+@model LegosWithAurora.Models.Product
+
+<div class="container bg-blue" style="border-radius: 20px;">
+    <table>
+            <thead>
+            <tr style="text-decoration: underline; color: white;">
+                <td class="col-2 text-center">Product Photo</td>
+                <td class="col-2">Name</td>
+                <td class="col-3">Description</td>
+                <td class="col-1 text-center">Primary Color</td>
+                <td class="col-1 text-center">Secondary Color</td>
+                <td class="col-1 text-center"># of Parts</td>
+                <td class="col-1 text-center">Year</td>
+                <td class="col-1 text-center">Price</td>
+                <td class="col-1">Category</td>
+                <td class="col-2"><a class="btn zesty-button" asp-controller="Home" asp-action="AdminEditProduct" asp-route-id="@Model.ProductId">Edit</a></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="text-white">
+                <td class="text-center"><img src="@Model.ImgLink" alt="@Model.Name" height="100" style="border-radius: 10px"/></td>
+                <td style="vertical-align: top;">@Model.Name</td>
+                @{
+                    var truncatedText = Model.Description;
+                    if (truncatedText.Length > 50)
+                    {
+                        truncatedText = truncatedText.Substring(0, 50) + "....";
+                    }
+                    <td>@truncatedText</td>
+                }
+                <td class="text-center" style="vertical-align: top;">@Model.PrimaryColor</td>
+                <td class="text-center" style="vertical-align: top;">@Model.SecondaryColor</td>
+                <td class="text-center" style="vertical-align: top;">@Model.NumParts</td>
+                <td class="text-center" style="vertical-align: top;">@Model.Year</td>
+                <td class="text-center" style="vertical-align: top;">@Model.Price</td>
+                <td class="text-center" style="vertical-align: top;">@Model.Category</td>
+                <td class="text-center" style="vertical-align: bottom;"><a class="btn zesty-button-red" asp-controller="Home" asp-action="AdminProductDelete" asp-route-id="@Model.ProductId">Delete</a></td>
+            </tr>
+            </tbody>
+    </table >
+</div >

@@ -27,7 +27,39 @@
                 <label asp-for="Input.ConfirmPassword">Confirm Password</label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            @* testing adding new fields below*@
+            <div class="form-floating mb-3">
+                <input asp-for="Input.First_Name" class="form-control" autocomplete="first-name" aria-required="true" placeholder="first-name" />
+                <label asp-for="Input.First_Name">First Name</label>
+                <span asp-validation-for="Input.First_Name" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Last_Name" class="form-control" autocomplete="last-name" aria-required="true" placeholder="last-name" />
+                <label asp-for="Input.Last_Name">Last Name</label>
+                <span asp-validation-for="Input.Last_Name" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Birthday" class="form-control" autocomplete="birthday" aria-required="true" placeholder="birthday" />
+                <label asp-for="Input.Birthday">Birthday</label>
+                <span asp-validation-for="Input.Birthday" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Country" class="form-control" autocomplete="country" aria-required="true" placeholder="country" />
+                <label asp-for="Input.Country">Country</label>
+                <span asp-validation-for="Input.Country" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Gender" class="form-control" autocomplete="gender" aria-required="true" placeholder="gender" />
+                <label asp-for="Input.Gender">Gender</label>
+                <span asp-validation-for="Input.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Age" class="form-control" autocomplete="age" aria-required="true" placeholder="age" />
+                <label asp-for="Input.Age">Age</label>
+                <span asp-validation-for="Input.Age" class="text-danger"></span>
+            </div>
+            @* testing ends here *@
+            <button id="registerSubmit" type="submit" class="w-100 btn zesty-button">Register</button>
         </form>
     </div>
     <div class="col-md-6 col-md-offset-2">
@@ -51,7 +83,9 @@
                             <p>
                                 @foreach (var provider in Model.ExternalLogins!)
                                 {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    <button type="submit" class="btn zesty-button" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                        @provider.DisplayName
+                                    </button>
                                 }
                             </p>
                         </div>

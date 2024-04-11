@@ -1,0 +1,13 @@
+@{
+    Layout = "_AdminLayout";
+}
+@model IQueryable<AspNetUser>
+
+<h1>All Users</h1>
+<div class="align-content-center">
+    @foreach (var u in Model)
+    {
+        <partial name="Components/EditUser/Default" model="u" />
+        <br />
+    }
+</div>

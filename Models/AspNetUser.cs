@@ -5,7 +5,7 @@ namespace LegosWithAurora.Models;
 
 public partial class AspNetUser
 {
-    public string Id { get; set; } = null!;
+    public string Id { get; set; }
 
     public string? UserName { get; set; }
 
@@ -42,4 +42,16 @@ public partial class AspNetUser
     public virtual ICollection<AspNetUserToken> AspNetUserTokens { get; set; } = new List<AspNetUserToken>();
 
     public virtual ICollection<AspNetRole> Roles { get; set; } = new List<AspNetRole>();
+
+    public string? First_Name { get; set; }
+
+    public string? Last_Name { get; set; }
+
+    public string? Birthday {  get; set; }
+
+    public string? Country { get; set; }
+
+    public string? Gender { get; set; }
+
+    public string? Age { get; set; }
 }

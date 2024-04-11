@@ -1,0 +1,27 @@
+@{
+}
+
+@model LegosWithAurora.Models.Order
+
+<div class="container bg-blue content-text text-white">
+    <h4 class="fs-5" style="flex-basis: 100%;">Transaction ID: @Model.TransactionId</h4>
+    <h4 class="fs-5" style="flex-basis: 100%;">Customer ID: @Model.CustomerId</h4>
+    <h4 class="fs-5" style="flex-basis: 100%;">Date: @Model.Date</h4>
+    <h4 class="fs-5" style="flex-basis: 100%;">Weekday: @Model.DayOfWeek</h4>
+    <h4 class="fs-5" style="flex-basis: 100%;">Time: @Model.Time</h4>
+    <h4 class="fs-5" style="flex-basis: 100%;">Entry Mode: @Model.EntryMode</h4>
+    <h4 class="fs-5" style="flex-basis: 100%;">Amount: @Model.Amount</h4>
+    <h4 class="fs-5" style="flex-basis: 100%;">Type of Transaction: @Model.TypeOfTransaction</h4>
+    <h4 class="fs-5" style="flex-basis: 100%;">Country of Transaction: @Model.CountryOfTransaction</h4>
+    <h4 class="fs-5" style="flex-basis: 100%;">Shipping Address: @Model.ShippingAddress</h4>
+    <h4 class="fs-5" style="flex-basis: 100%;">Bank: @Model.Bank</h4>
+    <h4 class="fs-5" style="flex-basis: 100%;">Type of Card: @Model.TypeOfCard</h4>
+    <h4 class="fs-5" style="flex-basis: 100%;">Fraud: @Model.Fraud</h4>
+    <br/>
+    <span>
+        <form method="post">
+            <button type="submit" class="btn zesty-button" asp-controller="Home" asp-action="AdminOrderReview" asp-route-id="@Model.TransactionId">Accept</button>
+        </form>
+        <a class="btn zesty-button-red" asp-controller="Home" asp-action="AdminOrderCancelled" asp-route-id="@Model.TransactionId">Reject</a>
+    </span>
+</div>

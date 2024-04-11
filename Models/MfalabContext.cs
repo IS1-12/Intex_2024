@@ -34,6 +34,7 @@ public partial class MfalabContext : DbContext
     public virtual DbSet<Order> Orders { get; set; }
 
     public virtual DbSet<Product> Products { get; set; }
+    public virtual DbSet<Recommendations> recommendations { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -97,7 +98,7 @@ public partial class MfalabContext : DbContext
 
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => e.CustomerId);
 
             entity.Property(e => e.Age).HasColumnName("age");
             entity.Property(e => e.BirthDate).HasColumnName("birth_date");
@@ -110,7 +111,7 @@ public partial class MfalabContext : DbContext
 
         modelBuilder.Entity<LineItem>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => new { e.TransactionId, e.ProductId });
 
             entity.Property(e => e.ProductId).HasColumnName("product_ID");
             entity.Property(e => e.Qty).HasColumnName("qty");
@@ -120,7 +121,7 @@ public partial class MfalabContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => e.TransactionId);
 
             entity.Property(e => e.Amount).HasColumnName("amount");
             entity.Property(e => e.Bank).HasColumnName("bank");
@@ -139,7 +140,7 @@ public partial class MfalabContext : DbContext
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => e.ProductId);
 
             entity.Property(e => e.Category).HasColumnName("category");
             entity.Property(e => e.Description).HasColumnName("description");

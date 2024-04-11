@@ -1,0 +1,66 @@
+﻿@using LegosWithAurora.Models
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Product
+
+<div class="row">
+    <div class="col">
+        <div class="container bg-blue">
+            <img src="@Model.ImgLink" width="100%" style="padding: 1%; border-radius: 20px" />
+        </div>
+    </div>
+    <div class="col">
+        <div style="text-align:right">
+            <a class="btn btn-secondary btn-lg m-1 button-width" style="background-color: #FECD2C; color:black; text-align:center" href="@ViewBag.ReturnUrl">< Continue shopping</a>
+        </div>
+        <br />
+        <div class="container bg-blue">
+            <h3 class="text-white text-center">
+                @Model.Name
+            </h3>
+        </div>
+        <br />
+        <div class="container bg-blue">
+            <p class="text-white">@Model.Description</p>
+        </div>
+        <br />
+        <div class="container bg-blue">
+            <div class="row">
+                <div class="col">
+                    <h4 class="text-white">Product Details</h4>
+                    <p class="text-white">Price: $@Model.Price</p>
+                    <p class="text-white">Pieces: @Model.NumParts</p>
+                    <p class="text-white">Category: @Model.Category</p>
+                    <p class="text-white">Year: @Model.Year</p>
+                </div>
+                <div class="col">
+                    <br />
+                    <br />
+                    <br />
+                    <form id="@Model.ProductId" method="post" asp-action="AddToCart">
+                        <input type="hidden" asp-for="@Model.ProductId" />
+                        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+                        <button type="submit" class="btn btn-secondary btn-lg m-1 button-width" style="background-color: #FECD2C; color:black; margin:auto">Add to Cart <i class='fas fa-shopping-cart fa-icon' style='font-size:24px;'></i></button>
+                    </form>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-12"><h3>If you liked @Model.Name, you may like</h3></div>
+    @foreach (Product p in ViewBag.Recommendations)
+    {
+        <div class="col-4">
+            <partial name="LegoSetCard" model="p" />
+        </div>
+    }
+</div>

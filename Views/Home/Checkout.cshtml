@@ -1,0 +1,54 @@
+﻿@using LegosWithAurora.Models
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Cart
+<h2 style="text-align: center">CHECKOUT</h2>
+<div class="bg-blue text-white content-text">
+    <form method="post">
+        <div style="display:flex">
+            <div style="flex-grow: 1">
+                <input type="hidden" value="@UserManager.GetUserId" name="UserId" id="UserId"/>
+                <label class="fs-5" for="fname">First Name</label> <br />
+                <input class="form-control input-box" required type="text" id="fname" name="fname"/>
+                <br />
+                <label class="fs-5" for="lname">Last Name</label> <br />
+                <input class="form-control input-box" required type="text" id="lname" name="lname" />
+                <br />
+                <label class="fs-5" for="lname">City</label> <br />
+                <input class="form-control input-box" required type="text" id="lname" name="lname" />
+                <br />
+                <label class="fs-5">State</label> <br />
+                <div><vc:states></vc:states></div>
+                <br />
+                <label class="fs-5" for="zcode">Zip Code</label> <br />
+                <input class="form-control input-box" required type="number" id="zcode" name="zcode" />
+            </div>
+            <div style="flex-grow: 1">
+                <label class="fs-5" for="ccnum">Credit Card Number</label> <br />
+                <input class="form-control input-box" required type="text" id="ccnum" name="ccnum" />
+                <br />
+                <label class="fs-5" for="cvv">CVV</label> <br />
+                <input class="form-control input-box" required type="text" id="cvv" name="cvv" />
+                <br /><br />
+                <input class="zesty-button" type="submit" value="Place Order" />
+            </div>
+            <div class="bg-white text-black rounded p-3" style="flex-grow: 1">
+                <h6>Order Summary:</h6>
+                <ul>
+                    @foreach (var l in Model.Lines ?? Enumerable.Empty<Cart.CartLine>())
+                    {
+                        <li>@l.product.Name - @l.Quantity - @((l.Quantity * (int)l.product.Price * 1).ToString("c"))</li>
+                    }
+                </ul>
+                <h6>Total:</h6>
+                <p>$@Model.CalculateTotal()</p>
+            </div>
+        </div>
+        
+    </form>
+</div>
