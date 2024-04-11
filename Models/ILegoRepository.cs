@@ -12,5 +12,8 @@
         public Product EditProduct(int id);
         public void EditProduct(Product p);
         //public AspNetUser UpdateUser(int id);
+
+        public void AddOrder(Order o);
+        public void AddLineItem(LineItem l);
     }
 }

@@ -126,9 +126,65 @@ namespace WebApplication1.Controllers
         }
         [Authorize(Roles = "Member")]
         [HttpPost]
-        public IActionResult Checkout()
+        public IActionResult Checkout(Cart c)
         {
+            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
 
+            try
+            {
+                var input = new List<float> { DateTime.Now.Hour, Cart.CalculateTotal() };
+                var inputTensor = new DenseTensor<float>(input.ToArray(), new[] { 1, input.Count });
+
+                var inputs = new List<NamedOnnxValue>
+                {
+                    NamedOnnxValue.CreateFromTensor("float_input", inputTensor)
+                };
+
+                using (var results = _session.Run(inputs)) // makes the prediction with the inputs from the form (i.e. class_type 1-7)
+                {
+                    var prediction = results.FirstOrDefault(item => item.Name == "output_label")?.AsTensor<long>().ToArray();
+                    if (prediction != null && prediction.Length > 0)
+                    {
+                        // Use the prediction to get the animal type from the dictionary
+                        var isFraud = (int)prediction[0];
+                        ViewBag.Prediction = isFraud;
+                    }
+                    else
+                    {
+                        ViewBag.Prediction = "Error: Unable to make a prediction.";
+                    }
+                }
+
+                Console.WriteLine("We did it");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("You dummy!");
+                ViewBag.Prediction = "Error during prediction.";
+            }
+            var submit = new Order
+            {
+                CustomerId = 29135,
+                Amount = 123/*Cart.CalculateTotal()*/,
+                CountryOfTransaction = "USA",
+                Fraud = ViewBag.Prediction
+            };
+            _repo.AddOrder(submit);
+
+            foreach (Cart.CartLine cl in Cart.Lines)
+            {
+                var lineItem = new LineItem
+                {
+                    ProductId = cl.product.ProductId,
+                    TransactionId = submit.TransactionId,
+                    Qty = cl.Quantity,
+                    Rating = 5
+                };
+
+                _repo.AddLineItem(lineItem);
+            }
+
+            return View("OrderConfirmation");
         }
 
         [Authorize(Roles = "Admin")]

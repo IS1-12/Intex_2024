@@ -38,5 +38,17 @@ namespace LegosWithAurora.Models
             _context.Add(p);
             _context.SaveChanges();
         }
+
+        public void AddOrder(Order o)
+        {
+            _context.Add(o);
+            _context.SaveChanges();
+        }
+
+        public void AddLineItem(LineItem l)
+        {
+            _context.Add(l);
+            _context.SaveChanges();
+        }
     }
 }
