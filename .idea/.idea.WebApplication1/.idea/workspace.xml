@@ -9,13 +9,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb216afa-fd9d-4579-8549-20a602b4fdb5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Views/Home/AdminOrderAccept.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/HomeController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MFALab.db" beforeDir="false" afterPath="$PROJECT_DIR$/MFALab.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/EFLegoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/EFLegoRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/ILegoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/ILegoRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Home/AdminOrderReview.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminOrderReview.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MFALab.db-shm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MFALab.db-wal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Migrations/MfalabContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Migrations/MfalabContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Shared/Components/EditUser/Default.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/Components/EditUser/Default.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/Shared/Components/OrderReview/Default.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/Components/OrderReview/Default.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,6 +145,7 @@
       <workItem from="1712759300104" duration="7212000" />
       <workItem from="1712772102605" duration="421000" />
       <workItem from="1712801331365" duration="9184000" />
+      <workItem from="1712849577456" duration="2190000" />
     </task>
     <servers />
   </component>
