@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LegosWithAurora.Models;
 
 public partial class Customer
 {
-    public int? CustomerId { get; set; }
+    [Key]
+    [Required]
+    public int CustomerId { get; set; }
 
     public string? FirstName { get; set; }
 
@@ -17,5 +20,5 @@ public partial class Customer
 
     public string? Gender { get; set; }
 
-    public double? Age { get; set; }
+    public int? Age { get; set; }
 }

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LegosWithAurora.Models;
 
 public partial class Order
 {
-    public int? TransactionId { get; set; }
+    [Key]
+    [Required]
+    public int TransactionId { get; set; }
 
     public int? CustomerId { get; set; }
 

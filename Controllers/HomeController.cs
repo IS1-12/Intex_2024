@@ -125,8 +125,6 @@ namespace WebApplication1.Controllers
             return View(Cart);
         }
         public IActionResult AdminAddUser() { return View(); }
-        public IActionResult AddProduct() { return View("AddProductForm"); }
-        public IActionResult AddUser() { return View("AddUserForm"); }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -193,6 +191,10 @@ namespace WebApplication1.Controllers
         public IActionResult AdminAddProduct()
         {
             return View();
+        }
+        public IActionResult AdminUserEdit(int id)
+        {
+            AspNetUser update = _repo.UpdateUser(id);
         }
 
         //public IActionResult AdminUserEdit(int id)

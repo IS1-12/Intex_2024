@@ -97,7 +97,7 @@ public partial class MfalabContext : DbContext
 
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => e.CustomerId);
 
             entity.Property(e => e.Age).HasColumnName("age");
             entity.Property(e => e.BirthDate).HasColumnName("birth_date");
@@ -110,7 +110,7 @@ public partial class MfalabContext : DbContext
 
         modelBuilder.Entity<LineItem>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => e.TransactionId);
 
             entity.Property(e => e.ProductId).HasColumnName("product_ID");
             entity.Property(e => e.Qty).HasColumnName("qty");
@@ -120,7 +120,7 @@ public partial class MfalabContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => e.TransactionId);
 
             entity.Property(e => e.Amount).HasColumnName("amount");
             entity.Property(e => e.Bank).HasColumnName("bank");
@@ -139,7 +139,7 @@ public partial class MfalabContext : DbContext
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => e.ProductId);
 
             entity.Property(e => e.Category).HasColumnName("category");
             entity.Property(e => e.Description).HasColumnName("description");
