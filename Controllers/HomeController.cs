@@ -124,6 +124,14 @@ namespace WebApplication1.Controllers
                 ?? new Cart();
             return View(Cart);
         }
+        [Authorize(Roles = "Member")]
+        [HttpPost]
+        public IActionResult Checkout()
+        {
+
+        }
+
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminAddUser() { return View(); }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -192,10 +200,10 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
-        public IActionResult AdminUserEdit(int id)
-        {
-            AspNetUser update = _repo.UpdateUser(id);
-        }
+        //public IActionResult AdminUserEdit(int id)
+        //{
+        //    AspNetUser update = _repo.UpdateUser(id);
+        //}
 
         //public IActionResult AdminUserEdit(int id)
         //{
