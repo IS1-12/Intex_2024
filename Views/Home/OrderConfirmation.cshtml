@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@if (ViewBag.Prediction == 1)
+{
+    <h1>Order in Processing!</h1>
+
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8" style="text-align:center">
+            <img src="~/images/SadLegoHead.png" alt="Sad Lego head. We'll review your order soon!" width="40%" />
+            <p style="font-size:xx-large; text-align:left">Oops! Looks like we hit a snag! Your order couldn't be placed because we encountered a building block on our end. Please try reassembling your order, and if the problem persists, contact our Master Builder Support Team for assistance.</p>
+            <div><a class="btn btn-secondary btn-lg m-1 button-width" style="background-color: #FECD2C; color:black; margin:auto" asp-action="Products">Continue Shopping</a></div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+}
+else
+{
+    <h1>Order Confirmed!</h1>
+
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8" style="text-align:center">
+            <img src="~/images/goodhead.jpg" alt="Smiling Lego head. Enjoy your purchase!" />
+            <p style="font-size:xx-large; text-align:left">Great news! Your LEGO order is snapping into place and will be on its way soon. Get ready to build something amazing!</p>
+            <div><a class="btn btn-secondary btn-lg m-1 button-width" style="background-color: #FECD2C; color:black; margin:auto" asp-action="Products">Continue Shopping</a></div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+}

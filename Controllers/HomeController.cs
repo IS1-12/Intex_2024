@@ -52,8 +52,6 @@ namespace WebApplication1.Controllers
             return View(products);
         }
 
-
-
         public IActionResult Privacy()
         {
             // You might also want to check and pass the consent status in the Privacy view
@@ -81,7 +79,7 @@ namespace WebApplication1.Controllers
             return View(products);
         }
         [HttpPost]
-        [Authorize(Roles = "Member")]
+        [Authorize]
         public IActionResult AddToCart(int productId, string returnUrl)
         {
             Product? prod = _repo.Products
@@ -96,7 +94,7 @@ namespace WebApplication1.Controllers
 
             return RedirectToAction("CartConfirmation", new { id = productId, returnUrl = returnUrl });
         }
-        [Authorize(Roles = "Member")]
+        [Authorize]
         public IActionResult CartConfirmation(int id, string returnUrl)
         {
             Product? prod = _repo.Products
@@ -106,6 +104,7 @@ namespace WebApplication1.Controllers
             return View(prod);
         }
 
+        [Authorize]
         public IActionResult ViewCart()
         {
             ViewBag.Cart = Cart;
@@ -116,14 +115,79 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
-        [Authorize(Roles = "Member")]
+
+        [Authorize]
         public IActionResult Checkout()
         {
             Cart = HttpContext.Session.GetJson<Cart>("cart")
                 ?? new Cart();
             return View(Cart);
         }
+        [Authorize]
+        [HttpPost]
+        public IActionResult Checkout(IFormCollection data)
+        {
+            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+            var test = data;
 
+            try
+            {
+                var input = new List<float> { DateTime.Now.Hour, Cart.CalculateTotal() };
+                var inputTensor = new DenseTensor<float>(input.ToArray(), new[] { 1, input.Count });
+
+                var inputs = new List<NamedOnnxValue>
+                {
+                    NamedOnnxValue.CreateFromTensor("float_input", inputTensor)
+                };
+
+                using (var results = _session.Run(inputs)) // makes the prediction with the inputs from the form (i.e. class_type 1-7)
+                {
+                    var prediction = results.FirstOrDefault(item => item.Name == "output_label")?.AsTensor<long>().ToArray();
+                    if (prediction != null && prediction.Length > 0)
+                    {
+                        // Use the prediction to get the animal type from the dictionary
+                        var isFraud = (int)prediction[0];
+                        ViewBag.Prediction = isFraud;
+                    }
+                    else
+                    {
+                        ViewBag.Prediction = "Error: Unable to make a prediction.";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Prediction = "Error during prediction.";
+            }
+            var submit = new Order
+            {
+                CustomerId = 29135,
+                Amount = Cart.CalculateTotal(),
+                CountryOfTransaction = "USA",
+                Fraud = ViewBag.Prediction
+            };
+            _repo.AddOrder(submit);
+
+            foreach (Cart.CartLine cl in Cart.Lines)
+            {
+                var lineItem = new LineItem
+                {
+                    ProductId = cl.product.ProductId,
+                    TransactionId = submit.TransactionId,
+                    Qty = cl.Quantity,
+                    Rating = 5
+                };
+
+                _repo.AddLineItem(lineItem);
+            }
+
+            Cart.Clear();
+            HttpContext.Session.SetJson("cart", Cart);
+
+            return View("OrderConfirmation");
+        }
+
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminAddUser() { return View(); }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -133,16 +197,20 @@ namespace WebApplication1.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult AdminOrderCancelled()
+        public IActionResult AdminOrderCancelled(int id)
         {
+            //Order delete = _repo.RejectOrder(id);
             return View();
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult AdminOrderApproved()
+        [HttpPost]
+        public IActionResult AdminOrderCancelled(Order o)
         {
-            return View();
+            //_repo.RejectOrder(o);
+            return RedirectToAction("");
         }
+        
         [Authorize(Roles = "Admin")]
         public IActionResult AdminDashboard()
         {
@@ -151,8 +219,24 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderReview()
         {
-            return View();
+            var orders = _repo.Orders
+                .Where(x => x.Fraud == 1);
+
+            orders.ToList();
+            
+            return View(orders);
         }
+        
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminOrderReview(int id)
+        {
+            var acceptedID = id;
+            //_repo.CorrectOrder(id);
+
+            return RedirectToAction("AdminOrderAccept", acceptedID);
+        }
+        
         [Authorize(Roles = "Admin")]
         public IActionResult AdminAllProducts()
         {
@@ -219,5 +303,14 @@ namespace WebApplication1.Controllers
 
             return View("AdminAddProduct", editProduct);
         }
+
+            
+        }
+
+        //public IActionResult AdminOrderAccept(int id)
+        //{
+        //    ViewBag.Id = id;
+            
+        //    return View();
+        //}
     }
-}

@@ -25,9 +25,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="intex.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MFALab.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Views\Shared\_Admin.css">
       <DependentUpon>_AdminLayout.cshtml</DependentUpon>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\ViewModels\" />
   </ItemGroup>
 
 </Project>
