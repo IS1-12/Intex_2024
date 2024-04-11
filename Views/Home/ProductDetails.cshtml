@@ -52,3 +52,15 @@
         </div>
     </div>
 </div>
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-12"><h3>If you liked @Model.Name, you may like</h3></div>
+    @foreach (Product p in ViewBag.Recommendations)
+    {
+        <div class="col-4">
+            <partial name="LegoSetCard" model="p" />
+        </div>
+    }
+</div>

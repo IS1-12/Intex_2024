@@ -42,6 +42,8 @@ namespace WebApplication1.Controllers
         {
             var products = _repo.Products;
 
+            ViewBag.Recommendations = _repo.recommendations.ToList();
+
             products.ToList();
 
             // Read the user's cookie consent status from the cookies
@@ -75,8 +77,27 @@ namespace WebApplication1.Controllers
         {
             ViewBag.returnUrl = returnUrl ?? "/";
 
+            List<Product> RecProd = new List<Product>();
+
             var products = _repo.Products
                             .Where(x => x.ProductId == id).Single();
+
+            var Recs = _repo.recommendations
+                    .Where(x => x.product_ID == id).Single();
+
+            List<int> RecInts = new List<int>
+            {
+                Recs.Rec1, Recs.Rec2, Recs.Rec3
+            };
+
+            foreach (var rec in RecInts)
+            {
+                var conversionVar = _repo.Products.Where(x => x.ProductId == rec).Single();
+
+                RecProd.Add((Product)conversionVar);
+            }
+
+            ViewBag.Recommendations = RecProd;
 
             return View(products);
         }

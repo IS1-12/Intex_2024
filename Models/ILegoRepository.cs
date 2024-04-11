@@ -11,6 +11,7 @@
         IQueryable<AspNetRoleClaim> AspNetRoleClaims {get;}
         IQueryable<AspNetUserLogin> AspNetUserLogins {get;}
         IQueryable<AspNetUserToken> AspNetUserTokens {get;}
+        IQueryable<Recommendations> recommendations { get;}
         public void AddProduct(Product p);
         public Product RemoveProduct(int id);
         public void RemoveProduct(Product p);

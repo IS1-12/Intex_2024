@@ -17,6 +17,7 @@ namespace LegosWithAurora.Models
         public IQueryable<AspNetRoleClaim> AspNetRoleClaims => _context.AspNetRoleClaims;
         public IQueryable<AspNetUserLogin> AspNetUserLogins => _context.AspNetUserLogins;
         public IQueryable<AspNetUserToken> AspNetUserTokens => _context.AspNetUserTokens;
+        public IQueryable<Recommendations> recommendations => _context.recommendations;
 
         public Product RemoveProduct(int id) => _context.Products
             .Single(x => x.ProductId == id);
