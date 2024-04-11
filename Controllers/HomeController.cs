@@ -125,9 +125,10 @@ namespace WebApplication1.Controllers
         }
         [Authorize(Roles = "Member")]
         [HttpPost]
-        public IActionResult Checkout(Cart c)
+        public IActionResult Checkout(IFormCollection data)
         {
             Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+            var test = data;
 
             try
             {
