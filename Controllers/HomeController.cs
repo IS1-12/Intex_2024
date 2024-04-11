@@ -11,6 +11,7 @@ using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
 using Microsoft.AspNetCore.Http;
 using LegosWithAurora.Infrastructure;
+using LegosWithAurora.Models.ViewModels;
 
 namespace WebApplication1.Controllers
 {
@@ -60,13 +61,27 @@ namespace WebApplication1.Controllers
 
             return View();
         }
-        public IActionResult Products()
+        public IActionResult Products(int pageNum)
         {
-            var products = _repo.Products;
+            int pageSize = 9;
 
-            products.ToList();
+            var productsPages = new ProductListViewModel
+            {
+                Products = _repo.Products
+                    .OrderBy(x => x.ProductId)
+                    .Skip((pageNum - 1) * pageSize)
+                    .Take(pageSize),
 
-            return View(products);
+                PaginationInfo = new PaginationInfo
+                {
+                    CurrentPage = pageNum,
+                    ItemsPerPage = pageSize,
+                    TotalItems = _repo.Products.Count()
+                }
+            };
+                
+
+            return View(productsPages);
         }
 
         public IActionResult ProductDetails(int id, string returnUrl)
