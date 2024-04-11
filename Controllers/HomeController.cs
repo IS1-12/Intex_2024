@@ -164,7 +164,7 @@ namespace WebApplication1.Controllers
             var submit = new Order
             {
                 CustomerId = 29135,
-                Amount = 123/*Cart.CalculateTotal()*/,
+                Amount = Cart.CalculateTotal(),
                 CountryOfTransaction = "USA",
                 Fraud = ViewBag.Prediction
             };
