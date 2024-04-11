@@ -44,15 +44,20 @@ namespace LegosWithAurora.Models
             _context.SaveChanges();
         }
 
-        public void AddOrder(Order o)
+        public Order RejectOrder(int id) => _context.Orders
+            .Single(x => x.TransactionId == id);
+        public void RejectOrder(Order o)
         {
-            _context.Add(o);
+            _context.Orders.Remove(o);
             _context.SaveChanges();
         }
 
-        public void AddLineItem(LineItem l)
+        public void CorrectOrder(int id)
         {
-            _context.Add(l);
+            var orderCorrect = _context.Orders
+                .FirstOrDefault(x => x.TransactionId == id);
+
+            orderCorrect.Fraud = 0;
             _context.SaveChanges();
         }
     }
