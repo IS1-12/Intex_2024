@@ -92,29 +92,6 @@ namespace WebApplication1
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
-            // Role and user initialization (Consider moving to a script for production environments)
-            using (var scope = app.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-                var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                var roles = new[] { "Admin", "Member" };
-                foreach (var role in roles)
-                {
-                    if (!await roleManager.RoleExistsAsync(role))
-                        await roleManager.CreateAsync(new IdentityRole(role));
-                }
-
-                var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
-                string email = "testing69@gmail.com";
-                string password = "Test1234!";
-                if (await userManager.FindByEmailAsync(email) == null)
-                {
-                    var user = new IdentityUser { UserName = email, Email = email };
-                    await userManager.CreateAsync(user, password);
-                    await userManager.AddToRoleAsync(user, "Admin");
-                }
-            }
-
             app.Run();
         }
     }
