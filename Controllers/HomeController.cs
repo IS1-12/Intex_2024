@@ -52,8 +52,6 @@ namespace WebApplication1.Controllers
             return View(products);
         }
 
-
-
         public IActionResult Privacy()
         {
             // You might also want to check and pass the consent status in the Privacy view
@@ -125,7 +123,7 @@ namespace WebApplication1.Controllers
                 ?? new Cart();
             return View(Cart);
         }
-        [Authorize(Roles = "Member")]
+        [Authorize]
         [HttpPost]
         public IActionResult Checkout(Cart c)
         {
