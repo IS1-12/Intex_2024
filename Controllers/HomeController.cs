@@ -219,12 +219,5 @@ namespace WebApplication1.Controllers
 
             return View("AdminAddProduct", editProduct);
         }
-
-            return RedirectToAction("AdminAllProducts");
-        }
-            _repo.EditProduct(p);
-
-        //    return RedirectToAction("AdminAllProducts");
-        //}
     }
 }
