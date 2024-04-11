@@ -4,10 +4,14 @@
 @model IQueryable<Order>
 
 <h1>OrderReview</h1>
-<div class="align-content-center">
-    @foreach (var o in Model)
-    {
-        <partial name="Components/OrderReview/Default" model="o"/>
-        <br/>
-    }
+<div class="col-12 align-content-center">
+    <div class="row">
+        @foreach (var o in Model)
+        {
+            <div class="col-6">
+                <partial name="Components/OrderReview/Default" model="o"/>
+                <br/>
+            </div>
+        }
+    </div>
 </div>

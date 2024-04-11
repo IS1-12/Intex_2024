@@ -196,16 +196,20 @@ namespace WebApplication1.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult AdminOrderCancelled()
+        public IActionResult AdminOrderCancelled(int id)
         {
-            return View();
+            Order delete = _repo.RejectOrder(id);
+            return View(delete);
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult AdminOrderApproved()
+        [HttpPost]
+        public IActionResult AdminOrderCancelled(Order o)
         {
-            return View();
+            _repo.RejectOrder(o);
+            return RedirectToAction("");
         }
+        
         [Authorize(Roles = "Admin")]
         public IActionResult AdminDashboard()
         {
@@ -214,8 +218,24 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderReview()
         {
-            return View();
+            var orders = _repo.Orders
+                .Where(x => x.Fraud == 1);
+
+            orders.ToList();
+            
+            return View(orders);
         }
+        
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminOrderReview(int id)
+        {
+            var acceptedID = id;
+            _repo.CorrectOrder(id);
+
+            return RedirectToAction("AdminOrderAccept", acceptedID);
+        }
+        
         [Authorize(Roles = "Admin")]
         public IActionResult AdminAllProducts()
         {
@@ -284,5 +304,12 @@ namespace WebApplication1.Controllers
         }
 
             
+        }
+
+        public IActionResult AdminOrderAccept(int id)
+        {
+            ViewBag.Id = id;
+            
+            return View();
         }
     }
