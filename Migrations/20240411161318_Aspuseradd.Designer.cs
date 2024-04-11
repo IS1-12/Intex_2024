@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LegosWithAurora.Migrations
 {
     [DbContext(typeof(MfalabContext))]
-    [Migration("20240411002658_NewOrder")]
-    partial class NewOrder
+    [Migration("20240411161318_Aspuseradd")]
+    partial class Aspuseradd
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -88,7 +88,16 @@ namespace LegosWithAurora.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Age")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Birthday")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Country")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -96,6 +105,15 @@ namespace LegosWithAurora.Migrations
 
                     b.Property<int>("EmailConfirmed")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("First_Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Last_Name")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("LockoutEnabled")
                         .HasColumnType("INTEGER");
@@ -240,7 +258,6 @@ namespace LegosWithAurora.Migrations
             modelBuilder.Entity("LegosWithAurora.Models.LineItem", b =>
                 {
                     b.Property<int?>("TransactionId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnName("transaction_ID");
 
@@ -256,7 +273,7 @@ namespace LegosWithAurora.Migrations
                         .HasColumnType("INTEGER")
                         .HasColumnName("rating");
 
-                    b.HasKey("TransactionId");
+                    b.HasKey("TransactionId", "ProductId");
 
                     b.ToTable("LineItems");
                 });

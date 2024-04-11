@@ -5,7 +5,7 @@
 namespace LegosWithAurora.Migrations
 {
     /// <inheritdoc />
-    public partial class NewOrder : Migration
+    public partial class RemoveAspUserStuff : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

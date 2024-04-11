@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LegosWithAurora.Migrations
 {
     [DbContext(typeof(MfalabContext))]
-    [Migration("20240410223528_AddProductKey")]
-    partial class AddProductKey
+    [Migration("20240411164408_RemoveAspUserStuff")]
+    partial class RemoveAspUserStuff
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -203,8 +203,13 @@ namespace LegosWithAurora.Migrations
 
             modelBuilder.Entity("LegosWithAurora.Models.Customer", b =>
                 {
-                    b.Property<double?>("Age")
-                        .HasColumnType("REAL")
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("customer_ID");
+
+                    b.Property<int?>("Age")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("age");
 
                     b.Property<string>("BirthDate")
@@ -214,10 +219,6 @@ namespace LegosWithAurora.Migrations
                     b.Property<string>("CountryOfResidence")
                         .HasColumnType("TEXT")
                         .HasColumnName("country_of_residence");
-
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("customer_ID");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("TEXT")
@@ -231,11 +232,18 @@ namespace LegosWithAurora.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("last_name");
 
+                    b.HasKey("CustomerId");
+
                     b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("LegosWithAurora.Models.LineItem", b =>
                 {
+                    b.Property<int?>("TransactionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("transaction_ID");
+
                     b.Property<int?>("ProductId")
                         .HasColumnType("INTEGER")
                         .HasColumnName("product_ID");
@@ -248,15 +256,18 @@ namespace LegosWithAurora.Migrations
                         .HasColumnType("INTEGER")
                         .HasColumnName("rating");
 
-                    b.Property<int?>("TransactionId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("transaction_ID");
+                    b.HasKey("TransactionId");
 
                     b.ToTable("LineItems");
                 });
 
             modelBuilder.Entity("LegosWithAurora.Models.Order", b =>
                 {
+                    b.Property<int>("TransactionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("transaction_ID");
+
                     b.Property<int?>("Amount")
                         .HasColumnType("INTEGER")
                         .HasColumnName("amount");
@@ -297,10 +308,6 @@ namespace LegosWithAurora.Migrations
                         .HasColumnType("INTEGER")
                         .HasColumnName("time");
 
-                    b.Property<int?>("TransactionId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("transaction_ID");
-
                     b.Property<string>("TypeOfCard")
                         .HasColumnType("TEXT")
                         .HasColumnName("type_of_card");
@@ -308,6 +315,8 @@ namespace LegosWithAurora.Migrations
                     b.Property<string>("TypeOfTransaction")
                         .HasColumnType("TEXT")
                         .HasColumnName("type_of_transaction");
+
+                    b.HasKey("TransactionId");
 
                     b.ToTable("Orders");
                 });
