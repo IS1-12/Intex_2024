@@ -44,7 +44,7 @@ public partial class IntexContext : DbContext
 
         modelBuilder.Entity<LineItem>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => new { e.TransactionId, e.ProductId });
 
             entity.Property(e => e.ProductId).HasColumnName("product_ID");
             entity.Property(e => e.Qty).HasColumnName("qty");

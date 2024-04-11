@@ -153,12 +153,9 @@ namespace WebApplication1.Controllers
                         ViewBag.Prediction = "Error: Unable to make a prediction.";
                     }
                 }
-
-                Console.WriteLine("We did it");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("You dummy!");
                 ViewBag.Prediction = "Error during prediction.";
             }
             var submit = new Order
@@ -183,6 +180,9 @@ namespace WebApplication1.Controllers
                 _repo.AddLineItem(lineItem);
             }
 
+            Cart.Clear();
+            HttpContext.Session.SetJson("cart", Cart);
+
             return View("OrderConfirmation");
         }
 
@@ -198,15 +198,15 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderCancelled(int id)
         {
-            Order delete = _repo.RejectOrder(id);
-            return View(delete);
+            //Order delete = _repo.RejectOrder(id);
+            return View();
         }
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult AdminOrderCancelled(Order o)
         {
-            _repo.RejectOrder(o);
+            //_repo.RejectOrder(o);
             return RedirectToAction("");
         }
         
@@ -231,7 +231,7 @@ namespace WebApplication1.Controllers
         public IActionResult AdminOrderReview(int id)
         {
             var acceptedID = id;
-            _repo.CorrectOrder(id);
+            //_repo.CorrectOrder(id);
 
             return RedirectToAction("AdminOrderAccept", acceptedID);
         }
@@ -306,10 +306,10 @@ namespace WebApplication1.Controllers
             
         }
 
-        public IActionResult AdminOrderAccept(int id)
-        {
-            ViewBag.Id = id;
+        //public IActionResult AdminOrderAccept(int id)
+        //{
+        //    ViewBag.Id = id;
             
-            return View();
-        }
+        //    return View();
+        //}
     }

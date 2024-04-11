@@ -60,5 +60,14 @@ namespace LegosWithAurora.Models
             orderCorrect.Fraud = 0;
             _context.SaveChanges();
         }
+
+        public void AddOrder(Order o)
+        { _context.Orders.Add(o); _context.SaveChanges(); }
+
+        public void AddLineItem(LineItem l)
+        {
+            _context.Add(l);
+            _context.SaveChanges();
+        }
     }
 }
