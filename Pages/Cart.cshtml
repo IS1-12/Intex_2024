@@ -4,39 +4,40 @@
 }
 
 <h2>Your cart</h2>
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Project Name</th>
-            <th>Quantity</th>
-            <th class="text-right">Amount</th>
-            <th class="text-right">Subtotal</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var l in Model.Cart.Lines ?? Enumerable.Empty<Cart.CartLine>())
-        {
-            <tr>
-                <td class="text-left">@l.product.Name</td>
-                <td class="text-center">@l.Quantity</td>
-                <td class="text-right">$@l.product.Price</td>
-                <td class="text-right">@((l.Quantity * (int)l.product.Price * 1).ToString("c"))</td>
-                <td class="text-center">
-                    <form asp-page-handler="Remove" method="post">
-                        <input type="hidden" name="ProductId" value="@l.product.ProductId" />
-                        <input type="hidden" name="returnUrl" value="@Model?.ReturnUrl" />
-                        <button type="submit" class="btn btn-sm btn-danger">Remove</button>
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="3" class="text-right">Total:</td>
-            <td class="text-right">@Model.Cart?.CalculateTotal().ToString("c")</td>
-        </tr>
-    </tfoot>
-</table>
+<div class="row container bg-blue">
+    <div class="col-5"><h5 class="text-white">Product</h5></div>
+    <div class="col-2"><h5 class="text-white" style="text-align:center">Quantity</h5></div>
+    <div class="col-2"><h5 class="text-white" style="text-align:center">Price</h5></div>
+    <div class="col-2"><h5 class="text-white" style="text-align:center">Subtotal</h5></div>
+    <div class="col-1"><h5 class="text-white" style="text-align:center"></h5></div>
+</div>
+ @foreach (var l in Model.Cart.Lines ?? Enumerable.Empty<Cart.CartLine>())
+ {
+     <br />
+    <div class="row container bg-blue">
+        <div class="col-2" style="text-align:center">
+            <img src="@l.product.ImgLink" class="rounded" style="max-height: 100px "/>
+            
+        </div>
+        <div class="col-3 text-white" style="text-align:center"><br />@l.product.Name</div>
+        <div class="col-2 text-white" style="text-align:center"><br />@l.Quantity</div>
+        <div class="col-2 text-white" style="text-align:center"><br />$@l.product.Price</div>
+        <div class="col-2 text-white" style="text-align:center"><br />@((l.Quantity * (int)l.product.Price * 1).ToString("c"))</div>
+        <div class="col-1 text-white">
+            <br />
+            <form asp-page-handler="Remove" method="post">
+                <input type="hidden" name="ProductId" value="@l.product.ProductId" />
+                <input type="hidden" name="returnUrl" value="@Model?.ReturnUrl" />
+                <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+            </form>
+        </div>
+    </div>
+ }
+ <br />
+<div class="row container bg-blue">
+    <div class="col-6"><h3 class="text-white" style="text-align:center">Total: @Model.Cart?.CalculateTotal().ToString("c")</h3></div>
+    <div class="col-6" style="text-align:center"><a class="btn btn-secondary btn-lg m-1 button-width" style="background-color: #FECD2C; color:black; margin:auto" asp-action="Checkout">Checkout</a></div>
+</div>
+
+   
 

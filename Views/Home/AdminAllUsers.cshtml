@@ -1,13 +1,13 @@
 @{
     Layout = "_AdminLayout";
 }
-@model IQueryable<LegosWithAurora.Models.Customer>
+@model IQueryable<AspNetUser>
 
-<h1>All Products</h1>
+<h1>All Users</h1>
 <div class="align-content-center">
-    @foreach (var p in Model.Take(3))
+    @foreach (var u in Model)
     {
-        <partial name="Components/EditUser/Default" model="p" />
+        <partial name="Components/EditUser/Default" model="u" />
         <br />
     }
 </div>

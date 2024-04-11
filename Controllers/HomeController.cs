@@ -165,7 +165,7 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminAllUsers()
         {
-            var users = _repo.Customers;
+            var users = _repo.AspNetUsers;
             users.ToList();
             return View(users);
         }
@@ -177,6 +177,8 @@ namespace WebApplication1.Controllers
             Product delete = _repo.RemoveProduct(id);
             return View(delete);
         }
+
+      
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
@@ -191,12 +193,17 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
-        public IActionResult AdminUserEdit(int id)
-        {
-            AspNetUser update = _repo.UpdateUser(id);
+        //public IActionResult AdminUserEdit(int id)
+        //{
+        //    AspNetUser update = _repo.UpdateUser(id);
+        //}
 
-            return View("AddUserForm", update);
-        }
+        //public IActionResult AdminUserEdit(int id)
+        //{
+        //AspNetUser update = _repo.UpdateUser(id);
+
+        //    return View("AddUserForm", update);
+        //}
 
         [HttpPost]
         public IActionResult AdminAddProduct(Product p)
@@ -213,11 +220,11 @@ namespace WebApplication1.Controllers
             return View("AdminAddProduct", editProduct);
         }
 
-        [HttpPost]
-        public IActionResult AdminEditProduct(Product p)
-        {
-            _repo.EditProduct(p);
             return RedirectToAction("AdminAllProducts");
         }
+            _repo.EditProduct(p);
+
+        //    return RedirectToAction("AdminAllProducts");
+        //}
     }
 }

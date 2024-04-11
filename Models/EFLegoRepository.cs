@@ -12,6 +12,11 @@ namespace LegosWithAurora.Models
         public IQueryable<Product> Products => _context.Products;
         public IQueryable<LineItem> LineItems => _context.LineItems;
         public IQueryable<Customer> Customers => _context.Customers;
+        public IQueryable<AspNetUser> AspNetUsers => _context.AspNetUsers;
+        public IQueryable<AspNetRole> AspNetRoles => _context.AspNetRoles;
+        public IQueryable<AspNetRoleClaim> AspNetRoleClaims => _context.AspNetRoleClaims;
+        public IQueryable<AspNetUserLogin> AspNetUserLogins => _context.AspNetUserLogins;
+        public IQueryable<AspNetUserToken> AspNetUserTokens => _context.AspNetUserTokens;
 
         public Product RemoveProduct(int id) => _context.Products
             .Single(x => x.ProductId == id);
@@ -29,9 +34,9 @@ namespace LegosWithAurora.Models
             _context.Products.Update(p);
             _context.SaveChanges();
         }
-        public AspNetUser UpdateUser(int id) =>
-            _context.AspNetUsers
-            .Single(x => x.Id == id.ToString());
+        //public AspNetUser UpdateUser(int id) =>
+        //    _context.AspNetUsers
+        //    .Single(x => x.CustomerId == id);
 
         public void AddProduct(Product p)
         {

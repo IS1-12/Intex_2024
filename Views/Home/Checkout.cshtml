@@ -34,7 +34,7 @@
                 <br /><br />
                 <input class="zesty-button" type="submit" value="Place Order" />
             </div>
-            <div class="bg-white text-black rounded" style="flex-grow: 1">
+            <div class="bg-white text-black rounded p-3" style="flex-grow: 1">
                 <h6>Order Summary:</h6>
                 <ul>
                     @foreach (var l in Model.Lines ?? Enumerable.Empty<Cart.CartLine>())
