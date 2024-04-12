@@ -1,7 +1,6 @@
 ﻿@model AspNetUser
 
-<form method="post">
-    <input asp-for="Id" type="hidden"/>
+<form method="post" asp-action="SaveUser">
     <div style="display: flex">
         <div style="flex-grow: 1">
             <h2>Edit User Info</h2>
@@ -13,11 +12,11 @@
     <div class="bg-blue text-white content-text">
         <label class="fs-5" asp-for="Id">ID</label>
         <br />
-        <input class="form-control input-box" type="text" required placeholder="1234-5678-97897" asp-for="Id" readonly/>
+        <input class="form-control input-box" type="text" required placeholder="1234-5678-97897" asp-for="Id" name="Id" readonly/>
         <br />
         <label class="fs-5" asp-for="Email">EMAIL</label>
         <br />
-        <input class="form-control input-box" type="text" required placeholder="user@email.com" asp-for="Email" />
+        <input class="form-control input-box" type="text" required placeholder="user@email.com" asp-for="Email" name="Email" />
         <br />
         <label class="fs-5">IS ADMIN</label>
         <br />

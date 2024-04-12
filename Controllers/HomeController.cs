@@ -329,6 +329,14 @@ namespace WebApplication1.Controllers
             return View("AdminAddUser", update);
         }
 
+        [Authorize(Roles ="Admin")]
+        [HttpPost]
+        public IActionResult SaveUser(AspNetUser user)
+        {
+            _repo.SaveUser(user);
+            return RedirectToAction("AdminAllUsers");
+        }
+
         public IActionResult AdminDelete(string id)
         {
             var user = _repo.UpdateUser(id);
