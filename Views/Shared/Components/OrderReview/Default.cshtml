@@ -19,7 +19,7 @@
     <td>@Model.Fraud</td>
     <td>
         <form method="post">
-            <button type="submit" class="btn zesty-button" style="width:100px;" asp-controller="Home" asp-action="AdminOrderReview" asp-route-id="@Model.TransactionId">Accept</button>
+            <button type="submit" class="btn zesty-button" style="width:100px;" asp-controller="Home" asp-action="AdminOrderAccept" asp-route-id="@Model.TransactionId">Accept</button>
         </form>
         <a class="btn zesty-button-red" style="width:100px;" asp-controller="Home" asp-action="AdminOrderCancelled" asp-route-id="@Model.TransactionId">Reject</a>
     </td>

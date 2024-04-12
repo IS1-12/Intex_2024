@@ -181,13 +181,14 @@ namespace WebApplication1.Controllers
                     var prediction = results.FirstOrDefault(item => item.Name == "output_label")?.AsTensor<long>().ToArray();
                     if (prediction != null && prediction.Length > 0)
                     {
+                        Console.WriteLine(prediction);
                         // Use the prediction to get the animal type from the dictionary
                         var isFraud = (int)prediction[0];
                         ViewBag.Prediction = isFraud;
                     }
                     else
                     {
-                        ViewBag.Prediction = "Error: Unable to make a prediction.";
+                        ViewBag.Prediction = 0;
                     }
                 }
             }
@@ -260,12 +261,8 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderReview()
         {
-            int pageSize = 5;
-
             var orders = _repo.Orders
                 .Where(x => x.Fraud == 1);
-
-            orders.ToList();
             
             return View(orders);
         }
@@ -278,6 +275,12 @@ namespace WebApplication1.Controllers
             _repo.CorrectOrder(id);
 
             return RedirectToAction("AdminOrderAccept", acceptedID);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminOrderAccept()
+        {
+            return View();
         }
         
         [Authorize(Roles = "Admin")]
