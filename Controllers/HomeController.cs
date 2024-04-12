@@ -52,47 +52,47 @@ namespace WebApplication1.Controllers
 
                 List<Product> RecProd = new List<Product>();
 
-                var Recs = _repo.recommendations
+                var Rec = _repo.recommendations
                         .Where(x => x.product_ID == productId).Single();
 
-                List<int> RecInts = new List<int>
+                List<int> RecInt = new List<int>
                 {
-                    Recs.Rec1 + 1, Recs.Rec2 + 1, Recs.Rec3 + 1
+                    Rec.Rec1 + 1, Rec.Rec2 + 1, Rec.Rec3 + 1
                 };
 
-                foreach (var rec in RecInts)
+                foreach (var rec in RecInt)
                 {
                     var conversionVar = _repo.Products.Where(x => x.ProductId == rec).Single();
 
                     RecProd.Add((Product)conversionVar);
                 }
 
-                ViewBag.Recommendations = RecProd;
+                ViewBag.RecommendationsSigned = RecProd;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }  
 
-                List<Product> RecProd = new List<Product>();
+            List<Product> RecProds = new List<Product>();
 
-                // This is the generic recommendation. It is based off of Stitch, the most popular product
-                var Recs = _repo.recommendations
-                        .Where(x => x.product_ID == 24).Single();
+            // This is the generic recommendation. It is based off of Stitch, the most popular product
+            var Recs = _repo.recommendations
+                    .Where(x => x.product_ID == 24).Single();
 
-                List<int> RecInts = new List<int>
+            List<int> RecInts = new List<int>
                 {
                     Recs.Rec1 + 1, Recs.Rec2 + 1, Recs.Rec3 + 1
                 };
 
-                foreach (var rec in RecInts)
-                {
-                    var conversionVar = _repo.Products.Where(x => x.ProductId == rec).Single();
+            foreach (var rec in RecInts)
+            {
+                var conversionVar = _repo.Products.Where(x => x.ProductId == rec).Single();
 
-                    RecProd.Add((Product)conversionVar);
-                }
-
-                ViewBag.Recommendations = RecProd;
+                RecProds.Add((Product)conversionVar);
             }
+
+            ViewBag.Recommendations = RecProds;
 
             products.ToList();
 
