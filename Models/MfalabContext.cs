@@ -55,6 +55,8 @@ public partial class MfalabContext : DbContext
 
         modelBuilder.Entity<AspNetUser>(entity =>
         {
+            entity.HasKey(e => e.Id);
+          
             entity.HasIndex(e => e.NormalizedEmail, "EmailIndex");
 
             entity.HasIndex(e => e.NormalizedUserName, "UserNameIndex").IsUnique();

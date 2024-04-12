@@ -11,6 +11,7 @@ using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
 using Microsoft.AspNetCore.Http;
 using LegosWithAurora.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 using LegosWithAurora.Models.ViewModels;
 
 namespace WebApplication1.Controllers
@@ -28,7 +29,7 @@ namespace WebApplication1.Controllers
 
             try
             {
-                _session = new InferenceSession("./decision_tree_model.onnx");
+                _session = new InferenceSession("./wwwroot/decision_tree_model.onnx");
                 //_logger.LogInformation("ONNX model loaded successfully.");
                 Console.WriteLine("Success");
             }
@@ -63,8 +64,9 @@ namespace WebApplication1.Controllers
         }
         public IActionResult Products(int pageNum, string categories, string color, int numProducts)
         {
-            int pageSize = 9;
-
+            int pageSize = numProducts;
+            if (pageSize < 1) pageSize = 9;
+            
             IQueryable<Product> products = _repo.Products;
 
             // Apply category filter if it is not null
@@ -72,7 +74,7 @@ namespace WebApplication1.Controllers
             {
                 products = products.Where(x => x.Category == categories);
             }
-
+            
             // Apply color filter if it is not null
             if (!string.IsNullOrEmpty(color))
             {
@@ -94,35 +96,9 @@ namespace WebApplication1.Controllers
                     ItemsPerPage = pageSize,
                     TotalItems = products.Count() // Calculate total count based on filtered products
                 },
-                CurrentProductType = categories // This might need adjustment if you want to display color or both.
+                CurrentProductType = categories, // This might need adjustment if you want to display color or both.
+                CurrentColor = color
             };
-
-
-            //var productsPages = new ProductListViewModel
-            //{
-            //    Products = _repo.Products
-            //        .Where(x => x.Category == categories || categories == null)
-            //        .OrderBy(x => x.ProductId)
-            //        .Skip((pageNum - 1) * pageSize)
-            //        .Take(pageSize),
-            //    Products = _repo.Products
-            //        .Where(x => x.PrimaryColor == color || color == null)
-            //        .OrderBy(x => x.ProductId)
-            //        .Skip((pageNum - 1) * pageSize)
-            //        .Take(pageSize),
-
-
-            //    PaginationInfo = new PaginationInfo
-            //    {
-            //        CurrentPage = pageNum,
-            //        ItemsPerPage = pageSize,
-            //        TotalItems = categories == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == categories).Count()
-            //    },
-
-            //    CurrentProductType = categories
-            //};
-
-
             return View(productsPages);
         }
         
@@ -137,8 +113,8 @@ namespace WebApplication1.Controllers
 
             return View(products);
         }
+
         [HttpPost]
-        [Authorize]
         public IActionResult AddToCart(int productId, string returnUrl)
         {
             Product? prod = _repo.Products
@@ -153,6 +129,7 @@ namespace WebApplication1.Controllers
 
             return RedirectToAction("CartConfirmation", new { id = productId, returnUrl = returnUrl });
         }
+
         [Authorize]
         public IActionResult CartConfirmation(int id, string returnUrl)
         {
@@ -204,13 +181,14 @@ namespace WebApplication1.Controllers
                     var prediction = results.FirstOrDefault(item => item.Name == "output_label")?.AsTensor<long>().ToArray();
                     if (prediction != null && prediction.Length > 0)
                     {
+                        Console.WriteLine(prediction);
                         // Use the prediction to get the animal type from the dictionary
                         var isFraud = (int)prediction[0];
                         ViewBag.Prediction = isFraud;
                     }
                     else
                     {
-                        ViewBag.Prediction = "Error: Unable to make a prediction.";
+                        ViewBag.Prediction = 0;
                     }
                 }
             }
@@ -247,7 +225,12 @@ namespace WebApplication1.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult AdminAddUser() { return View(); }
+        public IActionResult AdminAddUser(string id) {
+
+            var user = _repo.UpdateUser(id);
+            
+            return View(user);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -278,12 +261,8 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderReview()
         {
-            int pageSize = 5;
-
             var orders = _repo.Orders
                 .Where(x => x.Fraud == 1);
-
-            orders.ToList();
             
             return View(orders);
         }
@@ -296,6 +275,12 @@ namespace WebApplication1.Controllers
             _repo.CorrectOrder(id);
 
             return RedirectToAction("AdminOrderAccept", acceptedID);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminOrderAccept()
+        {
+            return View();
         }
         
         [Authorize(Roles = "Admin")]
@@ -319,7 +304,7 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminProductDelete(int id)
         {
-            Product delete = _repo.RemoveProduct(id);
+            Product delete = _repo.EditProduct(id);
             return View(delete);
         }
 
@@ -327,29 +312,47 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public IActionResult AdminProductDelete(Product id)
+        public IActionResult AdminDeleteProduct(int ProductId)
         {
-            _repo.RemoveProduct(id);
-
+            _repo.RemoveProduct(ProductId);
             return RedirectToAction("AdminAllProducts");
         }
         
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminAddProduct()
         {
             return View();
         }
-        //public IActionResult AdminUserEdit(int id)
-        //{
-        //    AspNetUser update = _repo.UpdateUser(id);
-        //}
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminUserEdit(string id)
+        {
+            AspNetUser update = _repo.UpdateUser(id);
 
-        //public IActionResult AdminUserEdit(int id)
-        //{
-        //AspNetUser update = _repo.UpdateUser(id);
+            return View("AdminAddUser", update);
+        }
 
-        //    return View("AddUserForm", update);
-        //}
+        [Authorize(Roles ="Admin")]
+        [HttpPost]
+        public IActionResult SaveUser(AspNetUser user)
+        {
+            _repo.SaveUser(user);
+            return RedirectToAction("AdminAllUsers");
+        }
+
+        public IActionResult AdminDelete(string id)
+        {
+            var user = _repo.UpdateUser(id);
+            return View("AdminUserDelete", user);
+        }
+
+        [HttpPost]
+        [Authorize(Roles ="Admin")]
+        public IActionResult AdminUserDelete(string id)
+        {
+            _repo.DelUser(id);
+            return RedirectToAction("AdminAllUsers");
+        }
 
         [HttpPost]
         public IActionResult AdminAddProduct(Product p)
@@ -359,6 +362,7 @@ namespace WebApplication1.Controllers
             return RedirectToAction("AdminAllProducts");
         }
 
+        [Authorize(Roles="Admin")]
         public IActionResult AdminEditProduct(int id)
         {
             Product editProduct = _repo.EditProduct(id);
@@ -366,9 +370,13 @@ namespace WebApplication1.Controllers
             return View("AdminAddProduct", editProduct);
         }
 
-        public IActionResult AdminOrderAccept()
+        [HttpPost]
+        [Authorize(Roles ="Admin")]
+        public IActionResult EditProduct(Product product)
         {
-            return View();
+            _repo.EditExistingProduct(product);
+            return RedirectToAction("AdminAllProducts");
         }
+
     }
 }

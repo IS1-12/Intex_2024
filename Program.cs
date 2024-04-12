@@ -95,10 +95,13 @@ namespace WebApplication1
 
             app.UseAuthentication();
             app.UseAuthorization();
-
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            
+            app.MapControllerRoute("WithCategoriesAndColors", "Products/{numProducts}/{categories}/{pageNum}/{color}", new { Controller = "Home", action = "Products" });
+            app.MapControllerRoute("WithCategories", "Products/{numProducts}/{categories}/{pageNum}/", new { Controller = "Home", action = "Products" });
+            app.MapControllerRoute("WithColors", "Products/{numProducts}/{color}/{pageNum}/", new { Controller = "Home", action = "Products" });
+            app.MapControllerRoute("paginationAndProducts", "Products/{numProducts}/{pageNum}", new { Controller = "Home", action = "Products" });
+            app.MapControllerRoute("ProductsOnly", "Products/{numProducts}", new { Controller = "Home", action = "Products" });
+            app.MapDefaultControllerRoute();
             app.MapRazorPages();
 
             app.Run();

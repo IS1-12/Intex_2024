@@ -17,10 +17,11 @@ namespace LegosWithAurora.Components
         public IViewComponentResult Invoke()
         {
             ViewBag.SelectedColor = RouteData?.Values["color"];
+            
             var color = _repo.Products
-           .Select(x => x.PrimaryColor)
-           .Distinct()
-           .OrderBy(x => x);
+               .Select(x => x.PrimaryColor)
+               .Distinct()
+               .OrderBy(x => x);
 
             return View(color);
         }
