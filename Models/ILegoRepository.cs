@@ -33,6 +33,5 @@ namespace LegosWithAurora.Models
         public void DelUser(string id);
         public void EditExistingProduct(Product product);
         public void SaveUser(AspNetUser Id);
-        public void UpdateRole(AspNetUser user);
     }
 }
