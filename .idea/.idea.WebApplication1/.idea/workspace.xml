@@ -9,15 +9,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb216afa-fd9d-4579-8549-20a602b4fdb5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Components/ProductCategoriesViewComponent.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Shared/Components/ProductCategories/Default.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/HomeController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LegosWithAurora.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LegosWithAurora.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Product.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Product.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/ViewModels/ProductListViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/ViewModels/ProductListViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Home/Products.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/Products.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wwwroot/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/wwwroot/css/site.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MFALab.db" beforeDir="false" afterPath="$PROJECT_DIR$/MFALab.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MFALab.db-shm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MFALab.db-wal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/AdminAllProducts.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminAllProducts.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/AdminAllUsers.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminAllUsers.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +69,7 @@
     &quot;.NET Launch Settings Profile.LegosWithAurora: https.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Preston&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Merge&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -145,6 +142,8 @@
       <workItem from="1712801331365" duration="9184000" />
       <workItem from="1712849577456" duration="12266000" />
       <workItem from="1712870035849" duration="9134000" />
+      <workItem from="1712907050681" duration="138000" />
+      <workItem from="1712933941473" duration="432000" />
     </task>
     <servers />
   </component>
