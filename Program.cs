@@ -30,12 +30,12 @@ namespace WebApplication1
 
             // Database context configuration for ApplicationDbContext
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(builder.Configuration.GetConnectionString("IntexConnection")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("BrendanConnection")));
 
             // Optional: Configuration for another DbContext (MfalabContext)
             // Ensure you have valid reasons to maintain separate contexts pointing to the same database.
             builder.Services.AddDbContext<MfalabContext>(options =>
-                options.UseSqlite(builder.Configuration.GetConnectionString("IntexConnection")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("BrendanConnection")));
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
             builder.Services.AddScoped<ILegoRepository, EFLegoRepository>();

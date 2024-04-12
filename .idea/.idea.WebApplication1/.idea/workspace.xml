@@ -10,11 +10,19 @@
   <component name="ChangeListManager">
     <list default="true" id="cb216afa-fd9d-4579-8549-20a602b4fdb5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFALab.db" beforeDir="false" afterPath="$PROJECT_DIR$/MFALab.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFALab.db-shm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFALab.db-wal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Home/AdminAllProducts.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminAllProducts.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Home/AdminAllUsers.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/AdminAllUsers.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/HomeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Migrations/20240412020729_addKey.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Migrations/20240412020729_addKey.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Migrations/20240412021403_addKey2.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Migrations/20240412021403_addKey2.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Migrations/20240412024851_aspnetusers.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Migrations/20240412024851_aspnetusers.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Migrations/20240412030022_potato.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Migrations/20240412030022_potato.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Migrations/MfalabContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/MfalabContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/MfalabContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,30 +71,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.LegosWithAurora: http.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Launch Settings Profile.LegosWithAurora: https.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Merge&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.LegosWithAurora: http.executor": "Run",
+    ".NET Launch Settings Profile.LegosWithAurora: https.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Brendan-Test-DB",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;/Users/brendanvick/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache&quot;,
-      &quot;/Users/brendanvick/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache&quot;,
-      &quot;/Users/brendanvick/Library/Application Support/Symbols/src&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "azure"
+    ],
+    "rider.external.source.directories": [
+      "/Users/brendanvick/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
+      "/Users/brendanvick/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache",
+      "/Users/brendanvick/Library/Application Support/Symbols/src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.LegosWithAurora: https">
     <configuration name="LegosWithAurora: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/LegosWithAurora.csproj" />

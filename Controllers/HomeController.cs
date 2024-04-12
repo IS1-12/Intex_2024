@@ -118,6 +118,7 @@ namespace WebApplication1.Controllers
         {
             int pageSize = numProducts;
             if (pageSize < 1) pageSize = 9;
+            if (pageNum < 1) pageNum = 1;
             
             IQueryable<Product> products = _repo.Products;
 
