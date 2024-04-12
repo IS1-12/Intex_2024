@@ -3,7 +3,9 @@ This is the read me file for our Intex 2024 project. Amoung other things, it inc
 
 LINKS:
 Github: https://github.com/IS1-12/Intex_2024
+
 ML Google Drive: https://drive.google.com/drive/folders/1wfYS4wrjRaBlJCN3G4PSqzLa0BEdy_zC?usp=drive_link
+
 Website: https://legoswithaurora20240408103536.azurewebsites.net/
 
 
