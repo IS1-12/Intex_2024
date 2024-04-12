@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LegosWithAurora.Migrations
 {
     [DbContext(typeof(MfalabContext))]
-    [Migration("20240411164408_RemoveAspUserStuff")]
-    partial class RemoveAspUserStuff
+    [Migration("20240412020729_addKey")]
+    partial class addKey
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -240,7 +240,6 @@ namespace LegosWithAurora.Migrations
             modelBuilder.Entity("LegosWithAurora.Models.LineItem", b =>
                 {
                     b.Property<int?>("TransactionId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnName("transaction_ID");
 
@@ -256,7 +255,7 @@ namespace LegosWithAurora.Migrations
                         .HasColumnType("INTEGER")
                         .HasColumnName("rating");
 
-                    b.HasKey("TransactionId");
+                    b.HasKey("TransactionId", "ProductId");
 
                     b.ToTable("LineItems");
                 });

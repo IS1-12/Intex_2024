@@ -1,0 +1,16 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model AspNetUser
+
+<div style="display:flex">
+    <form asp-action="AdminUserDelete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button class="zesty-button" style="margin-right: 50px" type="submit">Confirm</button>
+        <a class="zesty-button-red" style="margin-left: 50px" asp-controller="Home" asp-action="AdminAllUsers">Cancel</a>
+    </form>
+    
+</div>
+
+<h3>Are you sure that you want to delete user with ID "@Model.Id"?</h3>
+

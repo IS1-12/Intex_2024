@@ -11,6 +11,7 @@ using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
 using Microsoft.AspNetCore.Http;
 using LegosWithAurora.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 using LegosWithAurora.Models.ViewModels;
 
 namespace WebApplication1.Controllers
@@ -74,7 +75,6 @@ namespace WebApplication1.Controllers
             }
             
             if (pageSize < 1) pageSize = 9;
-            
 
             // Apply color filter if it is not null
             if (!string.IsNullOrEmpty(color))
@@ -251,7 +251,12 @@ namespace WebApplication1.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult AdminAddUser() { return View(); }
+        public IActionResult AdminAddUser(string id) {
+
+            var user = _repo.UpdateUser(id);
+            
+            return View(user);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -323,7 +328,7 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminProductDelete(int id)
         {
-            Product delete = _repo.RemoveProduct(id);
+            Product delete = _repo.EditProduct(id);
             return View(delete);
         }
 
@@ -331,28 +336,47 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public IActionResult AdminProductDelete(Product id)
+        public IActionResult AdminDeleteProduct(int ProductId)
         {
-            _repo.RemoveProduct(id);
-
+            _repo.RemoveProduct(ProductId);
             return RedirectToAction("AdminAllProducts");
         }
         
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminAddProduct()
         {
             return View();
         }
-        //public IActionResult AdminUserEdit(int id)
-        //{
-        //    AspNetUser update = _repo.UpdateUser(id);
-        //}
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminUserEdit(string id)
+        {
+            AspNetUser update = _repo.UpdateUser(id);
 
-        //public IActionResult AdminUserEdit(int id)
-        //{
-        //AspNetUser update = _repo.UpdateUser(id);
+            return View("AdminAddUser", update);
+        }
 
-        //    return View("AddUserForm", update);
+        public IActionResult AdminDelete(string id)
+        {
+            var user = _repo.UpdateUser(id);
+            return View("AdminUserDelete", user);
+        }
+
+        [HttpPost]
+        [Authorize(Roles ="Admin")]
+        public IActionResult AdminUserDelete(string id)
+        {
+            _repo.DelUser(id);
+            return RedirectToAction("AdminAllUsers");
+        }
+
+        
+
+        //public IActionResult AdminUserEdit(string id)
+        //{
+        //    Task<UserViewModel> user = _repo.GetUserViewModelAsync(id);
+
+        //    return View("AdminAddUser", user);
         //}
 
         [HttpPost]
@@ -363,6 +387,7 @@ namespace WebApplication1.Controllers
             return RedirectToAction("AdminAllProducts");
         }
 
+        [Authorize(Roles="Admin")]
         public IActionResult AdminEditProduct(int id)
         {
             Product editProduct = _repo.EditProduct(id);
@@ -370,9 +395,20 @@ namespace WebApplication1.Controllers
             return View("AdminAddProduct", editProduct);
         }
 
-        public IActionResult AdminOrderAccept()
+        [HttpPost]
+        [Authorize(Roles ="Admin")]
+        public IActionResult EditProduct(int ProductId)
         {
-            return View();
+            _repo.EditExistingProduct(ProductId);
+            return RedirectToAction("AdminAllProducts");
         }
+
     }
+
+    //public IActionResult AdminOrderAccept(int id)
+    //{
+    //    ViewBag.Id = id;
+            
+    //    return View();
+    //}
 }
