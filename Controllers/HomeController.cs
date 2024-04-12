@@ -265,7 +265,7 @@ namespace WebApplication1.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Prediction = "Error during prediction.";
+                ViewBag.Prediction = 0;
             }
             var submit = new Order
             {
