@@ -97,5 +97,9 @@ namespace LegosWithAurora.Models
             _context.Update(product);
             _context.SaveChanges();
         }
+        public void UpdateRole(AspNetUser user)
+        {
+            aspnetuser
+        }
     }
 }

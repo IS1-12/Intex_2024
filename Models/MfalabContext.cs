@@ -27,6 +27,8 @@ public partial class MfalabContext : DbContext
 
     public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
 
+    public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
+
     public virtual DbSet<Customer> Customers { get; set; }
 
     public virtual DbSet<LineItem> LineItems { get; set; }

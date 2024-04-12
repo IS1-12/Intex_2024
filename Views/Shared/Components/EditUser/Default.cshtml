@@ -24,7 +24,19 @@
                         True
                     </div>
                 }
-                <div class="fs-6" style="flex-basis: 100%">Role</div>
+                @if (@Model.PhoneNumberConfirmed == 0)
+                {
+                    <div class="fs-6" style="flex-basis: 100%">
+                        No
+                    </div>
+                }
+                else
+                {
+                    <div class="fs-6" style="flex-basis: 100%">
+                        Yes
+                    </div>
+                }
+                @* <div class="fs-6" style="flex-basis: 100%">Role</div> *@
             </div>
         </div>
         <div style="flex-basis: 5%">

@@ -407,6 +407,11 @@ namespace WebApplication1.Controllers
         public IActionResult SaveUser(AspNetUser user)
         {
             _repo.SaveUser(user);
+
+            if(user.PhoneNumberConfirmed == 1)
+            {
+                _repo.UpdateRole(user);
+            }
             return RedirectToAction("AdminAllUsers");
         }
 
