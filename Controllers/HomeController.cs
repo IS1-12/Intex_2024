@@ -61,8 +61,14 @@ namespace WebApplication1.Controllers
 
             return View();
         }
-        public IActionResult Products(int pageNum, string categories, int numProducts)
+        public IActionResult Products(int pageNum, string categories, string color, int numProducts)
         {
+            int pageSize = 9;
+
+            IQueryable<Product> products = _repo.Products;
+
+            // Apply category filter if it is not null
+            if (!string.IsNullOrEmpty(categories))
 
             int pageSize = numProducts;
 
@@ -70,22 +76,58 @@ namespace WebApplication1.Controllers
             
             var productsPages = new ProductListViewModel
             {
-                Products = _repo.Products
-                    .Where(x => x.Category == categories || categories == null)
-                    .OrderBy(x => x.ProductId)
-                    .Skip((pageNum - 1) * pageSize)
-                    .Take(pageSize),
+                products = products.Where(x => x.Category == categories);
+            }
 
+            // Apply color filter if it is not null
+            if (!string.IsNullOrEmpty(color))
+            {
+                products = products.Where(x => x.PrimaryColor == color);
+            }
+
+            // Order and paginate the filtered products
+            var paginatedProducts = products.OrderBy(x => x.ProductId)
+                                            .Skip((pageNum - 1) * pageSize)
+                                            .Take(pageSize);
+
+            // Create the product list view model
+            var productsPages = new ProductListViewModel
+            {
+                Products = paginatedProducts,
                 PaginationInfo = new PaginationInfo
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = categories == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == categories).Count()
+                    TotalItems = products.Count() // Calculate total count based on filtered products
                 },
-                
-                CurrentProductType = categories
+                CurrentProductType = categories // This might need adjustment if you want to display color or both.
             };
-                
+
+
+            //var productsPages = new ProductListViewModel
+            //{
+            //    Products = _repo.Products
+            //        .Where(x => x.Category == categories || categories == null)
+            //        .OrderBy(x => x.ProductId)
+            //        .Skip((pageNum - 1) * pageSize)
+            //        .Take(pageSize),
+            //    Products = _repo.Products
+            //        .Where(x => x.PrimaryColor == color || color == null)
+            //        .OrderBy(x => x.ProductId)
+            //        .Skip((pageNum - 1) * pageSize)
+            //        .Take(pageSize),
+
+
+            //    PaginationInfo = new PaginationInfo
+            //    {
+            //        CurrentPage = pageNum,
+            //        ItemsPerPage = pageSize,
+            //        TotalItems = categories == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == categories).Count()
+            //    },
+
+            //    CurrentProductType = categories
+            //};
+
 
             return View(productsPages);
         }
