@@ -40,6 +40,7 @@
     <None Update="Views\Shared\_Admin.css">
       <DependentUpon>_AdminLayout.cshtml</DependentUpon>
     </None>
+    <None Include="wwwroot\decision_tree_model.onnx" />
   </ItemGroup>
 
   <ItemGroup>
