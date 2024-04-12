@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\decision_tree_model.onnx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.2" />
@@ -32,6 +36,10 @@
 
   <ItemGroup>
     <Folder Include="Models\ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\decision_tree_model.onnx" />
   </ItemGroup>
 
 </Project>

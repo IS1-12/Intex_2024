@@ -27,7 +27,7 @@ namespace WebApplication1.Controllers
 
             try
             {
-                _session = new InferenceSession("./decision_tree_model.onnx");
+                _session = new InferenceSession("./wwwroot/decision_tree_model.onnx");
                 //_logger.LogInformation("ONNX model loaded successfully.");
                 Console.WriteLine("Success");
             }
@@ -216,19 +216,20 @@ namespace WebApplication1.Controllers
                     var prediction = results.FirstOrDefault(item => item.Name == "output_label")?.AsTensor<long>().ToArray();
                     if (prediction != null && prediction.Length > 0)
                     {
+                        Console.WriteLine(prediction);
                         // Use the prediction to get the animal type from the dictionary
                         var isFraud = (int)prediction[0];
                         ViewBag.Prediction = isFraud;
                     }
                     else
                     {
-                        ViewBag.Prediction = "Error: Unable to make a prediction.";
+                        ViewBag.Prediction = 0;
                     }
                 }
             }
             catch (Exception ex)
             {
-                ViewBag.Prediction = "Error during prediction.";
+                ViewBag.Prediction = 0;
             }
             var submit = new Order
             {
