@@ -1,5 +1,6 @@
 @{
     Layout = "_AdminLayout";
+    ViewData["Title"] = "Admin Dashboard";
 }
 <div class="align-items-center text-center">
     <h1>Welcome to the Admin Dashboard!</h1>
@@ -7,8 +8,9 @@
     <img src="~/images/logo.png" alt="Aurora Bricks Logo" style="border-radius: 20px;width: 400px;"/>
     <br/><br/>
     <span>
-    <a class="btn zesty-button" asp-controller="Home" asp-action="AdminAllProducts">Edit Products</a>
-    <a class="btn zesty-button" asp-controller="Home" asp-action="AdminAllUsers">Edit Users</a>
-    <a class="btn zesty-button" asp-controller="Home" asp-action="AdminOrderReview">Review Orders</a>
+        <a class="btn zesty-button" asp-controller="Home" asp-action="AdminAllCustomers">All Customers</a>
+        <a class="btn zesty-button" asp-controller="Home" asp-action="AdminAllProducts">Edit Products</a>
+        <a class="btn zesty-button" asp-controller="Home" asp-action="AdminAllUsers">Edit Users</a>
+        <a class="btn zesty-button" asp-controller="Home" asp-action="AdminOrderReview">Review Orders</a>
     </span>
 </div>

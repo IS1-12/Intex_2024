@@ -1,4 +1,6 @@
-﻿namespace LegosWithAurora.Models
+﻿using LegosWithAurora.Models.ViewModels;
+
+namespace LegosWithAurora.Models
 {
     public interface ILegoRepository
     {
@@ -13,8 +15,7 @@
         IQueryable<AspNetUserToken> AspNetUserTokens {get;}
         IQueryable<Recommendations> recommendations { get;}
         public void AddProduct(Product p);
-        public Product RemoveProduct(int id);
-        public void RemoveProduct(Product p);
+        public void RemoveProduct(int id);
         public Product EditProduct(int id);
         public void EditProduct(Product p);
 
@@ -23,9 +24,14 @@
         public void RejectOrder(Order o);
 
         public void CorrectOrder(int id);
-        //public AspNetUser UpdateUser(int id);
         
         public void AddOrder(Order o);
         public void AddLineItem(LineItem l);
+
+        public AspNetUser UpdateUser(string id);
+        public void DelUser(string id);
+        public void EditExistingProduct(Product product);
+        public void SaveUser(AspNetUser Id);
+        //Task<UserViewModel> GetUserViewModelAsync(string userId);
     }
 }

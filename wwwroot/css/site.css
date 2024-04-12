@@ -171,3 +171,9 @@ a.sidebar:visited {
     width: 80%;
     margin-bottom: 30px;
 }
+
+.pagination-button{
+    color: black;
+    background-color: #FECD2C;
+    border-color: black;
+}
