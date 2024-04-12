@@ -74,7 +74,6 @@ namespace WebApplication1.Controllers
             }
             
             if (pageSize < 1) pageSize = 9;
-            
 
             // Apply color filter if it is not null
             if (!string.IsNullOrEmpty(color))
