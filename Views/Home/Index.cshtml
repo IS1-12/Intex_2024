@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+@* This is the homepage *@
 
 @model IQueryable<Product> 
 
@@ -15,6 +16,7 @@
         Pick from a wide variety of Lego sets to expand your mind and “master” your skills. We promise that you will be a master builder like Lego Batman sooner than you ever thought! We have sets from Star Wars to Air Canada. Whichever set you choose, be prepared for a world of fun!
     </p>
     <div class="row">
+        @* if the user is logged in, and they have a purchase history, it will customize the recommendations. Otherwise, it will not  *@
     @if (SignInManager.IsSignedIn(User) && ViewBag.RecommendationsSigned != null)
     {
         @foreach (var p in ViewBag.RecommendationsSigned)

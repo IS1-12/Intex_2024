@@ -3,6 +3,7 @@
 @inject UserManager<IdentityUser> UserManager
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    Get final user details and checkout
 *@
 @{
     ViewData["Title"] = "Checkout";
@@ -40,6 +41,7 @@
             </div>
             <div class="bg-white text-black rounded p-3" style="flex-grow: 1">
                 <h6>Order Summary:</h6>
+                @* This displays the cart summary and total *@
                 <ul>
                     @foreach (var l in Model.Lines ?? Enumerable.Empty<Cart.CartLine>())
                     {

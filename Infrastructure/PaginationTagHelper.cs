@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace LegosWithAurora.Infrastructure;
 
+// This file creates the necessary front and backend elements to do pagination on the products page
+
 [HtmlTargetElement("div", Attributes="page-model")]
 public class PaginationTagHelper : TagHelper
 {

@@ -1,6 +1,7 @@
 ﻿@using LegosWithAurora.Models
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    This displays all models
 *@
 @{
     ViewData["Title"] = "Products";
@@ -13,6 +14,7 @@
         <div class="row">
             <h1>Browse Lego sets</h1>
             <div class="container">
+                @* Here are the filters *@
                 <select onchange="location = this.value;">
                     <vc:product-categories/>
                 </select>
@@ -33,6 +35,7 @@
                 </div>
             }
         </div>
+        @* Here is the pagination *@
             <div page-model="@Model.PaginationInfo"
                  page-action="Products"
                  page-classes-enabled="true"

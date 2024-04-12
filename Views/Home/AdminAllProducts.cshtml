@@ -10,6 +10,7 @@
         <a class="btn zesty-button" asp-controller="Home" asp-action="AdminAddProduct">Add Product</a>
     </div>
     <br/>
+    @* Generate a list of all products in the database for an admin to view and edit *@
     @foreach (var p in Model)
     {
         <partial name="Components/EditProduct/Default" model="p"/>

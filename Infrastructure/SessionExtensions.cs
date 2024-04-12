@@ -2,6 +2,7 @@
 
 namespace LegosWithAurora.Infrastructure
 {
+    //Set the session for use with the cart
     public static class SessionExtensions
     {
         public static void SetJson(this ISession session, string key, object value)

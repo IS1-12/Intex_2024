@@ -18,15 +18,20 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
+        //initialize the repo
         private ILegoRepository _repo;
 
+        //initialize the cart
         private Cart Cart = new Cart();
+
+        //prepare to initialize the Onnx model
         private readonly InferenceSession _session;
 
         public HomeController(ILegoRepository temp)
         {
             _repo = temp;
 
+            //Start Onnx
             try
             {
                 _session = new InferenceSession("./wwwroot/decision_tree_model.onnx");
@@ -44,6 +49,8 @@ namespace WebApplication1.Controllers
         {
             var products = _repo.Products;
 
+            //This looks for if a user has purchase history. If they do, it loads it to a viewbag. It also loads a generic viewbag
+            //in case a user is not logged in, or their history is empty
             try
             {
                 int userId = 29135;
@@ -116,6 +123,7 @@ namespace WebApplication1.Controllers
         }
         public IActionResult Products(int pageNum, string categories, string color, int numProducts)
         {
+            //This is for pagination. We were having some troubles with the numProducts being set to 0, so if it is, it returns to our default of 9
             int pageSize = numProducts;
             if (pageSize < 1) pageSize = 9;
             
@@ -158,6 +166,7 @@ namespace WebApplication1.Controllers
 
         public IActionResult ProductDetails(int id, string returnUrl)
         {
+            //Return URL to go to the place where they went to product details from
             ViewBag.returnUrl = returnUrl ?? "/";
 
             List<Product> RecProd = new List<Product>();
@@ -191,6 +200,7 @@ namespace WebApplication1.Controllers
             Product? prod = _repo.Products
                             .FirstOrDefault(x => x.ProductId == productId);
 
+            // add the selected item to the session cart
             if (prod != null)
             {
                 Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
@@ -201,6 +211,7 @@ namespace WebApplication1.Controllers
             return RedirectToAction("CartConfirmation", new { id = productId, returnUrl = returnUrl });
         }
 
+        //First authorized page. This requires users to log in to maintain a cart
         [Authorize]
         public IActionResult CartConfirmation(int id, string returnUrl)
         {
@@ -237,23 +248,26 @@ namespace WebApplication1.Controllers
             Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
             var test = data;
 
+            // This is the fraud prediction model
             try
             {
+                // our model required only two inputs: time and amount. We can calculate both here so that a user can't fail to pass them
                 var input = new List<float> { DateTime.Now.Hour, Cart.CalculateTotal() };
                 var inputTensor = new DenseTensor<float>(input.ToArray(), new[] { 1, input.Count });
 
+                // format the inputs correctly
                 var inputs = new List<NamedOnnxValue>
                 {
                     NamedOnnxValue.CreateFromTensor("float_input", inputTensor)
                 };
 
-                using (var results = _session.Run(inputs)) // makes the prediction with the inputs from the form (i.e. class_type 1-7)
+                using (var results = _session.Run(inputs)) // makes the prediction with the inputs from above
                 {
                     var prediction = results.FirstOrDefault(item => item.Name == "output_label")?.AsTensor<long>().ToArray();
                     if (prediction != null && prediction.Length > 0)
                     {
                         Console.WriteLine(prediction);
-                        // Use the prediction to get the animal type from the dictionary
+                        // Use the prediction to set the fraud flag in the database
                         var isFraud = (int)prediction[0];
                         ViewBag.Prediction = isFraud;
                     }
@@ -267,6 +281,7 @@ namespace WebApplication1.Controllers
             {
                 ViewBag.Prediction = 0;
             }
+            // create a new Order using the cart and the prediction. Most of the fields are preset
             var submit = new Order
             {
                 CustomerId = 29135,
@@ -276,6 +291,7 @@ namespace WebApplication1.Controllers
             };
             _repo.AddOrder(submit);
 
+            // create line item records
             foreach (Cart.CartLine cl in Cart.Lines)
             {
                 var lineItem = new LineItem
@@ -289,12 +305,15 @@ namespace WebApplication1.Controllers
                 _repo.AddLineItem(lineItem);
             }
 
+            //empty the cart
             Cart.Clear();
             HttpContext.Session.SetJson("cart", Cart);
 
             return View("OrderConfirmation");
         }
 
+
+        //Start admin views
         [Authorize(Roles = "Admin")]
         public IActionResult AdminAddUser(string id) {
 
@@ -332,6 +351,7 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderReview()
         {
+            //Filter the orders for just fraudulent orders in order to review them
             var orders = _repo.Orders
                 .Where(x => x.Fraud == 1);
             
@@ -342,6 +362,7 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderReview(int id)
         {
+            //Accept false positives
             var acceptedID = id;
             _repo.CorrectOrder(id);
 
@@ -357,6 +378,7 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminAllProducts()
         {
+            //View all products in database
             var products = _repo.Products;
 
             products.ToList();
@@ -366,6 +388,7 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminAllUsers()
         {
+            //view all users in database
             var users = _repo.AspNetUsers;
             users.ToList();
             return View(users);
@@ -375,6 +398,7 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminProductDelete(int id)
         {
+            
             Product delete = _repo.EditProduct(id);
             return View(delete);
         }
@@ -384,6 +408,7 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminDeleteProduct(int ProductId)
         {
+            //Delete products
             _repo.RemoveProduct(ProductId);
             return RedirectToAction("AdminAllProducts");
         }
@@ -397,6 +422,7 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminUserEdit(string id)
         {
+            //Edit users
             AspNetUser update = _repo.UpdateUser(id);
 
             return View("AdminAddUser", update);
@@ -427,6 +453,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult AdminAddProduct(Product p)
         {
+            //Add new product
             _repo.AddProduct(p);
 
             return RedirectToAction("AdminAllProducts");
