@@ -6,8 +6,8 @@
 
 @model Product
 
-<form method="post">
-    <input asp-for="ProductId" type="hidden"/>
+<form asp-action="EditProduct" method="post">
+    <input asp-for="ProductId" name="ProductId" type="hidden" />
     <div style="display: flex">
         <div style="flex-grow: 1">
             <h2>Add a New Product</h2>

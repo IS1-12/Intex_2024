@@ -2,15 +2,15 @@
     Layout = "_AdminLayout";
 }
 
-@model LegosWithAurora.Models.Product
+@model Product
 
 <div class="align-items-center text-center" style="margin-top: 300px; margin-bottom: 300px;">
     <h1>ARE YOU SURE YOU WANT TO DELETE "@Model.Name"?</h1>
     <br/>
-    <form method="post">
-        <input type="hidden" asp-for="ProductId"/>
+    <form asp-action="AdminDeleteProduct" method="post">
+        <input type="hidden" name="ProductId" asp-for="ProductId"/>
         <span>
-            <button type="submit" class="btn zesty-button-red">Delete</button>
+            <button class="btn zesty-button-red" type="submit">Delete</button>
             <a class="btn zesty-button" asp-controller="Home" asp-action="AdminAllProducts">Cancel</a>
         </span>
     </form>

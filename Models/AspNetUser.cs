@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LegosWithAurora.Models;
 
 public partial class AspNetUser
 {
-    public string Id { get; set; }
+    [Key]
+    [Required]
+    public required string Id { get; set; }
 
     public string? UserName { get; set; }
 

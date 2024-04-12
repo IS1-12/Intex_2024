@@ -1,38 +1,33 @@
-@{ }
-
 @model AspNetUser
-
-<div class="bg-blue content-text text-white">
-    <div style="display: flex">
-        <div style="flex-basis: 95%">
-            <div style="display:flex">
-                <div class="fs-5 fw-bold" style="flex-basis: 100%">ID</div>
-                <div class="fs-5 fw-bold" style="flex-basis: 100%">Email</div>
-                <div class="fs-5 fw-bold" style="flex-basis: 100%">Two Factor Enabled?</div>
-                <div class="fs-5 fw-bold" style="flex-basis: 100%">Role</div>
+    <input type="hidden" name="id" value="@Model.Id" />
+    <div class="bg-blue content-text text-white">
+        <div style="display: flex">
+            <div style="flex-basis: 95%">
+                <div style="display:flex">
+                    <div class="fs-5 fw-bold" style="flex-basis: 100%">ID</div>
+                    <div class="fs-5 fw-bold" style="flex-basis: 100%">Email</div>
+                    <div class="fs-5 fw-bold" style="flex-basis: 100%">Two Factor Enabled</div>
+                </div>
+                <div style="display:flex">
+                    <div class="fs-6" style="flex-basis: 100%">@Model.Id</div>
+                    <div class="fs-6" style="flex-basis: 100%">@Model.Email</div>
+                    @if (Model.TwoFactorEnabled == 0)
+                    {
+                        <div class="fs-6" style="flex-basis: 100%">
+                            False
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="fs-6" style="flex-basis: 100%">
+                            True
+                        </div>
+                    }
+                </div>
             </div>
-            <div style="display:flex">
-                <div class="fs-6" style="flex-basis: 100%">@Model.Id</div>
-                <div class="fs-6" style="flex-basis: 100%">@Model.Email</div>
-                @if (@Model.TwoFactorEnabled == 0)
-                {
-                    <div class="fs-6" style="flex-basis: 100%">
-                            False 
-                    </div>
-                }
-                else
-                {
-                    <div class="fs-6" style="flex-basis: 100%">
-                        True
-                    </div>
-                }
-                <div class="fs-6" style="flex-basis: 100%">Role</div>
+            <div style="flex-basis: 5%">
+                <a class="btn zesty-button" asp-controller="Home" asp-action="AdminUserEdit" asp-route-id="@Model.Id">Update</a>
+                <a class="btn zesty-button-red" asp-controller="Home" asp-action="AdminDelete" asp-route-id="@Model.Id">Delete</a>
             </div>
-        </div>
-        <div style="flex-basis: 5%">
-            <a class="btn zesty-button" asp-controller="Home" asp-action="AdminUserUpdate" asp-route-id="@Model.Id">Update</a>
-            <a class="btn zesty-button-red" asp-controller="Home" asp-action="AdminUserDelete" asp-route-id="@Model.Id">Delete</a>
         </div>
     </div>
-    
-</div>
