@@ -15,7 +15,7 @@ public class ProductCategoriesViewComponent : ViewComponent
     public IViewComponentResult Invoke()
     {
         ViewBag.SelectedProductType = RouteData?.Values["categories"];
-
+       
         var categoryTypes = _repo.Products
             .Select(x => x.Category)
             .Distinct()
