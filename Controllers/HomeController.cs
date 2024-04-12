@@ -62,14 +62,74 @@ namespace WebApplication1.Controllers
 
             return View();
         }
-        public IActionResult Products()
+        public IActionResult Products(int pageNum, string categories, string color, int numProducts)
         {
-            var products = _repo.Products;
+            int pageSize = numProducts;
 
-            products.ToList();
+            IQueryable<Product> products = _repo.Products;
 
-            return View(products);
+            // Apply category filter if it is not null
+            if (!string.IsNullOrEmpty(categories))
+            {
+                products = products.Where(x => x.Category == categories);
+            }
+            
+            if (pageSize < 1) pageSize = 9;
+
+            // Apply color filter if it is not null
+            if (!string.IsNullOrEmpty(color))
+            {
+                products = products.Where(x => x.PrimaryColor == color);
+            }
+
+            // Order and paginate the filtered products
+            var paginatedProducts = products.OrderBy(x => x.ProductId)
+                                            .Skip((pageNum - 1) * pageSize)
+                                            .Take(pageSize);
+
+            // Create the product list view model
+            var productsPages = new ProductListViewModel
+            {
+                Products = paginatedProducts,
+                PaginationInfo = new PaginationInfo
+                {
+                    CurrentPage = pageNum,
+                    ItemsPerPage = pageSize,
+                    TotalItems = products.Count() // Calculate total count based on filtered products
+                },
+                CurrentProductType = categories // This might need adjustment if you want to display color or both.
+            };
+
+
+            //var productsPages = new ProductListViewModel
+            //{
+            //    Products = _repo.Products
+            //        .Where(x => x.Category == categories || categories == null)
+            //        .OrderBy(x => x.ProductId)
+            //        .Skip((pageNum - 1) * pageSize)
+            //        .Take(pageSize),
+            //    Products = _repo.Products
+            //        .Where(x => x.PrimaryColor == color || color == null)
+            //        .OrderBy(x => x.ProductId)
+            //        .Skip((pageNum - 1) * pageSize)
+            //        .Take(pageSize),
+
+
+            //    PaginationInfo = new PaginationInfo
+            //    {
+            //        CurrentPage = pageNum,
+            //        ItemsPerPage = pageSize,
+            //        TotalItems = categories == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == categories).Count()
+            //    },
+
+            //    CurrentProductType = categories
+            //};
+
+
+            return View(productsPages);
         }
+        
+        
 
         public IActionResult ProductDetails(int id, string returnUrl)
         {
@@ -206,16 +266,16 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderCancelled(int id)
         {
-            //Order delete = _repo.RejectOrder(id);
-            return View();
+            Order delete = _repo.RejectOrder(id);
+            return View(delete);
         }
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult AdminOrderCancelled(Order o)
         {
-            //_repo.RejectOrder(o);
-            return RedirectToAction("");
+            _repo.RejectOrder(o);
+            return RedirectToAction("AdminOrderReview");
         }
         
         [Authorize(Roles = "Admin")]
@@ -226,6 +286,8 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult AdminOrderReview()
         {
+            int pageSize = 5;
+
             var orders = _repo.Orders
                 .Where(x => x.Fraud == 1);
 
@@ -239,7 +301,7 @@ namespace WebApplication1.Controllers
         public IActionResult AdminOrderReview(int id)
         {
             var acceptedID = id;
-            //_repo.CorrectOrder(id);
+            _repo.CorrectOrder(id);
 
             return RedirectToAction("AdminOrderAccept", acceptedID);
         }
@@ -278,6 +340,7 @@ namespace WebApplication1.Controllers
             _repo.RemoveProduct(ProductId);
             return RedirectToAction("AdminAllProducts");
         }
+        
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public IActionResult AdminAddProduct()

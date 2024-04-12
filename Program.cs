@@ -49,6 +49,15 @@ namespace WebApplication1
 
             builder.Services.AddControllersWithViews();
 
+
+            builder.Services.AddHsts(options =>
+            {
+                options.Preload = true;
+                options.IncludeSubDomains = true;
+                options.MaxAge = TimeSpan.FromDays(60);
+            });
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -87,33 +96,12 @@ namespace WebApplication1
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.MapControllerRoute("WithCategories", "Products/{numProducts}/{categories}/{pageNum}/", new { Controller = "Home", action = "Products" });
+            app.MapControllerRoute("WithColors", "Products/{numProducts}/{color}/{pageNum}/", new { Controller = "Home", action = "Products" });
+            app.MapControllerRoute("paginationAndProducts", "Products/{numProducts}/{pageNum}", new { Controller = "Home", action = "Products" });
+            app.MapControllerRoute("ProductsOnly", "Products/{numProducts}", new { Controller = "Home", action = "Products" });
+            app.MapDefaultControllerRoute();
             app.MapRazorPages();
-
-            // Role and user initialization (Consider moving to a script for production environments)
-            using (var scope = app.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-                var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                var roles = new[] { "Admin", "Member" };
-                foreach (var role in roles)
-                {
-                    if (!await roleManager.RoleExistsAsync(role))
-                        await roleManager.CreateAsync(new IdentityRole(role));
-                }
-
-                var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
-                string email = "testing69@gmail.com";
-                string password = "Test1234!";
-                if (await userManager.FindByEmailAsync(email) == null)
-                {
-                    var user = new IdentityUser { UserName = email, Email = email };
-                    await userManager.CreateAsync(user, password);
-                    await userManager.AddToRoleAsync(user, "Admin");
-                }
-            }
 
             app.Run();
         }

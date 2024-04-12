@@ -3,25 +3,24 @@
 
 @model LegosWithAurora.Models.Order
 
-<div class="container bg-blue content-text text-white">
-    <p class="fs-5" style="flex-basis: 100%;"><strong>Transaction ID:</strong> @Model.TransactionId</p>
-    <p class="fs-5" style="flex-basis: 100%;"><strong>Customer ID:</strong> @Model.CustomerId</p>
-    <p class="fs-5" style="flex-basis: 100%;"><strong>Date:</strong> @Model.Date</p>
-    <p class="fs-5" style="flex-basis: 100%;"><strong>Weekday:</strong> @Model.DayOfWeek</p>
-    <p class="fs-5" style="flex-basis: 100%;"><strong>Time:</strong> @Model.Time</p>
-    <p class="fs-5" style="flex-basis: 100%;"><strong>Entry Mode:</strong> @Model.EntryMode</p>
-    <p class="fs-5" style="flex-basis: 100%;"><strong>Amount:</strong> @Model.Amount</p>
-    <p class="fs-5" style="flex-basis: 100%;"><strong>Type of Transaction:</strong> @Model.TypeOfTransaction</p>
-    <p class="fs-5" style="flex-basis: 100%;"><strong>Country of Transaction:</strong> @Model.CountryOfTransaction</p>
-    <p class="fs-5" style="flex-basis: 100%;"><strong>Shipping Address:</strong> @Model.ShippingAddress</p>
-    <p class="fs-5" style="flex-basis: 100%;"><strong>Bank:</strong> @Model.Bank</p>
-    <p class="fs-5" style="flex-basis: 100%;"><strong>Type of Card:</strong> @Model.TypeOfCard</p>
-    <p class="fs-5" style="flex-basis: 100%;"><strong>Fraud:</strong> @Model.Fraud</p>
-    <br/>
-    <div class="align-content-center text-center">
+<tr style="border: 1px solid white;border-collapse: collapse;">
+    <td>@Model.TransactionId</td>
+    <td>@Model.CustomerId</td>
+    <td>@Model.Date</td>
+    <td>@Model.DayOfWeek</td>
+    <td>@Model.Time</td>
+    <td>@Model.EntryMode</td>
+    <td>@Model.Amount</td>
+    <td>@Model.TypeOfTransaction</td>
+    <td>@Model.CountryOfTransaction</td>
+    <td>@Model.ShippingAddress</td>
+    <td>@Model.Bank</td>
+    <td>@Model.TypeOfCard</td>
+    <td>@Model.Fraud</td>
+    <td>
         <form method="post">
-            <button type="submit" class="btn zesty-button" style="width:300px;" asp-controller="Home" asp-action="AdminOrderReview" asp-route-id="@Model.TransactionId">Accept</button>
+            <button type="submit" class="btn zesty-button" style="width:100px;" asp-controller="Home" asp-action="AdminOrderReview" asp-route-id="@Model.TransactionId">Accept</button>
         </form>
-        <a class="btn zesty-button-red" style="width:300px;" asp-controller="Home" asp-action="AdminOrderCancelled" asp-route-id="@Model.TransactionId">Reject</a>
-    </div>
-</div>
+        <a class="btn zesty-button-red" style="width:100px;" asp-controller="Home" asp-action="AdminOrderCancelled" asp-route-id="@Model.TransactionId">Reject</a>
+    </td>
+</tr>

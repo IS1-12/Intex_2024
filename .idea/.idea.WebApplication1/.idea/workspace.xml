@@ -9,13 +9,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb216afa-fd9d-4579-8549-20a602b4fdb5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Components/ProductCategoriesViewComponent.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Views/Shared/Components/ProductCategories/Default.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFALab.db" beforeDir="false" afterPath="$PROJECT_DIR$/MFALab.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFALab.db-shm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFALab.db-wal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/MfalabContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Migrations/MfalabContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Shared/Components/EditUser/Default.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/Components/EditUser/Default.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Shared/Components/OrderReview/Default.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/Components/OrderReview/Default.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/HomeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LegosWithAurora.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LegosWithAurora.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Product.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Product.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/ViewModels/ProductListViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/ViewModels/ProductListViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Home/Products.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Home/Products.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wwwroot/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/wwwroot/css/site.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,10 +54,6 @@
     &quot;accountId&quot;: &quot;4254f650-86e5-4672-a5a9-577227d8d62d&quot;
   }
 }</component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Users/brendanvick/Documents/GitHub/Intex_2024/Models/EFLegoRepository.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/brendanvick/Documents/GitHub/Intex_2024/Models/EFLegoRepository.cs" root0="SKIP_HIGHLIGHTING" />
-  </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -145,7 +143,8 @@
       <workItem from="1712759300104" duration="7212000" />
       <workItem from="1712772102605" duration="421000" />
       <workItem from="1712801331365" duration="9184000" />
-      <workItem from="1712849577456" duration="2190000" />
+      <workItem from="1712849577456" duration="12266000" />
+      <workItem from="1712870035849" duration="9134000" />
     </task>
     <servers />
   </component>
