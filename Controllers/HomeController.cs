@@ -61,13 +61,14 @@ namespace WebApplication1.Controllers
 
             return View();
         }
-        public IActionResult Products(int pageNum)
+        public IActionResult Products(int pageNum, string categories, int numProducts)
         {
             int pageSize = 9;
 
             var productsPages = new ProductListViewModel
             {
                 Products = _repo.Products
+                    .Where(x => x.Category == categories || categories == null)
                     .OrderBy(x => x.ProductId)
                     .Skip((pageNum - 1) * pageSize)
                     .Take(pageSize),
@@ -76,13 +77,17 @@ namespace WebApplication1.Controllers
                 {
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
-                    TotalItems = _repo.Products.Count()
-                }
+                    TotalItems = categories == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == categories).Count()
+                },
+                
+                CurrentProductType = categories
             };
                 
 
             return View(productsPages);
         }
+        
+        
 
         public IActionResult ProductDetails(int id, string returnUrl)
         {
