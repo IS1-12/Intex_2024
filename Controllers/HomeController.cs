@@ -396,9 +396,9 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [Authorize(Roles ="Admin")]
-        public IActionResult EditProduct(int ProductId)
+        public IActionResult EditProduct(Product product)
         {
-            _repo.EditExistingProduct(ProductId);
+            _repo.EditExistingProduct(product);
             return RedirectToAction("AdminAllProducts");
         }
 

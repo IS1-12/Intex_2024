@@ -85,10 +85,9 @@ namespace LegosWithAurora.Models
             _context.SaveChanges();
         }
         
-        public void EditExistingProduct(int ProductId)
+        public void EditExistingProduct(Product product)
         {
-            var prod = _context.Products.Single(x => x.ProductId == ProductId);
-            _context.Update(prod);
+            _context.Update(product);
             _context.SaveChanges();
         }
     }

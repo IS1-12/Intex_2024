@@ -29,7 +29,7 @@ namespace LegosWithAurora.Models
 
         public AspNetUser UpdateUser(string id);
         public void DelUser(string id);
-        public void EditExistingProduct(int id);
+        public void EditExistingProduct(Product product);
         //Task<UserViewModel> GetUserViewModelAsync(string userId);
     }
 }

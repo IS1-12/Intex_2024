@@ -20,40 +20,40 @@
         <div style="flex-grow: 1">
             <label class="fs-5" asp-for="ImgLink">Product Picture Link</label>
             <br/>
-            <input class="form-control input-box" type="text" required placeholder="https://yourlink.com/yourpath/yourimage.png" asp-for="ImgLink"/>
+            <input class="form-control input-box" name="ImgLink" type="text" required placeholder="https://yourlink.com/yourpath/yourimage.png" asp-for="ImgLink"/>
             <br/>
             <label class="fs-5" asp-for="Name">Product Name</label>
             <br/>
-            <input class="form-control input-box" type="text" required placeholder="New Toy" asp-for="Name"/>
+            <input class="form-control input-box" name="Name" type="text" required placeholder="New Toy" asp-for="Name"/>
             <br/>
             <label class="fs-5" asp-for="NumParts">Number of Parts</label>
             <br/>
-            <input class="form-control input-box" type="number" required placeholder="How many items of this product are available" asp-for="NumParts"/>
+            <input class="form-control input-box" name="NumParts" type="number" required placeholder="How many items of this product are available" asp-for="NumParts"/>
             <br/>
             <label class="fs-5" asp-for="Year">Year</label>
             <br/>
-            <input class="form-control input-box" type="number" required placeholder="What year did this set come out?" asp-for="Year"/>
+            <input class="form-control input-box" name="Year" type="number" required placeholder="What year did this set come out?" asp-for="Year"/>
             <br/>
             <label class="fs-5" asp-for="Price">Price</label>
             <br/>
-            <input class="form-control input-box" type="number" required placeholder="In US Dollars" asp-for="Price"/>
+            <input class="form-control input-box" name="Price" type="number" required placeholder="In US Dollars" asp-for="Price"/>
         </div>
         <div style="flex-grow: 1">
             <label class="fs-5" asp-for="PrimaryColor">Primary Color</label>
             <br/>
-            <input class="form-control input-box" type="text" required placeholder="Blue" asp-for="PrimaryColor"/>
+            <input class="form-control input-box" name="PrimaryColor" type="text" required placeholder="Blue" asp-for="PrimaryColor"/>
             <br/>
             <label class="fs-5" asp-for="SecondaryColor">Secondary Color</label>
             <br/>
-            <input class="form-control input-box" type="text" required placeholder="Red" asp-for="SecondaryColor"/>
+            <input class="form-control input-box" name="SecondaryColor" type="text" required placeholder="Red" asp-for="SecondaryColor"/>
             <br/>
             <label class="fs-5" asp-for="Category">Category</label>
             <br/>
-            <input class="form-control input-box" type="text" required placeholder="Fantasy/Adventure" asp-for="Category"/>
+            <input class="form-control input-box" name="Category" type="text" required placeholder="Fantasy/Adventure" asp-for="Category"/>
             <br/>
             <label class="fs-5" asp-for="Description">Description</label>
             <br/>
-            <textarea class="form-control input-box" rows="7" placeholder="A brief description of the Lego set" asp-for="Description"></textarea>
+            <textarea class="form-control input-box" name="Description" rows="7" placeholder="A brief description of the Lego set" asp-for="Description"></textarea>
         </div>
     </div>
 </form>
