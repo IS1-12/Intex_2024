@@ -63,8 +63,11 @@ namespace WebApplication1.Controllers
         }
         public IActionResult Products(int pageNum, string categories, int numProducts)
         {
-            int pageSize = 9;
 
+            int pageSize = numProducts;
+
+            if (pageSize < 1) pageSize = 9;
+            
             var productsPages = new ProductListViewModel
             {
                 Products = _repo.Products

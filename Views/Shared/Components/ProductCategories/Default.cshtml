@@ -3,7 +3,7 @@
 @model IQueryable<string>
 
 <option value="#" selected="selected">Select Product Category</option>
-<option value="@Url.Action("Products", "Home", new {pageNum = "1"})">All Products</option>
+<option value="@Url.Action("Products", "Home", new {pageNum = "1", numProducts = "9"})">All Products</option>
 
 @foreach (string cat in Model ?? Enumerable.Empty<string>())
 {
