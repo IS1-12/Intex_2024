@@ -63,21 +63,18 @@ namespace WebApplication1.Controllers
         }
         public IActionResult Products(int pageNum, string categories, string color, int numProducts)
         {
-            int pageSize = 9;
+            int pageSize = numProducts;
 
             IQueryable<Product> products = _repo.Products;
 
             // Apply category filter if it is not null
             if (!string.IsNullOrEmpty(categories))
-
-            int pageSize = numProducts;
-
-            if (pageSize < 1) pageSize = 9;
-            
-            var productsPages = new ProductListViewModel
             {
                 products = products.Where(x => x.Category == categories);
             }
+            
+            if (pageSize < 1) pageSize = 9;
+            
 
             // Apply color filter if it is not null
             if (!string.IsNullOrEmpty(color))
