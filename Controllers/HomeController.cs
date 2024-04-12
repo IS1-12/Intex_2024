@@ -65,7 +65,8 @@ namespace WebApplication1.Controllers
         public IActionResult Products(int pageNum, string categories, string color, int numProducts)
         {
             int pageSize = numProducts;
-
+            if (pageSize < 1) pageSize = 9;
+            
             IQueryable<Product> products = _repo.Products;
 
             // Apply category filter if it is not null
@@ -74,8 +75,6 @@ namespace WebApplication1.Controllers
                 products = products.Where(x => x.Category == categories);
             }
             
-            if (pageSize < 1) pageSize = 9;
-
             // Apply color filter if it is not null
             if (!string.IsNullOrEmpty(color))
             {
@@ -97,35 +96,9 @@ namespace WebApplication1.Controllers
                     ItemsPerPage = pageSize,
                     TotalItems = products.Count() // Calculate total count based on filtered products
                 },
-                CurrentProductType = categories // This might need adjustment if you want to display color or both.
+                CurrentProductType = categories, // This might need adjustment if you want to display color or both.
+                CurrentColor = color
             };
-
-
-            //var productsPages = new ProductListViewModel
-            //{
-            //    Products = _repo.Products
-            //        .Where(x => x.Category == categories || categories == null)
-            //        .OrderBy(x => x.ProductId)
-            //        .Skip((pageNum - 1) * pageSize)
-            //        .Take(pageSize),
-            //    Products = _repo.Products
-            //        .Where(x => x.PrimaryColor == color || color == null)
-            //        .OrderBy(x => x.ProductId)
-            //        .Skip((pageNum - 1) * pageSize)
-            //        .Take(pageSize),
-
-
-            //    PaginationInfo = new PaginationInfo
-            //    {
-            //        CurrentPage = pageNum,
-            //        ItemsPerPage = pageSize,
-            //        TotalItems = categories == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == categories).Count()
-            //    },
-
-            //    CurrentProductType = categories
-            //};
-
-
             return View(productsPages);
         }
         
@@ -370,15 +343,6 @@ namespace WebApplication1.Controllers
             return RedirectToAction("AdminAllUsers");
         }
 
-        
-
-        //public IActionResult AdminUserEdit(string id)
-        //{
-        //    Task<UserViewModel> user = _repo.GetUserViewModelAsync(id);
-
-        //    return View("AdminAddUser", user);
-        //}
-
         [HttpPost]
         public IActionResult AdminAddProduct(Product p)
         {
@@ -404,11 +368,4 @@ namespace WebApplication1.Controllers
         }
 
     }
-
-    //public IActionResult AdminOrderAccept(int id)
-    //{
-    //    ViewBag.Id = id;
-            
-    //    return View();
-    //}
 }

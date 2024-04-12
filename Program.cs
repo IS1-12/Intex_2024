@@ -95,7 +95,8 @@ namespace WebApplication1
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            
+            app.MapControllerRoute("WithCategoriesAndColors", "Products/{numProducts}/{categories}/{pageNum}/{color}", new { Controller = "Home", action = "Products" });
             app.MapControllerRoute("WithCategories", "Products/{numProducts}/{categories}/{pageNum}/", new { Controller = "Home", action = "Products" });
             app.MapControllerRoute("WithColors", "Products/{numProducts}/{color}/{pageNum}/", new { Controller = "Home", action = "Products" });
             app.MapControllerRoute("paginationAndProducts", "Products/{numProducts}/{pageNum}", new { Controller = "Home", action = "Products" });
