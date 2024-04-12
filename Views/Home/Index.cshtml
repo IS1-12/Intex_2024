@@ -6,11 +6,11 @@
 @model IQueryable<Product> 
 
 <div class="text-center">
-    <h1 class="display-4 fw-bold">Become a Master Builder!</h1>
+    <h1 class="display-4 fw-bold">Welcome to Aurora Bricks!</h1>
     <img src="~/images/wide batman.jpg" width="100%" alt="Lego superheros charging forward to victory. Courtesy of Buzzfeed"/>
-    <h2 class="display-6 fw-bold">Aurora Bricks will help you become ANYTHING!</h2>
-    <p class="fs-2">
-        Pick from a plethora of different sets to expand your mind and “master” your skills. We promise that you will be a master builder like Lego Batman sooner than you ever thought! We have sets from Star Wars to Air Canada. Whichever set you choose, be prepared for a world of fun!
+    <h2 class="display-6 fw-bold">Your journey to MASTER BUILDER begins here!</h2>
+    <p class="fs-3">
+        Pick from a wide variety of Lego sets to expand your mind and “master” your skills. We promise that you will be a master builder like Lego Batman sooner than you ever thought! We have sets from Star Wars to Air Canada. Whichever set you choose, be prepared for a world of fun!
     </p>
     <div class="row">
         @foreach (var p in Model.Take(3))
