@@ -5,6 +5,9 @@
 @model IQueryable<AspNetUser>
 
 <h1>All Users</h1>
+<div>
+    <a class="btn zesty-button" asp-controller="Home" asp-action="AdminDashboard">Back Home</a>
+</div>
 <div class="align-content-center">
     @foreach (var u in Model)
     {

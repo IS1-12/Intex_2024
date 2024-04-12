@@ -6,9 +6,14 @@
 
 <h1>All Products</h1>
 <div class="align-content-center">
-    <div style="text-align: right;">
-        <a class="btn zesty-button" asp-controller="Home" asp-action="AdminAddProduct">Add Product</a>
-    </div>
+    <span>
+        <div>
+            <span>
+            <a class="btn zesty-button" asp-controller="Home" asp-action="AdminDashboard">Back Home</a>
+            <a class="btn zesty-button float-end" asp-controller="Home" asp-action="AdminAddProduct">Add Product</a>
+            </span>
+        </div>
+    </span>
     <br/>
     @foreach (var p in Model)
     {
