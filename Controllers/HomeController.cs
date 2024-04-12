@@ -70,7 +70,7 @@ namespace WebApplication1.Controllers
             IQueryable<Product> products = _repo.Products;
 
             // Apply category filter if it is not null
-            if (!string.IsNullOrEmpty(categories))
+            if (!string.IsNullOrEmpty(categories) && categories != "All")
             {
                 products = products.Where(x => x.Category == categories);
             }

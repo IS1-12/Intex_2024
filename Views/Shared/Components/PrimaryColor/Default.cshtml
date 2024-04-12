@@ -7,5 +7,5 @@
 
 @foreach (string cat in Model ?? Enumerable.Empty<string>())
 {
-    <option value="@Url.Action("Products", "Home", new{color = cat, pageNum=1})">@cat</option>
+    <option value="@Url.Action("Products", "Home", new{categories = "All", color = cat, pageNum=1})">@cat</option>
 }
