@@ -28,7 +28,7 @@ namespace WebApplication1.Controllers
 
             try
             {
-                _session = new InferenceSession("./decision_tree_model.onnx");
+                _session = new InferenceSession("./wwwroot/decision_tree_model.onnx");
                 //_logger.LogInformation("ONNX model loaded successfully.");
                 Console.WriteLine("Success");
             }
@@ -140,8 +140,8 @@ namespace WebApplication1.Controllers
 
             return View(products);
         }
+
         [HttpPost]
-        [Authorize]
         public IActionResult AddToCart(int productId, string returnUrl)
         {
             Product? prod = _repo.Products
@@ -156,6 +156,7 @@ namespace WebApplication1.Controllers
 
             return RedirectToAction("CartConfirmation", new { id = productId, returnUrl = returnUrl });
         }
+
         [Authorize]
         public IActionResult CartConfirmation(int id, string returnUrl)
         {
