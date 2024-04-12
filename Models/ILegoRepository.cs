@@ -1,4 +1,5 @@
 ﻿using LegosWithAurora.Models.ViewModels;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace LegosWithAurora.Models
 {
@@ -32,6 +33,5 @@ namespace LegosWithAurora.Models
         public void DelUser(string id);
         public void EditExistingProduct(Product product);
         public void SaveUser(AspNetUser Id);
-        //Task<UserViewModel> GetUserViewModelAsync(string userId);
     }
 }

@@ -25,7 +25,11 @@
         <br />
         <label class="fs-5">IS ADMIN</label>
         <br />
-        <input type="checkbox" />
+        <select asp-for="PhoneNumberConfirmed">
+            <option asp-for="PhoneNumberConfirmed" selected disabled>Select</option>
+            <option asp-for="PhoneNumberConfirmed" name="PhoneNumberConfirmed" value="1">Yes</option>
+            <option asp-for="PhoneNumberConfirmed" name="PhoneNumberConfirmed" value="0">No</option>
+        </select>
     </div>
     <div asp-validation-summary="All"></div>
 </form>
