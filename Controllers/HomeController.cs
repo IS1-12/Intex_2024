@@ -436,6 +436,7 @@ namespace WebApplication1.Controllers
             return RedirectToAction("AdminAllUsers");
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminDelete(string id)
         {
             var user = _repo.UpdateUser(id);
