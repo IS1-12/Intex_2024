@@ -1,4 +1,7 @@
-﻿@model AspNetUser
+﻿@{
+    ViewData["Title"] = "Add/Edit User";
+}
+@model AspNetUser
 
 <form method="post" asp-action="SaveUser">
     <div style="display: flex">
@@ -22,4 +25,5 @@
         <br />
         <input type="checkbox" />
     </div>
+    <div asp-validation-summary="All"></div>
 </form>

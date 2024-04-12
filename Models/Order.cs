@@ -4,12 +4,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LegosWithAurora.Models;
 
+//a note on validating this model: We set almost all of the values. Very little needs to be validated. 
 public partial class Order
 {
     [Key]
     [Required]
     public int TransactionId { get; set; }
 
+    [Required(ErrorMessage = "Sorry, you need to log in")]
     public int? CustomerId { get; set; }
 
     public string? Date { get; set; } = DateTime.Today.ToString("M/d/yyyy");
