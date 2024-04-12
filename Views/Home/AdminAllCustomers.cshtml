@@ -1,0 +1,38 @@
+@{
+    Layout = "_AdminLayout";
+}
+
+@model IQueryable<Customer>
+
+<h1>All Customers</h1>
+<a class="btn zesty-button" style="width:100px;" asp-controller="Home" asp-action="AdminDashboard">Back</a>
+<div class="container align-content-center">
+    <table class="container bg-blue text-white nice-table-border text-center" style="border-radius: 10px;border: 1px solid white;
+    border-collapse: collapse;">
+        <thead class="fw-bold">
+        <tr style="border: 1px solid white; border-collapse: collapse;">
+            <td>Customer-ID</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Birthday</td>
+            <td>Country</td>
+            <td>Gender</td>
+            <td>Age</td>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var c in Model)
+        {
+            <tr style="border: 1px solid white;border-collapse: collapse;">
+                <td>@c.CustomerId</td>
+                <td>@c.FirstName</td>
+                <td>@c.LastName</td>
+                <td>@c.BirthDate</td>
+                <td>@c.CountryOfResidence</td>
+                <td>@c.Gender</td>
+                <td>@c.Age</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

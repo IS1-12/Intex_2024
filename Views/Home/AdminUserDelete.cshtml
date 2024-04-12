@@ -3,14 +3,16 @@
 *@
 @model AspNetUser
 
-<div style="display:flex">
+<div class="align-items-center text-center" style="margin-top: 300px;margin-bottom: 300px;">
+    <h1>Are you sure that you want to delete user with ID "@Model.Id"?</h1>
+    <br/>
     <form asp-action="AdminUserDelete" method="post">
-        <input type="hidden" asp-for="Id" />
-        <button class="zesty-button" style="margin-right: 50px" type="submit">Confirm</button>
-        <a class="zesty-button-red" style="margin-left: 50px" asp-controller="Home" asp-action="AdminAllUsers">Cancel</a>
+        <input type="hidden" asp-for="Id"/>
+        <span>
+            <button class="btn zesty-button" style="width: 100px" type="submit">Confirm</button>
+            <a class="btn zesty-button-red" style="width:100px" asp-controller="Home" asp-action="AdminAllUsers">Cancel</a>
+        </span>
     </form>
-    
-</div>
 
-<h3>Are you sure that you want to delete user with ID "@Model.Id"?</h3>
+</div>
 

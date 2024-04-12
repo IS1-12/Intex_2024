@@ -307,8 +307,7 @@ namespace WebApplication1.Controllers
             Product delete = _repo.EditProduct(id);
             return View(delete);
         }
-
-      
+        
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
@@ -378,5 +377,14 @@ namespace WebApplication1.Controllers
             return RedirectToAction("AdminAllProducts");
         }
 
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminAllCustomers()
+        {
+            var customers = _repo.Customers;
+
+            customers.ToList();
+            
+            return View(customers);
+        }
     }
 }
