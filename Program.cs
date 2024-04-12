@@ -72,12 +72,14 @@ namespace WebApplication1
                 app.UseHsts();
             }
 
+            //Use session and enforce redirecting to Https
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSession();
 
             app.UseRouting();
 
+            //This sets the CSP header
             app.Use(async (ctx, next) =>
             {
                 var csp = "default-src 'self'; " +
@@ -93,9 +95,11 @@ namespace WebApplication1
                 await next();
             });
 
+            //Enforce authentication
             app.UseAuthentication();
             app.UseAuthorization();
             
+            //These are improved urls
             app.MapControllerRoute("WithCategoriesAndColors", "Products/{numProducts}/{categories}/{pageNum}/{color}", new { Controller = "Home", action = "Products" });
             app.MapControllerRoute("WithCategories", "Products/{numProducts}/{categories}/{pageNum}/", new { Controller = "Home", action = "Products" });
             app.MapControllerRoute("WithColors", "Products/{numProducts}/{color}/{pageNum}/", new { Controller = "Home", action = "Products" });
